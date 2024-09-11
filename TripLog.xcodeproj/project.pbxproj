@@ -54,10 +54,8 @@
 		BED1DF6A2C907C1D0030BC1A /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
-				BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */,
-				BED1DF6D2C907C1D0030BC1A /* ContentView.swift */,
-				BED1DF6F2C907C200030BC1A /* Assets.xcassets */,
-				BED1DF712C907C200030BC1A /* Preview Content */,
+				BED1DF7E2C91D09E0030BC1A /* Sources */,
+				BED1DF7D2C91D0950030BC1A /* Resources */,
 			);
 			path = TripLog;
 			sourceTree = "<group>";
@@ -68,6 +66,40 @@
 				BED1DF722C907C200030BC1A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BED1DF7B2C91D07D0030BC1A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BED1DF7C2C91D0830030BC1A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BED1DF6D2C907C1D0030BC1A /* ContentView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BED1DF7D2C91D0950030BC1A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BED1DF6F2C907C200030BC1A /* Assets.xcassets */,
+				BED1DF712C907C200030BC1A /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BED1DF7E2C91D09E0030BC1A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BED1DF7B2C91D07D0030BC1A /* App */,
+				BED1DF7C2C91D0830030BC1A /* Presentation */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,7 +307,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TripLog/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TripLog/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ASU4PNB5MG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -304,7 +336,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TripLog/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TripLog/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ASU4PNB5MG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
