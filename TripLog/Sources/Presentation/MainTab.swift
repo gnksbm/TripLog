@@ -10,10 +10,50 @@ import SwiftUI
 struct MainTab: View {
     var body: some View {
         TabView {
-            EventListView()
-            TouristMapView()
-            ScheduleListView()
-            RecordListView()
+            ForEach(TabKind.allCases) { tabKind in
+                tabKind.view
+                    .tabItem { tabKind.tabItem }
+            }
+        }
+    }
+    
+    enum TabKind: CaseIterable, Identifiable {
+        case eventList, touristMap, scheduleList, recordList
+        
+        var id: Self { self }
+        
+        @ViewBuilder
+        var view: some View {
+            switch self {
+            case .eventList:
+                EventListView()
+            case .touristMap:
+                TouristMapView()
+            case .scheduleList:
+                ScheduleListView()
+            case .recordList:
+                RecordListView()
+            }
+        }
+        
+        @ViewBuilder
+        var tabItem: some View {
+            VStack {
+                switch self {
+                case .eventList:
+                    Image(systemName: "fireworks")
+                    Text("행사")
+                case .touristMap:
+                    Image(systemName: "map")
+                    Text("관광지")
+                case .scheduleList:
+                    Image(systemName: "list.bullet")
+                    Text("일정")
+                case .recordList:
+                    Image(systemName: "note.text")
+                    Text("나의 기록")
+                }
+            }
         }
     }
 }
