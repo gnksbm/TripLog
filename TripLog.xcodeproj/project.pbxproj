@@ -11,6 +11,7 @@
 		BE473E262C93351700020435 /* TouristMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E252C93351700020435 /* TouristMapView.swift */; };
 		BE473E282C93353700020435 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E272C93353700020435 /* ScheduleListView.swift */; };
 		BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E292C93353F00020435 /* RecordListView.swift */; };
+		BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E2D2C933DCA00020435 /* SliderView.swift */; };
 		BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */; };
 		BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* MainTab.swift */; };
 		BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF6F2C907C200030BC1A /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		BE473E252C93351700020435 /* TouristMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapView.swift; sourceTree = "<group>"; };
 		BE473E272C93353700020435 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
 		BE473E292C93353F00020435 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
+		BE473E2D2C933DCA00020435 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		BED1DF682C907C1D0030BC1A /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogApp.swift; sourceTree = "<group>"; };
 		BED1DF6D2C907C1D0030BC1A /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -42,6 +44,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE473E2B2C933DB500020435 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E2D2C933DCA00020435 /* SliderView.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		BE473E2C2C933DBC00020435 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				BED1DF6D2C907C1D0030BC1A /* MainTab.swift */,
+				BE473E232C9334F400020435 /* EventListView.swift */,
+				BE473E252C93351700020435 /* TouristMapView.swift */,
+				BE473E272C93353700020435 /* ScheduleListView.swift */,
+				BE473E292C93353F00020435 /* RecordListView.swift */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
 		BED1DF5F2C907C1D0030BC1A = {
 			isa = PBXGroup;
 			children = (
@@ -87,11 +109,8 @@
 		BED1DF7C2C91D0830030BC1A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				BED1DF6D2C907C1D0030BC1A /* MainTab.swift */,
-				BE473E232C9334F400020435 /* EventListView.swift */,
-				BE473E252C93351700020435 /* TouristMapView.swift */,
-				BE473E272C93353700020435 /* ScheduleListView.swift */,
-				BE473E292C93353F00020435 /* RecordListView.swift */,
+				BE473E2C2C933DBC00020435 /* MainTab */,
+				BE473E2B2C933DB500020435 /* Custom */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -195,6 +214,7 @@
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
 				BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */,
+				BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
