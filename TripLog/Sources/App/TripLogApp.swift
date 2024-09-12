@@ -11,7 +11,7 @@ import SwiftUI
 struct TripLogApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTab()
         }
     }
 }

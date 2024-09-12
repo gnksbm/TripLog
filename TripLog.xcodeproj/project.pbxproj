@@ -7,17 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE473E242C9334F400020435 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E232C9334F400020435 /* EventListView.swift */; };
+		BE473E262C93351700020435 /* TouristMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E252C93351700020435 /* TouristMapView.swift */; };
+		BE473E282C93353700020435 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E272C93353700020435 /* ScheduleListView.swift */; };
+		BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E292C93353F00020435 /* RecordListView.swift */; };
 		BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */; };
-		BED1DF6E2C907C1D0030BC1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* ContentView.swift */; };
+		BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* MainTab.swift */; };
 		BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF6F2C907C200030BC1A /* Assets.xcassets */; };
 		BED1DF732C907C200030BC1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF722C907C200030BC1A /* Preview Assets.xcassets */; };
 		BED1DF7A2C907CEA0030BC1A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF792C907CEA0030BC1A /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE473E232C9334F400020435 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		BE473E252C93351700020435 /* TouristMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapView.swift; sourceTree = "<group>"; };
+		BE473E272C93353700020435 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
+		BE473E292C93353F00020435 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
 		BED1DF682C907C1D0030BC1A /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogApp.swift; sourceTree = "<group>"; };
-		BED1DF6D2C907C1D0030BC1A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BED1DF6D2C907C1D0030BC1A /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		BED1DF6F2C907C200030BC1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BED1DF722C907C200030BC1A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BED1DF792C907CEA0030BC1A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -79,7 +87,11 @@
 		BED1DF7C2C91D0830030BC1A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				BED1DF6D2C907C1D0030BC1A /* ContentView.swift */,
+				BED1DF6D2C907C1D0030BC1A /* MainTab.swift */,
+				BE473E232C9334F400020435 /* EventListView.swift */,
+				BE473E252C93351700020435 /* TouristMapView.swift */,
+				BE473E272C93353700020435 /* ScheduleListView.swift */,
+				BE473E292C93353F00020435 /* RecordListView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -177,8 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED1DF6E2C907C1D0030BC1A /* ContentView.swift in Sources */,
+				BE473E282C93353700020435 /* ScheduleListView.swift in Sources */,
+				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
+				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
+				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
+				BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -294,7 +310,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -320,7 +336,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,7 +370,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
