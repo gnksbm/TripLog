@@ -14,6 +14,7 @@
 		BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E2D2C933DCA00020435 /* SliderView.swift */; };
 		BE473E322C9485DC00020435 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E312C9485DC00020435 /* NetworkService.swift */; };
 		BE473E342C9485FB00020435 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E332C9485FB00020435 /* Endpoint.swift */; };
+		BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E352C9488E100020435 /* DefaultNetworkService.swift */; };
 		BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */; };
 		BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* MainTab.swift */; };
 		BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF6F2C907C200030BC1A /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		BE473E2D2C933DCA00020435 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		BE473E312C9485DC00020435 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = TripLog/Sources/Data/Network/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		BE473E332C9485FB00020435 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		BE473E352C9488E100020435 /* DefaultNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkService.swift; sourceTree = "<group>"; };
 		BED1DF682C907C1D0030BC1A /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogApp.swift; sourceTree = "<group>"; };
 		BED1DF6D2C907C1D0030BC1A /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				BE473E312C9485DC00020435 /* NetworkService.swift */,
 				BE473E332C9485FB00020435 /* Endpoint.swift */,
+				BE473E352C9488E100020435 /* DefaultNetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
 				BE473E322C9485DC00020435 /* NetworkService.swift in Sources */,
+				BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */,
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
