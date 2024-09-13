@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol SliderItemType: CaseIterable, Identifiable, Equatable {
+protocol SliderItemType: Identifiable, Equatable {
     var title: String { get }
 }
 
@@ -29,7 +29,10 @@ struct SliderView<Item: SliderItemType>: View {
     
     var body: some View {
         HStack(spacing: .zero) {
-            ForEach(items) { item in
+            ForEach(
+                Array(zip(items.indices, items)),
+                id: \.1.id
+            ) { index, item in
                 Text(item.title)
                     .frame(width: itemWidth)
                     .multilineTextAlignment(.center)
@@ -37,6 +40,9 @@ struct SliderView<Item: SliderItemType>: View {
                     .onTapGesture {
                         selectedItem = item
                         onSelected(item)
+                        withAnimation {
+                            selectedIndex = CGFloat(index)
+                        }
                     }
             }
         }
@@ -63,14 +69,6 @@ struct SliderView<Item: SliderItemType>: View {
                     y: proxy.frame(in: .local).minY
                 )
                 .foregroundStyle(lineColor)
-        }
-        .onChange(of: selectedItem) { newValue in
-            guard let selectedIndex = items.firstIndex(
-                where: { $0 == newValue }
-            ) else { return }
-            withAnimation {
-                self.selectedIndex = CGFloat(selectedIndex)
-            }
         }
         .onAppear {
             selectedItem = items.first
@@ -104,7 +102,7 @@ struct SliderView<Item: SliderItemType>: View {
 }
 
 #Preview {
-    enum SliderTestItem: SliderItemType {
+    enum SliderTestItem: SliderItemType, CaseIterable {
         case a, b, c
         
         var title: String { "\(self)" }
