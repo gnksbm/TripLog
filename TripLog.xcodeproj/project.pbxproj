@@ -15,6 +15,11 @@
 		BE473E322C9485DC00020435 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E312C9485DC00020435 /* NetworkService.swift */; };
 		BE473E342C9485FB00020435 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E332C9485FB00020435 /* Endpoint.swift */; };
 		BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E352C9488E100020435 /* DefaultNetworkService.swift */; };
+		BE473E552C954E3100020435 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E542C954E3100020435 /* Secret.swift */; };
+		BE473E582C95862E00020435 /* TouristEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E572C95862E00020435 /* TouristEndpoint.swift */; };
+		BE473E5B2C95864C00020435 /* AreaCodeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */; };
+		BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E5D2C958D3700020435 /* QueryProvider.swift */; };
+		BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E602C958E1D00020435 /* AreaCodeRequest.swift */; };
 		BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */; };
 		BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* MainTab.swift */; };
 		BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF6F2C907C200030BC1A /* Assets.xcassets */; };
@@ -31,6 +36,13 @@
 		BE473E312C9485DC00020435 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = TripLog/Sources/Data/Network/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		BE473E332C9485FB00020435 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		BE473E352C9488E100020435 /* DefaultNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkService.swift; sourceTree = "<group>"; };
+		BE473E512C954D2E00020435 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		BE473E522C954DD300020435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BE473E542C954E3100020435 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		BE473E572C95862E00020435 /* TouristEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristEndpoint.swift; sourceTree = "<group>"; };
+		BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeEndpoint.swift; sourceTree = "<group>"; };
+		BE473E5D2C958D3700020435 /* QueryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryProvider.swift; sourceTree = "<group>"; };
+		BE473E602C958E1D00020435 /* AreaCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeRequest.swift; sourceTree = "<group>"; };
 		BED1DF682C907C1D0030BC1A /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogApp.swift; sourceTree = "<group>"; };
 		BED1DF6D2C907C1D0030BC1A /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -82,10 +94,53 @@
 			isa = PBXGroup;
 			children = (
 				BE473E312C9485DC00020435 /* NetworkService.swift */,
-				BE473E332C9485FB00020435 /* Endpoint.swift */,
+				BE473E562C95862800020435 /* Endpoint */,
 				BE473E352C9488E100020435 /* DefaultNetworkService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		BE473E532C954E2300020435 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E542C954E3100020435 /* Secret.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		BE473E562C95862800020435 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E332C9485FB00020435 /* Endpoint.swift */,
+				BE473E592C95864200020435 /* TouristEndpoint */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		BE473E592C95864200020435 /* TouristEndpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E572C95862E00020435 /* TouristEndpoint.swift */,
+				BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */,
+			);
+			path = TouristEndpoint;
+			sourceTree = "<group>";
+		};
+		BE473E5C2C958D3300020435 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E5F2C958E1A00020435 /* Request */,
+				BE473E5D2C958D3700020435 /* QueryProvider.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		BE473E5F2C958E1A00020435 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E602C958E1D00020435 /* AreaCodeRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		BED1DF5F2C907C1D0030BC1A = {
@@ -108,6 +163,7 @@
 		BED1DF6A2C907C1D0030BC1A /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
+				BE473E522C954DD300020435 /* Info.plist */,
 				BED1DF7E2C91D09E0030BC1A /* Sources */,
 				BED1DF7D2C91D0950030BC1A /* Resources */,
 			);
@@ -142,6 +198,7 @@
 		BED1DF7D2C91D0950030BC1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BE473E512C954D2E00020435 /* Secret.xcconfig */,
 				BED1DF6F2C907C200030BC1A /* Assets.xcassets */,
 				BED1DF712C907C200030BC1A /* Preview Content */,
 			);
@@ -151,8 +208,10 @@
 		BED1DF7E2C91D09E0030BC1A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BE473E2F2C9485CB00020435 /* Data */,
 				BED1DF7B2C91D07D0030BC1A /* App */,
+				BE473E5C2C958D3300020435 /* Domain */,
+				BE473E2F2C9485CB00020435 /* Data */,
+				BE473E532C954E2300020435 /* Foundation */,
 				BED1DF7C2C91D0830030BC1A /* Presentation */,
 			);
 			path = Sources;
@@ -234,15 +293,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE473E282C93353700020435 /* ScheduleListView.swift in Sources */,
+				BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */,
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
+				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
 				BE473E322C9485DC00020435 /* NetworkService.swift in Sources */,
+				BE473E552C954E3100020435 /* Secret.swift in Sources */,
+				BE473E5B2C95864C00020435 /* AreaCodeEndpoint.swift in Sources */,
 				BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */,
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
 				BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */,
 				BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */,
+				BE473E582C95862E00020435 /* TouristEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -358,6 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -379,11 +445,13 @@
 				DEVELOPMENT_TEAM = ASU4PNB5MG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TripLog/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -413,11 +481,13 @@
 				DEVELOPMENT_TEAM = ASU4PNB5MG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TripLog/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

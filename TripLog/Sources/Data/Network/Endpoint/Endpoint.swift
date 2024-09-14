@@ -7,13 +7,19 @@
 
 import Foundation
 
-enum HTTPMethod: String {
+enum Scheme: String {
     case http, https, ws
+}
+
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case delete = "DELETE"
 }
 
 protocol Endpoint {
     var httpMethod: HTTPMethod { get }
-    var scheme: String { get }
+    var scheme: Scheme { get }
     var host: String { get }
     var port: Int? { get }
     var path: String { get }
@@ -45,7 +51,7 @@ extension Endpoint {
     
     func toURL() -> URL? {
         var components = URLComponents()
-        components.scheme = scheme
+        components.scheme = scheme.rawValue
         components.host = host
         components.path = path
         components.port = port
