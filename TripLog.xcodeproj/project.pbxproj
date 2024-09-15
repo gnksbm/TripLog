@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */; };
+		BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2192C96A83600CCDB99 /* TouristRepository.swift */; };
+		BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21B2C96A8D700CCDB99 /* Injected.swift */; };
+		BE14D21E2C96A8F000CCDB99 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21D2C96A8F000CCDB99 /* DIContainer.swift */; };
+		BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2202C96A97300CCDB99 /* Data+.swift */; };
+		BE14D2232C96B39900CCDB99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2222C96B39900CCDB99 /* AppDelegate.swift */; };
 		BE473E242C9334F400020435 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E232C9334F400020435 /* EventListView.swift */; };
 		BE473E262C93351700020435 /* TouristMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E252C93351700020435 /* TouristMapView.swift */; };
 		BE473E282C93353700020435 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E272C93353700020435 /* ScheduleListView.swift */; };
@@ -20,6 +26,9 @@
 		BE473E5B2C95864C00020435 /* AreaCodeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */; };
 		BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E5D2C958D3700020435 /* QueryProvider.swift */; };
 		BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E602C958E1D00020435 /* AreaCodeRequest.swift */; };
+		BE473E632C969A2800020435 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E622C969A2800020435 /* ViewModel.swift */; };
+		BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */; };
+		BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */; };
 		BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */; };
 		BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* MainTab.swift */; };
 		BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF6F2C907C200030BC1A /* Assets.xcassets */; };
@@ -28,6 +37,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeDTO.swift; sourceTree = "<group>"; };
+		BE14D2192C96A83600CCDB99 /* TouristRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRepository.swift; sourceTree = "<group>"; };
+		BE14D21B2C96A8D700CCDB99 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
+		BE14D21D2C96A8F000CCDB99 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		BE14D2202C96A97300CCDB99 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
+		BE14D2222C96B39900CCDB99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE473E232C9334F400020435 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		BE473E252C93351700020435 /* TouristMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapView.swift; sourceTree = "<group>"; };
 		BE473E272C93353700020435 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
@@ -43,6 +58,9 @@
 		BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeEndpoint.swift; sourceTree = "<group>"; };
 		BE473E5D2C958D3700020435 /* QueryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryProvider.swift; sourceTree = "<group>"; };
 		BE473E602C958E1D00020435 /* AreaCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeRequest.swift; sourceTree = "<group>"; };
+		BE473E622C969A2800020435 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeResponse.swift; sourceTree = "<group>"; };
+		BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		BED1DF682C907C1D0030BC1A /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogApp.swift; sourceTree = "<group>"; };
 		BED1DF6D2C907C1D0030BC1A /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -62,6 +80,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE14D2152C96A7C200CCDB99 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		BE14D2182C96A82B00CCDB99 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				BE14D2192C96A83600CCDB99 /* TouristRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		BE14D21F2C96A96D00CCDB99 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE14D2202C96A97300CCDB99 /* Data+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		BE473E2B2C933DB500020435 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				BED1DF6D2C907C1D0030BC1A /* MainTab.swift */,
-				BE473E232C9334F400020435 /* EventListView.swift */,
+				BEADF8F02C96BC5700FCDBE9 /* EventList */,
 				BE473E252C93351700020435 /* TouristMapView.swift */,
 				BE473E272C93353700020435 /* ScheduleListView.swift */,
 				BE473E292C93353F00020435 /* RecordListView.swift */,
@@ -85,6 +127,8 @@
 		BE473E2F2C9485CB00020435 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BEADF8ED2C96BAFB00FCDBE9 /* DTO */,
+				BE14D2182C96A82B00CCDB99 /* Repository */,
 				BE473E302C9485D500020435 /* Network */,
 			);
 			path = Data;
@@ -103,7 +147,11 @@
 		BE473E532C954E2300020435 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				BE14D21F2C96A96D00CCDB99 /* Extension */,
 				BE473E542C954E3100020435 /* Secret.swift */,
+				BE14D21D2C96A8F000CCDB99 /* DIContainer.swift */,
+				BE473E622C969A2800020435 /* ViewModel.swift */,
+				BE14D21B2C96A8D700CCDB99 /* Injected.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -129,6 +177,7 @@
 		BE473E5C2C958D3300020435 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				BE14D2152C96A7C200CCDB99 /* Response */,
 				BE473E5F2C958E1A00020435 /* Request */,
 				BE473E5D2C958D3700020435 /* QueryProvider.swift */,
 			);
@@ -141,6 +190,23 @@
 				BE473E602C958E1D00020435 /* AreaCodeRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		BEADF8ED2C96BAFB00FCDBE9 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		BEADF8F02C96BC5700FCDBE9 /* EventList */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E232C9334F400020435 /* EventListView.swift */,
+				BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */,
+			);
+			path = EventList;
 			sourceTree = "<group>";
 		};
 		BED1DF5F2C907C1D0030BC1A = {
@@ -182,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */,
+				BE14D2222C96B39900CCDB99 /* AppDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -292,19 +359,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE14D2232C96B39900CCDB99 /* AppDelegate.swift in Sources */,
 				BE473E282C93353700020435 /* ScheduleListView.swift in Sources */,
 				BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */,
+				BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */,
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
 				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
 				BE473E322C9485DC00020435 /* NetworkService.swift in Sources */,
+				BE473E632C969A2800020435 /* ViewModel.swift in Sources */,
+				BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */,
 				BE473E552C954E3100020435 /* Secret.swift in Sources */,
+				BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */,
 				BE473E5B2C95864C00020435 /* AreaCodeEndpoint.swift in Sources */,
 				BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */,
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
+				BE14D21E2C96A8F000CCDB99 /* DIContainer.swift in Sources */,
+				BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */,
+				BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */,
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
 				BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */,
+				BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */,
 				BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */,
 				BE473E582C95862E00020435 /* TouristEndpoint.swift in Sources */,
 			);
@@ -315,6 +391,7 @@
 /* Begin XCBuildConfiguration section */
 		BED1DF742C907C200030BC1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE473E512C954D2E00020435 /* Secret.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

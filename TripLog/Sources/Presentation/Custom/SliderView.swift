@@ -79,7 +79,7 @@ struct SliderView<Item: SliderItemType>: View {
     
     private var itemWidth: CGFloat {
         CGFloat(items.count) < maxItem ?
-        screenWidth / CGFloat(items.count) : screenWidth / maxItem
+        screenWidth / max(1, CGFloat(items.count)) : screenWidth / maxItem
     }
     
     init(

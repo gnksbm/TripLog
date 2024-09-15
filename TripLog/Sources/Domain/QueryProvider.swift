@@ -18,8 +18,16 @@ extension QueryProvider {
         do {
             let data = try JSONEncoder().encode(query)
             let jsonObject = try JSONSerialization.jsonObject(with: data)
-            guard let dic = jsonObject as? [String: String] else { return [:] }
-            return dic
+            guard let dic = jsonObject as? [String: Any] else { return [:] }
+            return dic.compactMapValues { value in
+                if let strValue = value as? String {
+                    strValue
+                } else if let intValue = value as? Int {
+                    String(intValue)
+                } else {
+                    nil
+                }
+            }
         } catch {
             return [:]
         }

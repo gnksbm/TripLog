@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct TripLogApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var delegate
+    
     var body: some Scene {
         WindowGroup {
             MainTab()

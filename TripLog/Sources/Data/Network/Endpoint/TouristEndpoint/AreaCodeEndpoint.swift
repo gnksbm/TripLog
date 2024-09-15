@@ -9,6 +9,6 @@ import Foundation
 
 struct AreaCodeEndpoint: TouristEndpoint {
     let request: AreaCodeRequest
-    var path: String { "/areaCode1" }
+    var path: String { "/B551011/KorService1/areaCode1" }
     var queryParameters: [String : String] { request.toDic() }
 }

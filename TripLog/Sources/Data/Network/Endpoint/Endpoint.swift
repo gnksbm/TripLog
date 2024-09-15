@@ -58,6 +58,9 @@ extension Endpoint {
         components.queryItems = queries?.map { key, value in
             URLQueryItem(name: key, value: value)
         }
-        return components.url
+        guard let urlStr = components.url?.absoluteString
+            .replacingOccurrences(of: "%25", with: "%")
+        else { return nil }
+        return URL(string: urlStr)
     }
 }
