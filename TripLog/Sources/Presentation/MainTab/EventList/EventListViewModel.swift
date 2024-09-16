@@ -14,20 +14,23 @@ final class EventListViewModel: ViewModel {
     
     @MainActor
     func mutate(action: Action) {
-        switch action {
-        case .onAppear:
-            Task {
-                state.area = try await touristRepository.fetchAreaCode()
+        Task {
+            switch action {
+            case .onAppear:
+                state.areaList = try await touristRepository.fetchAreaCode()
+            case .areaSelected(let area):
+                state.festivalList = try await touristRepository.fetchFestival(
+                    areaCode: area.areaCode
+                )
             }
-        case .areaSelected(_):
-            break
         }
     }
 }
 
 extension EventListViewModel {
     struct State {
-        var area = [AreaCodeResponse]()
+        var areaList = [AreaCodeResponse]()
+        var festivalList = [SearchFestivalResponse]()
     }
     
     enum Action {

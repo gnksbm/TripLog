@@ -70,8 +70,13 @@ struct SliderView<Item: SliderItemType>: View {
                 )
                 .foregroundStyle(lineColor)
         }
-        .onAppear {
-            selectedItem = items.first
+        .onChange(of: items) { value in
+            selectedItem = value.first
+        }
+        .onChange(of: selectedItem) { value in
+            if let value {
+                onSelected(value)
+            }
         }
     }
     

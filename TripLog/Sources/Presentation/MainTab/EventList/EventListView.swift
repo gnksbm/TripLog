@@ -16,14 +16,22 @@ extension AreaCodeResponse: SliderItemType {
     var title: String { areaName }
 }
 
+extension SearchFestivalResponse: Identifiable {
+    var id: String { contentID }
+}
+
 struct EventListView: View {
     @StateObject private var viewModel = EventListViewModel()
     
     var body: some View {
         NavigationStack { 
             ScrollView(.horizontal) {
-                SliderView(items: viewModel.state.area) { item in
+                SliderView(items: viewModel.state.areaList) { item in
                     viewModel.mutate(action: .areaSelected(item))
+                }
+            }
+            ScrollView {
+                ForEach(viewModel.state.festivalList) { festival in
                 }
             }
         }

@@ -12,6 +12,19 @@ struct AreaCodeDTO: Decodable {
 }
 
 extension AreaCodeDTO {
+    func toResponse() -> [AreaCodeResponse] {
+        response.body.items.item
+            .compactMap { item in
+                guard let areaCode = Int(item.code) else { return nil }
+                return AreaCodeResponse(
+                    areaCode: areaCode,
+                    areaName: item.name
+                )
+            }
+    }
+}
+
+extension AreaCodeDTO {
     struct Response: Decodable {
         let header: Header
         let body: Body
@@ -33,18 +46,5 @@ extension AreaCodeDTO {
     struct Item: Decodable {
         let rnum: Int
         let code, name: String
-    }
-}
-
-extension AreaCodeDTO {
-    func toResponse() -> [AreaCodeResponse] {
-        response.body.items.item
-            .compactMap { item in
-                guard let areaCode = Int(item.code) else { return nil }
-                return AreaCodeResponse(
-                    areaCode: areaCode,
-                    areaName: item.name
-                )
-            }
     }
 }

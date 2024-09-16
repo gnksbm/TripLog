@@ -29,11 +29,16 @@
 		BE473E632C969A2800020435 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E622C969A2800020435 /* ViewModel.swift */; };
 		BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */; };
 		BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */; };
+		BEADF8F42C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */; };
+		BEADF8F62C96BE7300FCDBE9 /* SearchFestivalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F52C96BE7300FCDBE9 /* SearchFestivalRequest.swift */; };
+		BEADF8F82C96BF6E00FCDBE9 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F72C96BF6E00FCDBE9 /* DateFormat.swift */; };
+		BEADF8FA2C96D54A00FCDBE9 /* SearchFestivalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F92C96D54A00FCDBE9 /* SearchFestivalDTO.swift */; };
 		BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */; };
 		BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1DF6D2C907C1D0030BC1A /* MainTab.swift */; };
 		BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF6F2C907C200030BC1A /* Assets.xcassets */; };
 		BED1DF732C907C200030BC1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF722C907C200030BC1A /* Preview Assets.xcassets */; };
 		BED1DF7A2C907CEA0030BC1A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF792C907CEA0030BC1A /* .gitignore */; };
+		BEF36D5C2C97D872008A9DBF /* SearchFestivalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,12 +66,17 @@
 		BE473E622C969A2800020435 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeResponse.swift; sourceTree = "<group>"; };
 		BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
+		BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalEndpoint.swift; sourceTree = "<group>"; };
+		BEADF8F52C96BE7300FCDBE9 /* SearchFestivalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalRequest.swift; sourceTree = "<group>"; };
+		BEADF8F72C96BF6E00FCDBE9 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		BEADF8F92C96D54A00FCDBE9 /* SearchFestivalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalDTO.swift; sourceTree = "<group>"; };
 		BED1DF682C907C1D0030BC1A /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1DF6B2C907C1D0030BC1A /* TripLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogApp.swift; sourceTree = "<group>"; };
 		BED1DF6D2C907C1D0030BC1A /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		BED1DF6F2C907C200030BC1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BED1DF722C907C200030BC1A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BED1DF792C907CEA0030BC1A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */,
+				BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -152,6 +163,7 @@
 				BE14D21D2C96A8F000CCDB99 /* DIContainer.swift */,
 				BE473E622C969A2800020435 /* ViewModel.swift */,
 				BE14D21B2C96A8D700CCDB99 /* Injected.swift */,
+				BEADF8F72C96BF6E00FCDBE9 /* DateFormat.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -170,6 +182,7 @@
 			children = (
 				BE473E572C95862E00020435 /* TouristEndpoint.swift */,
 				BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */,
+				BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */,
 			);
 			path = TouristEndpoint;
 			sourceTree = "<group>";
@@ -188,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				BE473E602C958E1D00020435 /* AreaCodeRequest.swift */,
+				BEADF8F52C96BE7300FCDBE9 /* SearchFestivalRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -196,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */,
+				BEADF8F92C96D54A00FCDBE9 /* SearchFestivalDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -363,6 +378,7 @@
 				BE473E282C93353700020435 /* ScheduleListView.swift in Sources */,
 				BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */,
 				BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */,
+				BEF36D5C2C97D872008A9DBF /* SearchFestivalResponse.swift in Sources */,
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
 				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
@@ -380,9 +396,13 @@
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
 				BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */,
+				BEADF8FA2C96D54A00FCDBE9 /* SearchFestivalDTO.swift in Sources */,
 				BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */,
 				BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */,
+				BEADF8F42C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift in Sources */,
 				BE473E582C95862E00020435 /* TouristEndpoint.swift in Sources */,
+				BEADF8F62C96BE7300FCDBE9 /* SearchFestivalRequest.swift in Sources */,
+				BEADF8F82C96BF6E00FCDBE9 /* DateFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
