@@ -32,8 +32,10 @@ struct EventListView: View {
             }
             ScrollView {
                 ForEach(viewModel.state.festivalList) { festival in
+                    FestivalCardView(festival: festival)
                 }
             }
+            .navigationTitle("지역별 행사")
         }
         .onAppear {
             viewModel.send(action: .onAppear)

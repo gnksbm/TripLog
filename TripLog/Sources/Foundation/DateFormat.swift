@@ -8,7 +8,8 @@
 import Foundation
 
 public enum DateFormat: String {
-    case searchFestivalRequest = "yyyyMMdd"
+    case festivalInput = "yyyyMMdd"
+    case festivalOutput = "yyyy.MM.dd"
 }
 
 extension DateFormat {

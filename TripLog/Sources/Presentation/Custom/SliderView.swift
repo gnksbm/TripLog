@@ -21,8 +21,8 @@ struct SliderView<Item: SliderItemType>: View {
     let fillColor: Color
     let lineColor: Color
     let maxItem: CGFloat
-    let onSelected: (Item) -> Void
     let barHeight: CGFloat
+    let onSelected: (Item) -> Void
     
     @State private var selectedItem: Item?
     @State private var selectedIndex: CGFloat = 0
@@ -34,6 +34,7 @@ struct SliderView<Item: SliderItemType>: View {
                 id: \.1.id
             ) { index, item in
                 Text(item.title)
+                    .fontWeight(item == selectedItem ? .bold : .regular)
                     .frame(width: itemWidth)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(titleColor)
@@ -58,17 +59,15 @@ struct SliderView<Item: SliderItemType>: View {
                         y: proxy.frame(in: .local).minY
                     )
                     .foregroundStyle(fillColor)
+                let global = proxy.frame(in: .global)
+                Capsule()
+                    .frame(width: itemWidth, height: barHeight)
+                    .offset(
+                        x: global.width / CGFloat(items.count) * selectedIndex,
+                        y: proxy.frame(in: .local).maxY
+                    )
+                    .foregroundStyle(lineColor)
             }
-        }
-        GeometryReader { proxy in
-            let global = proxy.frame(in: .global)
-            Capsule()
-                .frame(width: itemWidth, height: barHeight)
-                .offset(
-                    x: global.width / CGFloat(items.count) * selectedIndex,
-                    y: proxy.frame(in: .local).minY
-                )
-                .foregroundStyle(lineColor)
         }
         .onChange(of: items) { value in
             selectedItem = value.first
@@ -101,8 +100,8 @@ struct SliderView<Item: SliderItemType>: View {
         self.fillColor = fillColor
         self.lineColor = lineColor
         self.maxItem = maxItem
-        self.onSelected = onSelected
         self.barHeight = barHeight
+        self.onSelected = onSelected
     }
 }
 

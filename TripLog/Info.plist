@@ -10,6 +10,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>tong.visitkorea.or.kr</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<false/>
+			</dict>
 			<key>BASE_URL_KEY</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

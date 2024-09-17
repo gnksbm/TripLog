@@ -18,12 +18,17 @@ extension SearchFestivalDTO {
             guard let latitude = Double(item.mapx),
                   let longitude = Double(item.mapy),
                   let startDate = item.eventstartdate.formatted(
-                    dateFormat: .searchFestivalRequest
+                    dateFormat: .festivalInput
                   ),
                   let endDate = item.eventenddate.formatted(
-                    dateFormat: .searchFestivalRequest
+                    dateFormat: .festivalInput
                   )
             else { return nil }
+            [item.firstimage, item.firstimage2].forEach { str in
+                if let url = URL(string: str) {
+                    imageURLs.append(url)
+                }
+            }
             return SearchFestivalResponse(
                 contentID: item.contentid,
                 title: item.title,

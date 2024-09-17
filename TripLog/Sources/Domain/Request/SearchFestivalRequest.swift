@@ -18,10 +18,10 @@ extension SearchFestivalRequest: QueryProvider {
         Query(
             areaCode: areaCode,
             eventStartDate: eventStartDate.formatted(
-                dateFormat: .searchFestivalRequest
+                dateFormat: .festivalInput
             ),
             eventEndDate: eventEndDate?.formatted(
-                dateFormat: .searchFestivalRequest
+                dateFormat: .festivalInput
             )
         )
     }
