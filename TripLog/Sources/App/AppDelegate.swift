@@ -19,6 +19,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func registerDependencies() {
         DIContainer.register(DefaultNetworkService(), type: NetworkService.self)
-        DIContainer.register(DefaultTouristRepository(), type: TouristRepository.self)
+        DIContainer.register(
+            DefaultTouristRepository(),
+            type: TouristRepository.self
+        )
+        DIContainer.register(
+            DefaultLocationService(),
+            type: LocationService.self
+        )
     }
 }
