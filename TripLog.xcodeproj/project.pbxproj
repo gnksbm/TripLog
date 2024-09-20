@@ -10,6 +10,7 @@
 		8E138FA92C9C4E4F008F9D38 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FA82C9C4E4F008F9D38 /* LocationService.swift */; };
 		8E138FAB2C9C4E55008F9D38 /* DefaultLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FAA2C9C4E55008F9D38 /* DefaultLocationService.swift */; };
 		8E138FAE2C9C4E95008F9D38 /* TouristMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FAD2C9C4E95008F9D38 /* TouristMapViewModel.swift */; };
+		8ECFED332C9DB8D100716B71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECFED322C9DB8D100716B71 /* Kingfisher */; };
 		BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */; };
 		BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2192C96A83600CCDB99 /* TouristRepository.swift */; };
 		BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21B2C96A8D700CCDB99 /* Injected.swift */; };
@@ -92,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ECFED332C9DB8D100716B71 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +346,7 @@
 			);
 			name = TripLog;
 			packageProductDependencies = (
+				8ECFED322C9DB8D100716B71 /* Kingfisher */,
 			);
 			productName = TripLog;
 			productReference = BED1DF682C907C1D0030BC1A /* TripLog.app */;
@@ -374,6 +377,7 @@
 			);
 			mainGroup = BED1DF5F2C907C1D0030BC1A;
 			packageReferences = (
+				8ECFED312C9DB8D100716B71 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = BED1DF692C907C1D0030BC1A /* Products */;
 			projectDirPath = "";
@@ -657,6 +661,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8ECFED312C9DB8D100716B71 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8ECFED322C9DB8D100716B71 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ECFED312C9DB8D100716B71 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BED1DF602C907C1D0030BC1A /* Project object */;
 }
