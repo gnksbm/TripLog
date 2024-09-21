@@ -24,6 +24,8 @@ extension QueryProvider {
                     strValue
                 } else if let intValue = value as? Int {
                     String(intValue)
+                } else if let doubleValue = value as? Double {
+                    String(doubleValue)
                 } else {
                     nil
                 }

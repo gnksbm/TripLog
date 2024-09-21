@@ -13,6 +13,7 @@ extension Data {
             return try JSONDecoder().decode(type, from: self)
         } catch {
             print(String(data: self, encoding: .utf8) ?? "nil")
+            dump(error)
             throw error
         }
     }

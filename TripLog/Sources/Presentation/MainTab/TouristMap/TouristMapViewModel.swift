@@ -10,6 +10,7 @@ import MapKit
 
 final class TouristMapViewModel: ViewModel {
     @Injected private var locationService: LocationService
+    @Injected private var touristRepository: TouristRepository
     
     var state = State()
     
@@ -17,12 +18,19 @@ final class TouristMapViewModel: ViewModel {
         Task {
             switch action {
             case .onAppear:
-                let status = await locationService.requestAuthorization()
+                let status = try await locationService.requestAuthorization()
                 switch status {
                 case .authorized, .authorizedAlways, .authorizedWhenInUse:
                     let location = 
                     try await locationService.fetchCurrentLocation()
                     state.region.center = location.coordinate
+                    let touristInformations =
+                    try await touristRepository.fetchTouristInformations(
+                        page: state.page + 1,
+                        numOfPage: state.numOfPage,
+                        location: location
+                    )
+                    state.page += 1
                 default:
                     state.isUnauthorized = true
                 }
@@ -33,6 +41,8 @@ final class TouristMapViewModel: ViewModel {
 
 extension TouristMapViewModel {
     struct State {
+        var page = 0
+        let numOfPage = 50
         var isUnauthorized = false
         var region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(

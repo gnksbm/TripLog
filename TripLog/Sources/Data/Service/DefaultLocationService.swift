@@ -10,39 +10,53 @@ import CoreLocation
 import Foundation
 
 final class DefaultLocationService: NSObject, LocationService {
-    private lazy var locationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        return locationManager
-    }()
-    
+    private lazy var locationManager = CLLocationManager()
     private let location = PassthroughSubject<CLLocation, Error>()
     private let authorizationStatus =
-    PassthroughSubject<CLAuthorizationStatus, Never>()
+    PassthroughSubject<CLAuthorizationStatus, Error>()
     private var cancelBag = Set<AnyCancellable>()
     
-    func requestAuthorization() async -> CLAuthorizationStatus {
-        locationManager.requestWhenInUseAuthorization()
-        return await withCheckedContinuation { continuation in
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
+    
+    func requestAuthorization() async throws -> CLAuthorizationStatus {
+        return try await withUnsafeThrowingContinuation { continuation in
             authorizationStatus
-                .sink { status in
-                    continuation.resume(returning: status)
-                }
+                .timeout(10, scheduler: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            break
+                        case .failure(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    },
+                    receiveValue: { status in
+                        continuation.resume(returning: status)
+                    }
+                )
                 .store(in: &cancelBag)
+            switch locationManager.authorizationStatus {
+            case .authorized, .authorizedAlways, .authorizedWhenInUse:
+                authorizationStatus.send(locationManager.authorizationStatus)
+            default:
+                locationManager.requestWhenInUseAuthorization()
+            }
         }
     }
     
     func fetchCurrentLocation() async throws -> CLLocation {
         locationManager.requestLocation()
-        return try await withCheckedThrowingContinuation { continuation in
+        return try await withUnsafeThrowingContinuation { continuation in
             location
                 .timeout(10, scheduler: DispatchQueue.main)
                 .sink { completion in
                     switch completion {
                     case .finished:
-                        continuation.resume(
-                            throwing: LocationError.streamFinished
-                        )
+                        break
                     case .failure(let error):
                         continuation.resume(throwing: error)
                     }
@@ -74,5 +88,12 @@ extension DefaultLocationService: CLLocationManagerDelegate {
         _ manager: CLLocationManager
     ) {
         authorizationStatus.send(manager.authorizationStatus)
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: any Error
+    ) {
+        authorizationStatus.send(completion: .failure(error))
     }
 }

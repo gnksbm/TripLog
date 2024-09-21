@@ -1,49 +1,17 @@
 //
-//  SearchFestivalDTO.swift
+//  TouristInformationDTO.swift
 //  TripLog
 //
-//  Created by gnksbm on 9/15/24.
+//  Created by gnksbm on 9/21/24.
 //
 
 import Foundation
 
-struct SearchFestivalDTO: Codable {
+struct TouristInformationDTO: Codable {
     let response: Response
 }
 
-extension SearchFestivalDTO {
-    func toResponse() -> [SearchFestivalResponse] {
-        response.body.items.item.compactMap { item in
-            var imageURLs = [URL]()
-            guard let latitude = Double(item.mapx),
-                  let longitude = Double(item.mapy),
-                  let startDate = item.eventstartdate?.formatted(
-                    dateFormat: .festivalInput
-                  ),
-                  let endDate = item.eventenddate.formatted(
-                    dateFormat: .festivalInput
-                  )
-            else { return nil }
-            [item.firstimage, item.firstimage2].forEach { str in
-                if let url = URL(string: str) {
-                    imageURLs.append(url)
-                }
-            }
-            return SearchFestivalResponse(
-                contentID: item.contentid,
-                title: item.title,
-                address: item.addr1,
-                latitude: latitude,
-                longitude: longitude,
-                startDate: startDate,
-                endDate: endDate,
-                imageURLs: imageURLs
-            )
-        }
-    }
-}
-
-extension SearchFestivalDTO {
+extension TouristInformationDTO {
     struct Response: Codable {
         let header: Header
         let body: Body
@@ -62,8 +30,6 @@ extension SearchFestivalDTO {
         let addr1, addr2, booktour: String
         let cat1, cat2, cat3: String
         let contentid, contenttypeid, createdtime: String
-        let eventstartdate: String?
-        let eventenddate: String
         let firstimage, firstimage2: String
         let cpyrhtDivCD: String
         let mapx, mapy, mlevel, modifiedtime: String
@@ -71,7 +37,7 @@ extension SearchFestivalDTO {
         
         enum CodingKeys: String, CodingKey {
             case addr1, addr2, booktour, cat1, cat2, cat3, contentid
-            case contenttypeid, createdtime, eventstartdate, eventenddate
+            case contenttypeid, createdtime
             case firstimage, firstimage2
             case cpyrhtDivCD = "cpyrhtDivCd"
             case mapx, mapy, mlevel, modifiedtime, areacode, sigungucode, tel

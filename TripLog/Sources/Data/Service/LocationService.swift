@@ -9,6 +9,6 @@ import CoreLocation
 import Foundation
 
 protocol LocationService {
-    func requestAuthorization() async -> CLAuthorizationStatus
+    func requestAuthorization() async throws -> CLAuthorizationStatus
     func fetchCurrentLocation() async throws -> CLLocation
 }
