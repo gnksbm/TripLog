@@ -12,7 +12,7 @@ final class TouristMapViewModel: ViewModel {
     @Injected private var locationService: LocationService
     @Injected private var touristRepository: TouristRepository
     
-    var state = State()
+    @Published var state = State()
     
     func mutate(action: Action) {
         Task {
@@ -23,17 +23,25 @@ final class TouristMapViewModel: ViewModel {
                 case .authorized, .authorizedAlways, .authorizedWhenInUse:
                     let location = 
                     try await locationService.fetchCurrentLocation()
-                    state.region.center = location.coordinate
-                    let touristInformations =
+                    await MainActor.run {
+                        state.region.center = location.coordinate
+                    }
+                    let touristPlaces =
                     try await touristRepository.fetchTouristInformations(
-                        page: state.page + 1,
+                        page: state.page,
                         numOfPage: state.numOfPage,
                         location: location
                     )
-                    state.page += 1
+                    await MainActor.run {
+                        state.placeList = touristPlaces
+                    }
                 default:
-                    state.isUnauthorized = true
+                    await MainActor.run {
+                        state.isUnauthorized = true
+                    }
                 }
+            case .placeSelected(let place):
+                state.showPlace = place
             }
         }
     }
@@ -43,6 +51,7 @@ extension TouristMapViewModel {
     struct State {
         var page = 0
         let numOfPage = 50
+        var placeList = [TouristPlaceResponse]()
         var isUnauthorized = false
         var region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(
@@ -54,6 +63,7 @@ extension TouristMapViewModel {
                 longitudeDelta: 0.01
             )
         )
+        var showPlace: TouristPlaceResponse?
 //        @available(iOS 17.0, *)
 //        var cameraPosition = MapCameraPosition.region(
 //            MKCoordinateRegion(
@@ -69,7 +79,8 @@ extension TouristMapViewModel {
 //        )
     }
     
-    enum Action {
+    enum Action: Hashable {
         case onAppear
+        case placeSelected(TouristPlaceResponse)
     }
 }

@@ -15,8 +15,8 @@ extension SearchFestivalDTO {
     func toResponse() -> [SearchFestivalResponse] {
         response.body.items.item.compactMap { item in
             var imageURLs = [URL]()
-            guard let latitude = Double(item.mapx),
-                  let longitude = Double(item.mapy),
+            guard let latitude = Double(item.mapy),
+                  let longitude = Double(item.mapx),
                   let startDate = item.eventstartdate?.formatted(
                     dateFormat: .festivalInput
                   ),

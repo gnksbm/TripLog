@@ -15,7 +15,7 @@ protocol TouristRepository {
         page: Int,
         numOfPage: Int,
         location: CLLocation
-    ) async throws -> TouristInformationDTO
+    ) async throws -> [TouristPlaceResponse]
 }
 
 final class DefaultTouristRepository: TouristRepository {
@@ -49,9 +49,9 @@ final class DefaultTouristRepository: TouristRepository {
         page: Int,
         numOfPage: Int,
         location: CLLocation
-    ) async throws -> TouristInformationDTO {
-        let endpoint = TouristInformationEndpoint(
-            request: TouristInformationRequest(
+    ) async throws -> [TouristPlaceResponse] {
+        let endpoint = TouristPlaceEndpoint(
+            request: TouristPlaceRequest(
                 pageNo: page,
                 numOfPage: numOfPage,
                 latitude: location.coordinate.latitude,
@@ -59,6 +59,7 @@ final class DefaultTouristRepository: TouristRepository {
             )
         )
         return try await networkService.request(endpoint: endpoint)
-            .decode(type: TouristInformationDTO.self)
+            .decode(type: TouristPlaceDTO.self)
+            .toResponse()
     }
 }

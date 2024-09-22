@@ -1,5 +1,5 @@
 //
-//  TouristInformationDTO.swift
+//  TouristPlaceDTO.swift
 //  TripLog
 //
 //  Created by gnksbm on 9/21/24.
@@ -7,11 +7,35 @@
 
 import Foundation
 
-struct TouristInformationDTO: Codable {
+struct TouristPlaceDTO: Codable {
     let response: Response
 }
 
-extension TouristInformationDTO {
+extension TouristPlaceDTO {
+    func toResponse() -> [TouristPlaceResponse] {
+        response.body.items.item.compactMap { item in
+            var imageURLs = [URL]()
+            guard let latitude = Double(item.mapy),
+                  let longitude = Double(item.mapx)
+            else { return nil }
+            [item.firstimage, item.firstimage2].forEach { str in
+                if let url = URL(string: str) {
+                    imageURLs.append(url)
+                }
+            }
+            return TouristPlaceResponse(
+                contentID: item.contentid,
+                title: item.title,
+                address: item.addr1,
+                latitude: latitude,
+                longitude: longitude,
+                imageURLs: imageURLs
+            )
+        }
+    }
+}
+
+extension TouristPlaceDTO {
     struct Response: Codable {
         let header: Header
         let body: Body

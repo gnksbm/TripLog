@@ -1,5 +1,5 @@
 //
-//  TouristInformationRequest.swift
+//  TouristPlaceRequest.swift
 //  TripLog
 //
 //  Created by gnksbm on 9/21/24.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct TouristInformationRequest {
+struct TouristPlaceRequest {
     let pageNo: Int
     let numOfPage: Int
     let latitude: Double
     let longitude: Double
 }
 
-extension TouristInformationRequest: QueryProvider {
+extension TouristPlaceRequest: QueryProvider {
     var query: Query {
         Query(
             pageNo: pageNo,

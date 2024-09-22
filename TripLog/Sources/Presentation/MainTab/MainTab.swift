@@ -41,7 +41,7 @@ struct MainTab: View {
             VStack {
                 switch self {
                 case .eventList:
-                    Image(systemName: "fireworks")
+                    Image.festival
                     Text("행사")
                 case .touristMap:
                     Image(systemName: "map")

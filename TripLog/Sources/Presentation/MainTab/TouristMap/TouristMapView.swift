@@ -8,6 +8,16 @@
 import SwiftUI
 import MapKit
 
+extension TouristPlaceResponse: Identifiable {
+    var id: String { contentID }
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(
+            latitude: latitude,
+            longitude: longitude
+        )
+    }
+}
+
 struct TouristMapView: View {
     @StateObject private var viewModel = TouristMapViewModel()
       
@@ -18,13 +28,34 @@ struct TouristMapView: View {
                     Map(
 //                        position: $viewModel.state.cameraPosition
                     ) {
-                        
+                        ForEach(viewModel.state.placeList) { place in
+                            Annotation(
+                                place.title,
+                                coordinate: place.coordinate
+                            ) {
+                                MarkerView()
+                                    .onTapGesture {
+                                        viewModel.send(
+                                            action: .placeSelected(place)
+                                        )
+                                    }
+                            }
+                        }
                     }
                 } else {
                     Map(
                         coordinateRegion: $viewModel.state.region,
-                        showsUserLocation: true
-                    )
+                        annotationItems: viewModel.state.placeList
+                    ) { place in
+                        MapAnnotation(coordinate: place.coordinate) {
+                            MarkerView()
+                                .onTapGesture {
+                                    viewModel.send(
+                                        action: .placeSelected(place)
+                                    )
+                                }
+                        }
+                    }
                 }
             }
             .onAppear {

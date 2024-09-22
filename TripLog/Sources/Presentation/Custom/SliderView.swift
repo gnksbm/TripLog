@@ -63,7 +63,7 @@ struct SliderView<Item: SliderItemType>: View {
                 Capsule()
                     .frame(width: itemWidth, height: barHeight)
                     .offset(
-                        x: global.width / CGFloat(items.count) * selectedIndex,
+                        x: global.width / itemCount * selectedIndex,
                         y: proxy.frame(in: .local).maxY
                     )
                     .foregroundStyle(lineColor)
@@ -80,10 +80,10 @@ struct SliderView<Item: SliderItemType>: View {
     }
     
     private var screenWidth: CGFloat { UIScreen.main.bounds.width }
-    
+    private var itemCount: CGFloat { max(1, CGFloat(items.count)) }
     private var itemWidth: CGFloat {
-        CGFloat(items.count) < maxItem ?
-        screenWidth / max(1, CGFloat(items.count)) : screenWidth / maxItem
+        itemCount < maxItem ?
+        screenWidth / itemCount : screenWidth / maxItem
     }
     
     init(
