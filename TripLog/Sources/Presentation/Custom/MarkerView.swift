@@ -42,17 +42,30 @@ struct MarkerView: View {
             // 삼각형의 상단시작 꼭짓점
             path.move(to: CGPoint(x: size / 2, y: 0))
             // 삼각형의 좌상단 꼭짓점
-            path.addLine(to: CGPoint(x: size * 0.75, y: size / 2))
+            path.addLine(
+                to: CGPoint(
+                    x: (size / 2) + (triangleSize / 2),
+                    y: triangleSize
+                )
+            )
             // 삼각형을 우상단 꼭짓점
-            path.addLine(to: CGPoint(x: size * 0.25, y: size / 2))
+            path.addLine(
+                to: CGPoint(
+                    x: (size / 2) - (triangleSize / 2),
+                    y: triangleSize
+                )
+            )
         }
         .fill(color)
-        .frame(width: size, height: size / 2)
+        .frame(width: size, height: triangleSize)
         .rotationEffect(Angle(degrees: 180))
         .offset(y: -borderWidth)
         .padding(.bottom, 40)
     }
     
+    private var triangleSize: CGFloat {
+        size / 3
+    }
     init(
         color: Color = .accentColor,
         size: CGFloat = 42,
