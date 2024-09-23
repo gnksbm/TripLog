@@ -41,7 +41,9 @@ final class TouristMapViewModel: ViewModel {
                     }
                 }
             case .placeSelected(let place):
-                state.showPlace = place
+                await MainActor.run {
+                    state.showPlace = place
+                }
             }
         }
     }

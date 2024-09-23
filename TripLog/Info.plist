@@ -2,23 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>관관 정보를 가져오기 위해 위치 권한이 필요합니다.</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
-	<key>TOURIST_SECRET_KEY</key>
-	<string>$(TOURIST_SECRET_KEY)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>tong.visitkorea.or.kr</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<false/>
-			</dict>
 			<key>BASE_URL_KEY</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -26,7 +15,16 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
+			<key>tong.visitkorea.or.kr</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<false/>
+			</dict>
 		</dict>
 	</dict>
+	<key>TOURIST_SECRET_KEY</key>
+	<string>$(TOURIST_SECRET_KEY)</string>
 </dict>
 </plist>

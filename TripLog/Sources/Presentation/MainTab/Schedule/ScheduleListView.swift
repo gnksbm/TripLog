@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Date: SliderItemType {
     public var id: Date { self }
-    var title: String { formatted(dateFormat: .schedule) }
+    var title: String { formatted(dateFormat: .onlyDay) }
 }
 
 struct ScheduleListView: View {

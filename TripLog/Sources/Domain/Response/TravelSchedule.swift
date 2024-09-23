@@ -5,7 +5,6 @@
 //  Created by gnksbm on 9/22/24.
 //
 
-import CoreLocation
 import Foundation
 
 struct TravelSchedule: Hashable {
@@ -22,5 +21,11 @@ struct TravelSchedule: Hashable {
 struct TravelEvent: Hashable {
     let title: String
     let date: Date
-    let location: CLLocation?
+    var locationInfo: LocationInformation
+}
+
+struct LocationInformation: Hashable {
+    var title: String
+    let latitude: Double
+    let longitude: Double
 }

@@ -21,6 +21,10 @@
 		8ECFED442CA00D7700716B71 /* TravelSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED432CA00D7700716B71 /* TravelSchedule.swift */; };
 		8ECFED462CA00D9A00716B71 /* DateInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED452CA00D9A00716B71 /* DateInterval+.swift */; };
 		8ECFED482CA00E0A00716B71 /* AddSchduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED472CA00E0A00716B71 /* AddSchduleView.swift */; };
+		8ECFED4A2CA0179600716B71 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED492CA0179600716B71 /* Date+.swift */; };
+		8ECFED4D2CA017A800716B71 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED4C2CA017A800716B71 /* CalendarView.swift */; };
+		8ECFED4F2CA017B100716B71 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED4E2CA017B100716B71 /* CalendarViewModel.swift */; };
+		8ECFED512CA0F57300716B71 /* AddSchduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED502CA0F57300716B71 /* AddSchduleViewModel.swift */; };
 		BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */; };
 		BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2192C96A83600CCDB99 /* TouristRepository.swift */; };
 		BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21B2C96A8D700CCDB99 /* Injected.swift */; };
@@ -70,6 +74,10 @@
 		8ECFED432CA00D7700716B71 /* TravelSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelSchedule.swift; sourceTree = "<group>"; };
 		8ECFED452CA00D9A00716B71 /* DateInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateInterval+.swift"; sourceTree = "<group>"; };
 		8ECFED472CA00E0A00716B71 /* AddSchduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSchduleView.swift; sourceTree = "<group>"; };
+		8ECFED492CA0179600716B71 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		8ECFED4C2CA017A800716B71 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		8ECFED4E2CA017B100716B71 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		8ECFED502CA0F57300716B71 /* AddSchduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSchduleViewModel.swift; sourceTree = "<group>"; };
 		BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeDTO.swift; sourceTree = "<group>"; };
 		BE14D2192C96A83600CCDB99 /* TouristRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRepository.swift; sourceTree = "<group>"; };
 		BE14D21B2C96A8D700CCDB99 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
@@ -144,8 +152,18 @@
 				BE473E272C93353700020435 /* ScheduleListView.swift */,
 				8ECFED412CA00D5000716B71 /* ScheduleListViewModel.swift */,
 				8ECFED472CA00E0A00716B71 /* AddSchduleView.swift */,
+				8ECFED502CA0F57300716B71 /* AddSchduleViewModel.swift */,
 			);
 			path = Schedule;
+			sourceTree = "<group>";
+		};
+		8ECFED4B2CA017A300716B71 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFED4C2CA017A800716B71 /* CalendarView.swift */,
+				8ECFED4E2CA017B100716B71 /* CalendarViewModel.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		BE14D2152C96A7C200CCDB99 /* Response */ = {
@@ -173,6 +191,7 @@
 				BE14D2202C96A97300CCDB99 /* Data+.swift */,
 				8ECFED3C2C9FBF2100716B71 /* Image+.swift */,
 				8ECFED452CA00D9A00716B71 /* DateInterval+.swift */,
+				8ECFED492CA0179600716B71 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -180,6 +199,7 @@
 		BE473E2B2C933DB500020435 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				8ECFED4B2CA017A300716B71 /* Calendar */,
 				BE473E2D2C933DCA00020435 /* SliderView.swift */,
 				8ECFED3A2C9FBC2000716B71 /* MarkerView.swift */,
 			);
@@ -449,12 +469,14 @@
 				BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */,
 				BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */,
 				BEF36D5C2C97D872008A9DBF /* SearchFestivalResponse.swift in Sources */,
+				8ECFED4D2CA017A800716B71 /* CalendarView.swift in Sources */,
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				8ECFED3B2C9FBC2000716B71 /* MarkerView.swift in Sources */,
 				8E138FAB2C9C4E55008F9D38 /* DefaultLocationService.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
 				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
 				8ECFED392C9F0D5000716B71 /* TouristPlaceDTO.swift in Sources */,
+				8ECFED4A2CA0179600716B71 /* Date+.swift in Sources */,
 				8ECFED3D2C9FBF2100716B71 /* Image+.swift in Sources */,
 				8ECFED462CA00D9A00716B71 /* DateInterval+.swift in Sources */,
 				BE473E322C9485DC00020435 /* NetworkService.swift in Sources */,
@@ -470,6 +492,7 @@
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
 				8ECFED482CA00E0A00716B71 /* AddSchduleView.swift in Sources */,
 				BE14D21E2C96A8F000CCDB99 /* DIContainer.swift in Sources */,
+				8ECFED4F2CA017B100716B71 /* CalendarViewModel.swift in Sources */,
 				BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */,
 				BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */,
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
@@ -485,6 +508,7 @@
 				BEADF8F62C96BE7300FCDBE9 /* SearchFestivalRequest.swift in Sources */,
 				8ECFED442CA00D7700716B71 /* TravelSchedule.swift in Sources */,
 				BEADF8F82C96BF6E00FCDBE9 /* DateFormat.swift in Sources */,
+				8ECFED512CA0F57300716B71 /* AddSchduleViewModel.swift in Sources */,
 				8E138FA92C9C4E4F008F9D38 /* LocationService.swift in Sources */,
 				8ECFED352C9EBB5300716B71 /* TouristPlaceRequest.swift in Sources */,
 			);
@@ -620,6 +644,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TripLog/Resources/Preview Content\"";
@@ -627,6 +652,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripLog/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Travelog;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "관관 정보를 가져오기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -639,8 +666,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.geonseobkim.TripLog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geonseobkim.Travelog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -656,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TripLog/Resources/Preview Content\"";
@@ -663,6 +692,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripLog/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Travelog;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "관관 정보를 가져오기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -675,8 +706,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.geonseobkim.TripLog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geonseobkim.Travelog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

@@ -10,7 +10,7 @@ import Foundation
 public enum DateFormat: String {
     case festivalInput = "yyyyMMdd"
     case festivalOutput = "yyyy.MM.dd"
-    case schedule = "dd"
+    case onlyDay = "dd"
 }
 
 extension DateFormat {
