@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @Binding var isCompleted: Bool
-    let action: (DateInterval?) -> Void
-    
-    @StateObject private var viewModel = CalendarViewModel()
+    @ObservedObject var viewModel: CalendarViewModel
     
     private let columns = Array(repeating: GridItem(), count: 7)
     
@@ -55,9 +52,6 @@ struct CalendarView: View {
         .onAppear {
             viewModel.send(action: .onAppear)
         }
-        .onChange(of: isCompleted) { _ in
-            viewModel.send(action: .onComplete(action))
-        }
     }
     
     @ViewBuilder
@@ -78,5 +72,5 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView(isCompleted: .constant(false)) { interval in }
+    CalendarView(viewModel: CalendarViewModel())
 }

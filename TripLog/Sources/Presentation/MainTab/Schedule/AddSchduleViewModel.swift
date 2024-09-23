@@ -12,6 +12,8 @@ final class AddSchduleViewModel: ViewModel {
     
     func mutate(action: Action) {
         switch action {
+        case .doneButtonTapped:
+            break
         case .onComplete:
             state.isCompleted = true
         }
@@ -20,10 +22,17 @@ final class AddSchduleViewModel: ViewModel {
 
 extension AddSchduleViewModel {
     struct State {
+        var selectedDateInterval: DateInterval?
+        var scheduleTitle = ""
         var isCompleted = false
+        
+        var isDoneButtonDisabled: Bool {
+            selectedDateInterval == nil || scheduleTitle.isEmpty
+        }
     }
     
     enum Action {
+        case doneButtonTapped
         case onComplete
     }
 }

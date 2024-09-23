@@ -9,34 +9,76 @@ import SwiftUI
 
 struct AddSchduleView: View {
     @StateObject private var viewModel = AddSchduleViewModel()
+    @StateObject private var calendarViewModel = CalendarViewModel()
     
     var body: some View {
         ScrollView {
             ScrollViewReader { proxy in
-                dateView(proxy: proxy)
+                VStack {
+                    dateView(proxy: proxy)
+                        .id(AddContent.date)
+                    Spacer()
+                        .frame(height: 100)
+                    titleView(proxy: proxy)
+                        .id(AddContent.title)
+                    Spacer()
+                        .frame(height: 100)
+                    Button("완료") { 
+                        viewModel.send(action: .doneButtonTapped)
+                    }
+                    .disabled(viewModel.state.isDoneButtonDisabled)
+                    .buttonStyle(LargeButtonStyle())
+                    .id(AddContent.done)
+                }
+                .padding()
+                .onChange(
+                    of: calendarViewModel.state.selectedDateInterval
+                ) { _ in
+                    withAnimation {
+                        proxy.scrollTo(AddContent.title, anchor: .top)
+                    }
+                }
             }
         }
+        .navigationTitle("일정 등록")
     }
     
-    @ViewBuilder
     func dateView(proxy: ScrollViewProxy) -> some View {
-        HStack {
-            Text("날짜를 선택해주세요")
-                .font(.title)
-                .bold()
-            Spacer()
+        VStack {
+            HStack {
+                Text("날짜")
+                    .font(.title)
+                    .bold()
+                Spacer()
+            }
+            CalendarView(viewModel: calendarViewModel)
         }
-        .id(Add.date)
-        CalendarView(isCompleted: $viewModel.state.isCompleted) { interval in
-            proxy.scrollTo(Add.title, anchor: .top)
+    }
+        
+    @ViewBuilder
+    func titleView(proxy: ScrollViewProxy) -> some View {
+        VStack {
+            HStack {
+                Text("이름")
+                    .font(.title)
+                    .bold()
+                Spacer()
+            }
+            TextField("", text: $viewModel.state.scheduleTitle)
+                .textFieldStyle(.roundedBorder)
+                .onSubmit {
+                    proxy.scrollTo(AddContent.done, anchor: .bottom)
+                }
         }
     }
     
-    enum Add {
-        case date, title
+    enum AddContent {
+        case date, title, done
     }
 }
 
 #Preview {
-    AddSchduleView()
+    NavigationStack {
+        AddSchduleView()
+    }
 }

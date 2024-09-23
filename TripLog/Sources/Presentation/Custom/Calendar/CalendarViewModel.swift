@@ -111,6 +111,6 @@ extension CalendarViewModel {
 #if DEBUG
 import SwiftUI
 #Preview {
-    CalendarView(isCompleted: .constant(false)) { interval in }
+    CalendarView(viewModel: CalendarViewModel())
 }
 #endif

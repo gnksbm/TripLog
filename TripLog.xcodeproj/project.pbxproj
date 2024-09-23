@@ -31,6 +31,7 @@
 		BE14D21E2C96A8F000CCDB99 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21D2C96A8F000CCDB99 /* DIContainer.swift */; };
 		BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2202C96A97300CCDB99 /* Data+.swift */; };
 		BE14D2232C96B39900CCDB99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2222C96B39900CCDB99 /* AppDelegate.swift */; };
+		BE3496A92CA156FC003F31B8 /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */; };
 		BE473E242C9334F400020435 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E232C9334F400020435 /* EventListView.swift */; };
 		BE473E262C93351700020435 /* TouristMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E252C93351700020435 /* TouristMapView.swift */; };
 		BE473E282C93353700020435 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E272C93353700020435 /* ScheduleListView.swift */; };
@@ -84,6 +85,7 @@
 		BE14D21D2C96A8F000CCDB99 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		BE14D2202C96A97300CCDB99 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		BE14D2222C96B39900CCDB99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
 		BE473E232C9334F400020435 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		BE473E252C93351700020435 /* TouristMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapView.swift; sourceTree = "<group>"; };
 		BE473E272C93353700020435 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,14 @@
 				8ECFED492CA0179600716B71 /* Date+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE3496A72CA156EE003F31B8 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */,
+			);
+			path = Modifier;
 			sourceTree = "<group>";
 		};
 		BE473E2B2C933DB500020435 /* Custom */ = {
@@ -359,6 +369,7 @@
 		BED1DF7C2C91D0830030BC1A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BE3496A72CA156EE003F31B8 /* Modifier */,
 				BE473E2C2C933DBC00020435 /* MainTab */,
 				BE473E2B2C933DB500020435 /* Custom */,
 			);
@@ -489,6 +500,7 @@
 				8ECFED422CA00D5000716B71 /* ScheduleListViewModel.swift in Sources */,
 				BE473E5B2C95864C00020435 /* AreaCodeEndpoint.swift in Sources */,
 				BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */,
+				BE3496A92CA156FC003F31B8 /* LargeButtonStyle.swift in Sources */,
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
 				8ECFED482CA00E0A00716B71 /* AddSchduleView.swift in Sources */,
 				BE14D21E2C96A8F000CCDB99 /* DIContainer.swift in Sources */,
