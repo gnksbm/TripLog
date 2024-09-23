@@ -8,14 +8,26 @@
 import Foundation
 
 final class AddSchduleViewModel: ViewModel {
+    @Injected private var scheduleRespository: ScheduleRepository
     @Published var state = State()
     
     func mutate(action: Action) {
-        switch action {
-        case .doneButtonTapped:
-            break
-        case .onComplete:
-            state.isCompleted = true
+        Task {
+            switch action {
+            case .intervalSelected(let interval):
+                state.selectedDateInterval = interval
+            case .doneButtonTapped:
+                guard let dateInterval = state.selectedDateInterval 
+                else { return }
+                try await scheduleRespository.addSchedule(
+                    schedule: TravelSchedule(
+                        title: state.scheduleTitle,
+                        startDate: dateInterval.start,
+                        endDate: dateInterval.end
+                    )
+                )
+                state.isCompleted = true
+            }
         }
     }
 }
@@ -32,7 +44,7 @@ extension AddSchduleViewModel {
     }
     
     enum Action {
+        case intervalSelected(DateInterval)
         case doneButtonTapped
-        case onComplete
     }
 }

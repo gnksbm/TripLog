@@ -11,6 +11,7 @@ public enum DateFormat: String {
     case festivalInput = "yyyyMMdd"
     case festivalOutput = "yyyy.MM.dd"
     case onlyDay = "dd"
+    case onlyTime = "hh:mm"
 }
 
 extension DateFormat {

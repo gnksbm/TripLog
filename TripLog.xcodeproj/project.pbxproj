@@ -32,6 +32,10 @@
 		BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2202C96A97300CCDB99 /* Data+.swift */; };
 		BE14D2232C96B39900CCDB99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2222C96B39900CCDB99 /* AppDelegate.swift */; };
 		BE3496A92CA156FC003F31B8 /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */; };
+		BE3496AB2CA15838003F31B8 /* ScheduleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */; };
+		BE3496AE2CA15852003F31B8 /* MockScheduuleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496AD2CA15852003F31B8 /* MockScheduuleRepository.swift */; };
+		BE3496B02CA16E2C003F31B8 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496AF2CA16E2C003F31B8 /* EventMapView.swift */; };
+		BE3496B22CA17531003F31B8 /* EventMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496B12CA17531003F31B8 /* EventMapViewModel.swift */; };
 		BE473E242C9334F400020435 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E232C9334F400020435 /* EventListView.swift */; };
 		BE473E262C93351700020435 /* TouristMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E252C93351700020435 /* TouristMapView.swift */; };
 		BE473E282C93353700020435 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E272C93353700020435 /* ScheduleListView.swift */; };
@@ -86,6 +90,10 @@
 		BE14D2202C96A97300CCDB99 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		BE14D2222C96B39900CCDB99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
+		BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRepository.swift; sourceTree = "<group>"; };
+		BE3496AD2CA15852003F31B8 /* MockScheduuleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockScheduuleRepository.swift; sourceTree = "<group>"; };
+		BE3496AF2CA16E2C003F31B8 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
+		BE3496B12CA17531003F31B8 /* EventMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapViewModel.swift; sourceTree = "<group>"; };
 		BE473E232C9334F400020435 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		BE473E252C93351700020435 /* TouristMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapView.swift; sourceTree = "<group>"; };
 		BE473E272C93353700020435 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
@@ -155,6 +163,8 @@
 				8ECFED412CA00D5000716B71 /* ScheduleListViewModel.swift */,
 				8ECFED472CA00E0A00716B71 /* AddSchduleView.swift */,
 				8ECFED502CA0F57300716B71 /* AddSchduleViewModel.swift */,
+				BE3496AF2CA16E2C003F31B8 /* EventMapView.swift */,
+				BE3496B12CA17531003F31B8 /* EventMapViewModel.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -183,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				BE14D2192C96A83600CCDB99 /* TouristRepository.swift */,
+				BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */,
+				BE3496AC2CA15849003F31B8 /* Mock */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -204,6 +216,14 @@
 				BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		BE3496AC2CA15849003F31B8 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				BE3496AD2CA15852003F31B8 /* MockScheduuleRepository.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		BE473E2B2C933DB500020435 /* Custom */ = {
@@ -233,7 +253,6 @@
 			children = (
 				BEADF8ED2C96BAFB00FCDBE9 /* DTO */,
 				8E138FA72C9C4E43008F9D38 /* Service */,
-				BE14D2182C96A82B00CCDB99 /* Repository */,
 				BE473E302C9485D500020435 /* Network */,
 			);
 			path = Data;
@@ -285,6 +304,7 @@
 		BE473E5C2C958D3300020435 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				BE14D2182C96A82B00CCDB99 /* Repository */,
 				BE14D2152C96A7C200CCDB99 /* Response */,
 				BE473E5F2C958E1A00020435 /* Request */,
 				BE473E5D2C958D3700020435 /* QueryProvider.swift */,
@@ -481,12 +501,14 @@
 				BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */,
 				BEF36D5C2C97D872008A9DBF /* SearchFestivalResponse.swift in Sources */,
 				8ECFED4D2CA017A800716B71 /* CalendarView.swift in Sources */,
+				BE3496B22CA17531003F31B8 /* EventMapViewModel.swift in Sources */,
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				8ECFED3B2C9FBC2000716B71 /* MarkerView.swift in Sources */,
 				8E138FAB2C9C4E55008F9D38 /* DefaultLocationService.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
 				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
 				8ECFED392C9F0D5000716B71 /* TouristPlaceDTO.swift in Sources */,
+				BE3496B02CA16E2C003F31B8 /* EventMapView.swift in Sources */,
 				8ECFED4A2CA0179600716B71 /* Date+.swift in Sources */,
 				8ECFED3D2C9FBF2100716B71 /* Image+.swift in Sources */,
 				8ECFED462CA00D9A00716B71 /* DateInterval+.swift in Sources */,
@@ -499,6 +521,7 @@
 				BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */,
 				8ECFED422CA00D5000716B71 /* ScheduleListViewModel.swift in Sources */,
 				BE473E5B2C95864C00020435 /* AreaCodeEndpoint.swift in Sources */,
+				BE3496AE2CA15852003F31B8 /* MockScheduuleRepository.swift in Sources */,
 				BE473E362C9488E100020435 /* DefaultNetworkService.swift in Sources */,
 				BE3496A92CA156FC003F31B8 /* LargeButtonStyle.swift in Sources */,
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
@@ -522,6 +545,7 @@
 				BEADF8F82C96BF6E00FCDBE9 /* DateFormat.swift in Sources */,
 				8ECFED512CA0F57300716B71 /* AddSchduleViewModel.swift in Sources */,
 				8E138FA92C9C4E4F008F9D38 /* LocationService.swift in Sources */,
+				BE3496AB2CA15838003F31B8 /* ScheduleRepository.swift in Sources */,
 				8ECFED352C9EBB5300716B71 /* TouristPlaceRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

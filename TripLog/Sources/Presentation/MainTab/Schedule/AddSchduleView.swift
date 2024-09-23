@@ -10,6 +10,7 @@ import SwiftUI
 struct AddSchduleView: View {
     @StateObject private var viewModel = AddSchduleViewModel()
     @StateObject private var calendarViewModel = CalendarViewModel()
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
@@ -33,7 +34,9 @@ struct AddSchduleView: View {
                 .padding()
                 .onChange(
                     of: calendarViewModel.state.selectedDateInterval
-                ) { _ in
+                ) { interval in
+                    guard let interval else { return }
+                    viewModel.send(action: .intervalSelected(interval))
                     withAnimation {
                         proxy.scrollTo(AddContent.title, anchor: .top)
                     }
@@ -41,6 +44,9 @@ struct AddSchduleView: View {
             }
         }
         .navigationTitle("일정 등록")
+        .onChange(of: viewModel.state.isCompleted) { _ in
+            dismiss()
+        }
     }
     
     func dateView(proxy: ScrollViewProxy) -> some View {
@@ -78,7 +84,11 @@ struct AddSchduleView: View {
 }
 
 #Preview {
-    NavigationStack {
+    DIContainer.register(
+        MockScheduleRepository(),
+        type: ScheduleRepository.self
+    )
+    return NavigationStack {
         AddSchduleView()
     }
 }

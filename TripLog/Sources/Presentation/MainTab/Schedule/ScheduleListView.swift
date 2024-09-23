@@ -7,24 +7,45 @@
 
 import SwiftUI
 
+extension TravelSchedule: SliderItemType { }
+
 extension Date: SliderItemType {
     public var id: Date { self }
     var title: String { formatted(dateFormat: .onlyDay) }
+}
+
+extension TravelEvent: Identifiable {
+    var id: Self { self }
 }
 
 struct ScheduleListView: View {
     @StateObject private var viewModel = ScheduleListViewModel()
     
     var body: some View {
-        NavigationStack { 
-            TabView(selection: $viewModel.state.selectedSchdule) {
+        NavigationStack {
+            TabView(selection: $viewModel.state.selectedIndex) {
                 ForEach(
-                    viewModel.state.sheduleList,
-                    id: \.hashValue
-                ) { schedule in
+                    Array(
+                        zip(
+                            viewModel.state.scheduleList.indices,
+                            viewModel.state.scheduleList
+                        )
+                    ),
+                    id: \.1.hashValue
+                ) { index, schedule in
                     Text(schedule.title)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                        }
+                        .padding()
+                        .tag(index)
                 }
             }
+            .frame(height: 200)
+            .tabViewStyle(.page)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -34,26 +55,83 @@ struct ScheduleListView: View {
                     }
                 }
             }
-            .tabViewStyle(.page)
             .navigationDestination(isPresented: $viewModel.state.showAddView) {
                 AddSchduleView()
             }
-            if let selectedSchdule = viewModel.state.selectedSchdule {
-                SliderView(
-                    items: selectedSchdule.dateInterval.datesInPeriod
-                ) { date in
-                    viewModel.send(action: .dateSelected(date))
-                }
-                ScrollView {
-                    ForEach(selectedSchdule.events, id: \.hashValue) { event in
-                        Text(event.title)
+            if let selectedSchdule = viewModel.state.selectedSchedule {
+                ScrollView(.horizontal) {
+                    SliderView(
+                        items: selectedSchdule.dateInterval.datesInPeriod
+                    ) { date in
+                        viewModel.send(action: .dateSelected(date))
                     }
                 }
+                .scrollIndicators(.never)
+                ScrollView {
+                    ForEach(
+                        viewModel.state.eventList,
+                        id: \.hashValue
+                    ) { event in
+                        HStack {
+                            Group {
+                                if event.date.isPast {
+                                    Circle()
+                                        .fill(.black)
+                                } else {
+                                    Circle().stroke()
+                                }
+                            }
+                                .frame(width: 10, height: 10)
+                            HStack {
+                                Text(
+                                    event.date.formatted(dateFormat: .onlyTime)
+                                )
+                                Text(event.title)
+                                Spacer()
+                                if event.locationInfo != nil {
+                                    Button {
+                                        viewModel.send(
+                                            action: .mapButtonTapped(event)
+                                        )
+                                    } label: {
+                                        Image(systemName: "map")
+                                    }
+                                }
+                            }
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke()
+                            }
+                            .padding(.horizontal)
+                        }
+                        .padding()
+                    }
+                }
+            } else {
+                Spacer()
+            }
+        }
+        .sheet(item: $viewModel.state.showMapView) {
+            viewModel.send(action: .onMapDismissed)
+        } content: { event in
+            EventMapView(event: event)
+        }
+        .onAppear {
+            viewModel.send(action: .onAppear)
+        }
+        .onChange(of: viewModel.state.showAddView) { isPresented in
+            if !isPresented {
+                viewModel.send(action: .onDismissed)
             }
         }
     }
 }
 
 #Preview {
-    ScheduleListView()
+    DIContainer.register(
+        MockScheduleRepository(),
+        type: ScheduleRepository.self
+    )
+    return ScheduleListView()
 }
