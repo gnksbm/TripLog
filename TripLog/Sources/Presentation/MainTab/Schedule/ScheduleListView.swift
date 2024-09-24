@@ -55,6 +55,18 @@ struct ScheduleListView: View {
                     }
                 }
             }
+            .navigationDestination(
+                isPresented: $viewModel.state.showAddEventView
+            ) {
+                if let scheduleID = viewModel.state.selectedSchedule?.id,
+                   let date = viewModel.state.selectedDate {
+                    AddEventView(
+                        scheduleID: scheduleID,
+                        date: date,
+                        vmDelegate: viewModel
+                    )
+                }
+            }
             .navigationDestination(isPresented: $viewModel.state.showAddView) {
                 AddSchduleView()
             }
@@ -68,44 +80,54 @@ struct ScheduleListView: View {
                 }
                 .scrollIndicators(.never)
                 ScrollView {
-                    ForEach(
-                        viewModel.state.eventList,
-                        id: \.hashValue
-                    ) { event in
-                        HStack {
-                            Group {
-                                if event.date.isPast {
-                                    Circle()
-                                        .fill(.black)
-                                } else {
-                                    Circle().stroke()
-                                }
-                            }
-                                .frame(width: 10, height: 10)
+                    if !viewModel.state.eventList.isEmpty {
+                        ForEach(
+                            viewModel.state.eventList,
+                            id: \.hashValue
+                        ) { event in
                             HStack {
-                                Text(
-                                    event.date.formatted(dateFormat: .onlyTime)
-                                )
-                                Text(event.title)
-                                Spacer()
-                                if event.locationInfo != nil {
-                                    Button {
-                                        viewModel.send(
-                                            action: .mapButtonTapped(event)
-                                        )
-                                    } label: {
-                                        Image(systemName: "map")
+                                Group {
+                                    if event.date.isPast {
+                                        Circle()
+                                            .fill(.black)
+                                    } else {
+                                        Circle().stroke()
                                     }
                                 }
+                                .frame(width: 10, height: 10)
+                                HStack {
+                                    Text(
+                                        event.date.formatted(dateFormat: .onlyTime)
+                                    )
+                                    Text(event.title)
+                                    Spacer()
+                                    if event.locationInfo != nil {
+                                        Button {
+                                            viewModel.send(
+                                                action: .mapButtonTapped(event)
+                                            )
+                                        } label: {
+                                            Image(systemName: "map")
+                                        }
+                                    }
+                                }
+                                .padding()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke()
+                                }
+                                .padding(.horizontal)
                             }
                             .padding()
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke()
-                            }
-                            .padding(.horizontal)
                         }
-                        .padding()
+                    } else {
+                        Text("등록된 일정이 없어요")
+                            .padding()
+                        Button {
+                            viewModel.send(action: .addEventButtonTapped)
+                        } label: {
+                            Label("일정 추가하기", systemImage: "plus")
+                        }
                     }
                 }
             } else {
@@ -128,6 +150,7 @@ struct ScheduleListView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     DIContainer.register(
         MockScheduleRepository(),
@@ -135,3 +158,4 @@ struct ScheduleListView: View {
     )
     return ScheduleListView()
 }
+#endif

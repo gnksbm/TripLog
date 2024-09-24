@@ -8,6 +8,7 @@
 import Foundation
 
 struct TravelSchedule: Hashable {
+    let id: String = UUID().uuidString
     let title: String
     let startDate: Date
     let endDate: Date

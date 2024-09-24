@@ -11,7 +11,7 @@ import Foundation
 final class MockScheduleRepository: ScheduleRepository {
     private var scheduleList = [
         TravelSchedule(
-            title: "디버깅",
+            title: "여행계획1",
             startDate: .now.addingTimeInterval(-86400 * 4),
             endDate: .now.addingTimeInterval(86400 * 6),
             events: [
@@ -35,7 +35,7 @@ final class MockScheduleRepository: ScheduleRepository {
             ]
         ),
         TravelSchedule(
-            title: "디버깅2",
+            title: "여행계획2",
             startDate: .now.addingTimeInterval(-86400 * 4),
             endDate: .now.addingTimeInterval(86400 * 6),
             events: [
@@ -66,6 +66,16 @@ final class MockScheduleRepository: ScheduleRepository {
     
     func addSchedule(schedule: TravelSchedule) async throws {
         scheduleList.append(schedule)
+    }
+    
+    func addEvent(scheduleID: String, event: TravelEvent) async throws {
+        if let index = scheduleList.firstIndex(
+            where: { schedule in
+                schedule.id == scheduleID
+            }
+        ) {
+            scheduleList[index].events.append(event)
+        }
     }
 }
 #endif

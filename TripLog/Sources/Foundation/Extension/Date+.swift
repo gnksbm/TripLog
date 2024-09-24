@@ -10,21 +10,6 @@ import Foundation
 extension Date {
     static let calendar = Calendar.autoupdatingCurrent
     
-    var month: Int { Self.calendar.component(.month, from: self) }
-    
-    var isPast: Bool {
-        Date.now.distance(to: self) < 0
-    }
-    
-    func isSameDate(_ from: Date) -> Bool {
-        Self.calendar.component(.day, from: self) ==
-        Self.calendar.component(.day, from: from)
-    }
-    
-    func isSameMonth(_ month: Int) -> Bool {
-        Self.calendar.component(.month, from: self) == month
-    }
-    
     static func getMonth(offset: Int) -> Int {
         guard let date = calendar.date(
             byAdding: .month,
@@ -52,5 +37,20 @@ extension Date {
         return range.compactMap { value in
             calendar.date(byAdding: .day, value: value - 1, to: startDay)
         }
+    }
+    
+    var month: Int { Self.calendar.component(.month, from: self) }
+    
+    var isPast: Bool {
+        Date.now.distance(to: self) < 0
+    }
+    
+    func isSameDate(_ from: Date) -> Bool {
+        Self.calendar.component(.day, from: self) ==
+        Self.calendar.component(.day, from: from)
+    }
+    
+    func isSameMonth(_ month: Int) -> Bool {
+        Self.calendar.component(.month, from: self) == month
     }
 }

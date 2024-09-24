@@ -10,4 +10,5 @@ import Foundation
 protocol ScheduleRepository {
     func fetchSchedule() async throws -> [TravelSchedule]
     func addSchedule(schedule: TravelSchedule) async throws
+    func addEvent(scheduleID: String, event: TravelEvent) async throws
 }

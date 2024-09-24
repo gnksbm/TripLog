@@ -40,5 +40,6 @@ extension EventMapViewModel {
         var markerCoordinate = CLLocationCoordinate2D()
         var region = MKCoordinateRegion()
     }
+    
     enum Action { }
 }

@@ -10,24 +10,40 @@ import Foundation
 final class CalendarViewModel: ViewModel {
     @Published var state = State()
     
+    private let selectType: SelectType
+    
+    init(selectType: SelectType = .day) {
+        self.selectType = selectType
+    }
+    
     func mutate(action: Action) {
         switch action {
         case .onAppear:
             updateShowingDates()
         case .dateSelected(let selectedDate):
-            if state.selectedDateInterval != nil {
-                state.selectedDateInterval = nil
-            }
-            if let previousSelectedDate = state.selectedDate {
-                if state.selectedDate != selectedDate {
-                    state.selectedDateInterval = DateInterval(
-                        first: previousSelectedDate,
-                        second: selectedDate
-                    )
+            switch selectType {
+            case .day:
+                if let previousSelectedDate = state.selectedDate,
+                   previousSelectedDate.isSameDate(selectedDate) {
+                    state.selectedDate = nil
+                } else {
+                    state.selectedDate = selectedDate
                 }
-                state.selectedDate = nil
-            } else {
-                state.selectedDate = selectedDate
+            case .period:
+                if state.selectedDateInterval != nil {
+                    state.selectedDateInterval = nil
+                }
+                if let previousSelectedDate = state.selectedDate {
+                    if state.selectedDate != selectedDate {
+                        state.selectedDateInterval = DateInterval(
+                            first: previousSelectedDate,
+                            second: selectedDate
+                        )
+                    }
+                    state.selectedDate = nil
+                } else {
+                    state.selectedDate = selectedDate
+                }
             }
         case .showPreviousMonth:
             showPreviousMonth()
@@ -105,6 +121,10 @@ extension CalendarViewModel {
         case showPreviousMonth
         case showNextMonth
         case onComplete((DateInterval?) -> Void)
+    }
+    
+    enum SelectType {
+        case day, period
     }
 }
 

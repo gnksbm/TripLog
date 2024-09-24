@@ -50,6 +50,8 @@
 		BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E5D2C958D3700020435 /* QueryProvider.swift */; };
 		BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E602C958E1D00020435 /* AreaCodeRequest.swift */; };
 		BE473E632C969A2800020435 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E622C969A2800020435 /* ViewModel.swift */; };
+		BE81D5122CA2A202002574A5 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5112CA2A202002574A5 /* AddEventView.swift */; };
+		BE81D5142CA2A96B002574A5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5132CA2A96B002574A5 /* AddEventViewModel.swift */; };
 		BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */; };
 		BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */; };
 		BEADF8F42C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */; };
@@ -110,6 +112,8 @@
 		BE473E5D2C958D3700020435 /* QueryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryProvider.swift; sourceTree = "<group>"; };
 		BE473E602C958E1D00020435 /* AreaCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeRequest.swift; sourceTree = "<group>"; };
 		BE473E622C969A2800020435 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		BE81D5112CA2A202002574A5 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		BE81D5132CA2A96B002574A5 /* AddEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewModel.swift; sourceTree = "<group>"; };
 		BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeResponse.swift; sourceTree = "<group>"; };
 		BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalEndpoint.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				8ECFED412CA00D5000716B71 /* ScheduleListViewModel.swift */,
 				8ECFED472CA00E0A00716B71 /* AddSchduleView.swift */,
 				8ECFED502CA0F57300716B71 /* AddSchduleViewModel.swift */,
+				BE81D5112CA2A202002574A5 /* AddEventView.swift */,
+				BE81D5132CA2A96B002574A5 /* AddEventViewModel.swift */,
 				BE3496AF2CA16E2C003F31B8 /* EventMapView.swift */,
 				BE3496B12CA17531003F31B8 /* EventMapViewModel.swift */,
 			);
@@ -507,6 +513,7 @@
 				8E138FAB2C9C4E55008F9D38 /* DefaultLocationService.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
 				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
+				BE81D5122CA2A202002574A5 /* AddEventView.swift in Sources */,
 				8ECFED392C9F0D5000716B71 /* TouristPlaceDTO.swift in Sources */,
 				BE3496B02CA16E2C003F31B8 /* EventMapView.swift in Sources */,
 				8ECFED4A2CA0179600716B71 /* Date+.swift in Sources */,
@@ -547,6 +554,7 @@
 				8E138FA92C9C4E4F008F9D38 /* LocationService.swift in Sources */,
 				BE3496AB2CA15838003F31B8 /* ScheduleRepository.swift in Sources */,
 				8ECFED352C9EBB5300716B71 /* TouristPlaceRequest.swift in Sources */,
+				BE81D5142CA2A96B002574A5 /* AddEventViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +628,7 @@
 		};
 		BED1DF752C907C200030BC1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE473E512C954D2E00020435 /* Secret.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

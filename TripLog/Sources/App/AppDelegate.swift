@@ -27,5 +27,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             DefaultLocationService(),
             type: LocationService.self
         )
+        DIContainer.register(
+            MockScheduleRepository(),
+            type: ScheduleRepository.self
+        )
     }
 }

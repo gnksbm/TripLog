@@ -9,7 +9,9 @@ import SwiftUI
 
 struct AddSchduleView: View {
     @StateObject private var viewModel = AddSchduleViewModel()
-    @StateObject private var calendarViewModel = CalendarViewModel()
+    @StateObject private var calendarViewModel = CalendarViewModel(
+        selectType: .period
+    )
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -83,6 +85,7 @@ struct AddSchduleView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     DIContainer.register(
         MockScheduleRepository(),
@@ -92,3 +95,4 @@ struct AddSchduleView: View {
         AddSchduleView()
     }
 }
+#endif

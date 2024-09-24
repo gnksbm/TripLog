@@ -15,7 +15,9 @@ final class AddSchduleViewModel: ViewModel {
         Task {
             switch action {
             case .intervalSelected(let interval):
-                state.selectedDateInterval = interval
+                await MainActor.run {
+                    state.selectedDateInterval = interval
+                }
             case .doneButtonTapped:
                 guard let dateInterval = state.selectedDateInterval 
                 else { return }
@@ -26,7 +28,9 @@ final class AddSchduleViewModel: ViewModel {
                         endDate: dateInterval.end
                     )
                 )
-                state.isCompleted = true
+                await MainActor.run {
+                    state.isCompleted = true
+                }
             }
         }
     }

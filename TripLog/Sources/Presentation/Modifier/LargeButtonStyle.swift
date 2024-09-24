@@ -12,9 +12,19 @@ struct LargeButtonStyle: ButtonStyle {
         configuration.label
             .padding()
             .frame(maxWidth: .infinity)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .clipped()
-            .background(.tint)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.tint)
+            }
             .padding()
+            .foregroundStyle(.white)
+            .bold()
     }
+}
+
+#Preview {
+    Button("테스트") {
+        
+    }
+    .buttonStyle(LargeButtonStyle())
 }
