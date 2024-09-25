@@ -22,8 +22,9 @@ final class DefaultLocationService: NSObject, LocationService {
     }
     
     func requestAuthorization() async throws -> CLAuthorizationStatus {
-        return try await withUnsafeThrowingContinuation { continuation in
+        return try await withCheckedThrowingContinuation { continuation in
             authorizationStatus
+                .prefix(1)
                 .timeout(10, scheduler: DispatchQueue.main)
                 .sink(
                     receiveCompletion: { completion in
@@ -50,8 +51,9 @@ final class DefaultLocationService: NSObject, LocationService {
     
     func fetchCurrentLocation() async throws -> CLLocation {
         locationManager.requestLocation()
-        return try await withUnsafeThrowingContinuation { continuation in
+        return try await withCheckedThrowingContinuation { continuation in
             location
+                .prefix(1)
                 .timeout(10, scheduler: DispatchQueue.main)
                 .sink { completion in
                     switch completion {
