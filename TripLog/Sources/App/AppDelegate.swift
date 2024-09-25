@@ -31,5 +31,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             MockScheduleRepository(),
             type: ScheduleRepository.self
         )
+        DIContainer.register(
+            MockRecordRepository(),
+            type: RecordRepository.self
+        )
     }
 }

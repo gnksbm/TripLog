@@ -52,6 +52,12 @@
 		BE473E632C969A2800020435 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE473E622C969A2800020435 /* ViewModel.swift */; };
 		BE81D5122CA2A202002574A5 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5112CA2A202002574A5 /* AddEventView.swift */; };
 		BE81D5142CA2A96B002574A5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5132CA2A96B002574A5 /* AddEventViewModel.swift */; };
+		BE81D5172CA3DC4C002574A5 /* TravelRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5162CA3DC4C002574A5 /* TravelRecord.swift */; };
+		BE81D5192CA3DC69002574A5 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5182CA3DC69002574A5 /* FileManager+.swift */; };
+		BE81D51B2CA3DC74002574A5 /* RecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D51A2CA3DC74002574A5 /* RecordListViewModel.swift */; };
+		BE81D51D2CA3DD94002574A5 /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D51C2CA3DD94002574A5 /* RecordDetailView.swift */; };
+		BE81D51F2CA3E17F002574A5 /* RecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D51E2CA3E17F002574A5 /* RecordRepository.swift */; };
+		BE81D5212CA3E18E002574A5 /* MockRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE81D5202CA3E18E002574A5 /* MockRecordRepository.swift */; };
 		BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */; };
 		BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */; };
 		BEADF8F42C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */; };
@@ -114,6 +120,12 @@
 		BE473E622C969A2800020435 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BE81D5112CA2A202002574A5 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		BE81D5132CA2A96B002574A5 /* AddEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewModel.swift; sourceTree = "<group>"; };
+		BE81D5162CA3DC4C002574A5 /* TravelRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRecord.swift; sourceTree = "<group>"; };
+		BE81D5182CA3DC69002574A5 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
+		BE81D51A2CA3DC74002574A5 /* RecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewModel.swift; sourceTree = "<group>"; };
+		BE81D51C2CA3DD94002574A5 /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
+		BE81D51E2CA3E17F002574A5 /* RecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRepository.swift; sourceTree = "<group>"; };
+		BE81D5202CA3E18E002574A5 /* MockRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecordRepository.swift; sourceTree = "<group>"; };
 		BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeResponse.swift; sourceTree = "<group>"; };
 		BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalEndpoint.swift; sourceTree = "<group>"; };
@@ -191,6 +203,7 @@
 				BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */,
 				8ECFED3E2C9FDA5700716B71 /* TouristPlaceResponse.swift */,
 				8ECFED432CA00D7700716B71 /* TravelSchedule.swift */,
+				BE81D5162CA3DC4C002574A5 /* TravelRecord.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -201,6 +214,7 @@
 				BE14D2192C96A83600CCDB99 /* TouristRepository.swift */,
 				BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */,
 				BE3496AC2CA15849003F31B8 /* Mock */,
+				BE81D51E2CA3E17F002574A5 /* RecordRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -212,6 +226,7 @@
 				8ECFED3C2C9FBF2100716B71 /* Image+.swift */,
 				8ECFED452CA00D9A00716B71 /* DateInterval+.swift */,
 				8ECFED492CA0179600716B71 /* Date+.swift */,
+				BE81D5182CA3DC69002574A5 /* FileManager+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -228,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3496AD2CA15852003F31B8 /* MockScheduuleRepository.swift */,
+				BE81D5202CA3E18E002574A5 /* MockRecordRepository.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -249,7 +265,7 @@
 				BEADF8F02C96BC5700FCDBE9 /* EventList */,
 				8E138FAC2C9C4E90008F9D38 /* TouristMap */,
 				8ECFED402CA00D4700716B71 /* Schedule */,
-				BE473E292C93353F00020435 /* RecordListView.swift */,
+				BE81D5152CA3D6D6002574A5 /* Record */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";
@@ -326,6 +342,16 @@
 				8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		BE81D5152CA3D6D6002574A5 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				BE473E292C93353F00020435 /* RecordListView.swift */,
+				BE81D51A2CA3DC74002574A5 /* RecordListViewModel.swift */,
+				BE81D51C2CA3DD94002574A5 /* RecordDetailView.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		BEADF8ED2C96BAFB00FCDBE9 /* DTO */ = {
@@ -503,15 +529,19 @@
 			files = (
 				BE14D2232C96B39900CCDB99 /* AppDelegate.swift in Sources */,
 				BE473E282C93353700020435 /* ScheduleListView.swift in Sources */,
+				BE81D51D2CA3DD94002574A5 /* RecordDetailView.swift in Sources */,
 				BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */,
+				BE81D5192CA3DC69002574A5 /* FileManager+.swift in Sources */,
 				BEADF8EF2C96BB0600FCDBE9 /* AreaCodeResponse.swift in Sources */,
 				BEF36D5C2C97D872008A9DBF /* SearchFestivalResponse.swift in Sources */,
 				8ECFED4D2CA017A800716B71 /* CalendarView.swift in Sources */,
 				BE3496B22CA17531003F31B8 /* EventMapViewModel.swift in Sources */,
+				BE81D5172CA3DC4C002574A5 /* TravelRecord.swift in Sources */,
 				BE473E342C9485FB00020435 /* Endpoint.swift in Sources */,
 				8ECFED3B2C9FBC2000716B71 /* MarkerView.swift in Sources */,
 				8E138FAB2C9C4E55008F9D38 /* DefaultLocationService.swift in Sources */,
 				BED1DF6E2C907C1D0030BC1A /* MainTab.swift in Sources */,
+				BE81D51F2CA3E17F002574A5 /* RecordRepository.swift in Sources */,
 				BE473E5E2C958D3700020435 /* QueryProvider.swift in Sources */,
 				BE81D5122CA2A202002574A5 /* AddEventView.swift in Sources */,
 				8ECFED392C9F0D5000716B71 /* TouristPlaceDTO.swift in Sources */,
@@ -524,6 +554,7 @@
 				BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */,
 				8ECFED372C9EBB6800716B71 /* TouristPlaceEndpoint.swift in Sources */,
 				BE473E552C954E3100020435 /* Secret.swift in Sources */,
+				BE81D51B2CA3DC74002574A5 /* RecordListViewModel.swift in Sources */,
 				8ECFED3F2C9FDA5700716B71 /* TouristPlaceResponse.swift in Sources */,
 				BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */,
 				8ECFED422CA00D5000716B71 /* ScheduleListViewModel.swift in Sources */,
@@ -542,6 +573,7 @@
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,
 				BE473E2A2C93353F00020435 /* RecordListView.swift in Sources */,
 				8E138FAE2C9C4E95008F9D38 /* TouristMapViewModel.swift in Sources */,
+				BE81D5212CA3E18E002574A5 /* MockRecordRepository.swift in Sources */,
 				BEADF8FA2C96D54A00FCDBE9 /* SearchFestivalDTO.swift in Sources */,
 				BEADF8F22C96BC5E00FCDBE9 /* EventListViewModel.swift in Sources */,
 				BE473E2E2C933DCA00020435 /* SliderView.swift in Sources */,
