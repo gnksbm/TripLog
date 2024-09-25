@@ -10,20 +10,29 @@ import Foundation
 final class MockRecordRepository: RecordRepository {
     private var list = [
         TravelRecord(
-            title: "2024 삼척 여행",
-            startDate: .now.addingTimeInterval(-86400),
-            endDate: .now,
-            items: [
-                RecordItem(
-                    title: "맛집 탐방",
-                    content: "해물 칼국수집 짱맛",
-                    imageURLs: []
-                )
-            ]
+            id: "mock1",
+            date: .now,
+            content: "맛있는 제주도 해물칼국수",
+            imageURLs: []
         )
     ]
     
     func fetchRecords() async throws -> [TravelRecord] {
         list
+    }
+    
+    func addRecord(
+        id: String,
+        date: Date,
+        content: String,
+        imageURLs: [String]
+    ) async throws {
+        let newRecord = TravelRecord(
+            id: id,
+            date: date,
+            content: content,
+            imageURLs: imageURLs
+        )
+        list.append(newRecord)
     }
 }

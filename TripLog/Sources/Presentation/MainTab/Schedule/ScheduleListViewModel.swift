@@ -82,8 +82,8 @@ extension ScheduleListViewModel {
     }
 }
 
-extension ScheduleListViewModel: AddEventViewModelDelegate {
-    func addEventCompleted() {
+extension ScheduleListViewModel: CompleteDelegate {
+    func onComplete() {
         refreshSchedule()
     }
 }

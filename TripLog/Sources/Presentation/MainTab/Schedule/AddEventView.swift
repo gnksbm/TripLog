@@ -66,7 +66,7 @@ struct AddEventView: View {
     init(
         scheduleID: String,
         date: Date,
-        vmDelegate: AddEventViewModelDelegate? = nil
+        vmDelegate: CompleteDelegate? = nil
     ) { 
         self._viewModel = StateObject(
             wrappedValue: AddEventViewModel(

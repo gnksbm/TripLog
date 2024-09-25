@@ -8,25 +8,12 @@
 import Foundation
 
 struct TravelRecord: Hashable {
-    let id: String = UUID().uuidString
-    let title: String
-    let startDate: Date
-    let endDate: Date
-    var items: [RecordItem]
+    let id: String
+    let date: Date
+    let content: String
+    let imageURLs: [String]
     
-    var peoridStr: String {
-        startDate.formatted(dateFormat: .festivalOutput) +
-        " ~ " +
-        endDate.formatted(dateFormat: .festivalOutput)
-    }
-    
-    var thumbnailContent: String? {
-        items.first { item in !item.content.isEmpty }?.content
-    }
-    
-    var thumbnailImageURL: String? {
-        items.first { item in !item.imageURLs.isEmpty }?.imageURLs.first
-    }
+    var dateStr: String { date.formatted(dateFormat: .festivalOutput) }
 }
 
 extension TravelRecord: Identifiable { }

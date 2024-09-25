@@ -15,13 +15,19 @@ final class RecordListViewModel: ViewModel {
     func mutate(action: Action) {
         switch action {
         case .onAppear:
-            Task {
-                state.list = try await recordRepository.fetchRecords()
-            }
+            fetchRecords()
         case .itemTapped(let travelRecord):
             state.detailRecord = travelRecord
+        case .addButtonTapped:
+            state.showAddView = true
         case .detailDismissed:
             state.detailRecord = nil
+        }
+    }
+    
+    private func fetchRecords() {
+        Task {
+            state.list = try await recordRepository.fetchRecords()
         }
     }
 }
@@ -30,11 +36,19 @@ extension RecordListViewModel {
     struct State {
         var list = [TravelRecord]()
         var detailRecord: TravelRecord?
+        var showAddView = false
     }
     
     enum Action { 
         case onAppear
         case itemTapped(TravelRecord)
+        case addButtonTapped
         case detailDismissed
+    }
+}
+
+extension RecordListViewModel: CompleteDelegate {
+    func onComplete() {
+        fetchRecords()
     }
 }

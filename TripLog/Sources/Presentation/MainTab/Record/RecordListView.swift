@@ -9,29 +9,50 @@ import SwiftUI
 
 struct RecordListView: View {
     @StateObject private var viewModel = RecordListViewModel()
+    @StateObject private var addRecordViewModel = AddRecordViewModel()
     
     var body: some View {
         NavigationStack {
-            if viewModel.state.list.isEmpty {
-                emptyPlacehoderView
-            } else {
-                listView
-                    .navigationDestination(
-                        isPresented: Binding(
-                            get: { viewModel.state.detailRecord != nil },
-                            set: { isPresented in
-                                if !isPresented {
-                                    viewModel.send(action: .detailDismissed)
+            VStack {
+                if viewModel.state.list.isEmpty {
+                    emptyPlacehoderView
+                } else {
+                    listView
+                        .navigationDestination(
+                            isPresented: Binding(
+                                get: { viewModel.state.detailRecord != nil },
+                                set: { isPresented in
+                                    if !isPresented {
+                                        viewModel.send(action: .detailDismissed)
+                                    }
                                 }
+                            )
+                        ) {
+                            if let record = viewModel.state
+                                .detailRecord {
+                                recordView(record: record)
                             }
-                        )
-                    ) {
-                        if let record = viewModel.state
-                            .detailRecord {
-                            recordView(record: record)
                         }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        viewModel.send(action: .addButtonTapped)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.state.showAddView) {
+                AddRecordView(viewModel: addRecordViewModel)
+                    .onAppear {
+                        addRecordViewModel.delegate = viewModel
                     }
             }
+        }
+        .onAppear {
+            viewModel.send(action: .onAppear)
         }
     }
     
@@ -47,27 +68,19 @@ struct RecordListView: View {
     }
     
     var emptyPlacehoderView: some View {
-        EmptyView()
+        Text("아직 기록한 여행이 없어요")
     }
     
     @ViewBuilder
     func recordView(record: TravelRecord) -> some View {
-        if let thumbnailImageURL = record.thumbnailImageURL {
-            AsyncImage(
-                url: FileManager.getLocalImageURL(
-                    additionalPath: thumbnailImageURL
-                )
-            )
-        } else {
-            Color.secondary
-        }
-        Text(record.title)
-            .bold()
-        Text(record.peoridStr)
-        if let thumbnailContent = record.thumbnailContent {
-            Text(thumbnailContent)
-                .lineLimit(2)
-        }
+        LocalImageView(path: record.imageURLs.first)
+            .frame(height: UIScreen.main.bounds.width)
+        Text(record.dateStr)
+        Text(record.content)
+            .lineLimit(2)
+        Rectangle()
+            .fill(.quaternary)
+            .padding(.vertical)
     }
 }
 

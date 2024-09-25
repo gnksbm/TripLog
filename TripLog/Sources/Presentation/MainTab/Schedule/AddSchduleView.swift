@@ -20,13 +20,11 @@ struct AddSchduleView: View {
                 VStack {
                     dateView(proxy: proxy)
                         .id(AddContent.date)
-                    Spacer()
-                        .frame(height: 100)
+                    Spacer(minLength: 100)
                     titleView(proxy: proxy)
                         .id(AddContent.title)
-                    Spacer()
-                        .frame(height: 100)
-                    Button("완료") { 
+                    Spacer(minLength: 100)
+                    Button("완료") {
                         viewModel.send(action: .doneButtonTapped)
                     }
                     .disabled(viewModel.state.isDoneButtonDisabled)

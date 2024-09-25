@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol AddEventViewModelDelegate: AnyObject {
-    func addEventCompleted()
+protocol CompleteDelegate: AnyObject {
+    func onComplete()
 }
 
 final class AddEventViewModel: ViewModel {
@@ -18,7 +18,7 @@ final class AddEventViewModel: ViewModel {
     
     @Published var state = State()
     
-    weak var delegate: AddEventViewModelDelegate?
+    weak var delegate: CompleteDelegate?
     
     init(
         scheduleID: String,
@@ -39,7 +39,7 @@ final class AddEventViewModel: ViewModel {
                         date: state.selectedDate
                     )
                 )
-                delegate?.addEventCompleted()
+                delegate?.onComplete()
                 await MainActor.run {
                     state.onDismissed = true
                 }

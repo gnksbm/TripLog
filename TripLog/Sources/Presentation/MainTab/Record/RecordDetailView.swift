@@ -12,26 +12,18 @@ struct RecordDetailView: View {
     
     var body: some View {
         ScrollView {
-            Text(record.title)
-                .bold()
-            ForEach(record.items) { item in
-                TabView {
-                    if item.imageURLs.isEmpty {
-                        Color.secondary
-                    } else {
-                        ForEach(item.imageURLs, id: \.self) { path in
-                            AsyncImage(
-                                url: FileManager.getLocalImageURL(
-                                    additionalPath: path
-                                )
-                            )
-                        }
+            TabView {
+                if record.imageURLs.isEmpty {
+                    Color.secondary
+                } else {
+                    ForEach(record.imageURLs, id: \.self) { path in
+                        LocalImageView(path: path)
                     }
                 }
-                Text(item.title)
-                    .bold()
-                Text(item.content)
             }
+            .frame(height: UIScreen.main.bounds.width)
+            Text(record.dateStr)
+            Text(record.content)
         }
     }
 }
@@ -39,16 +31,10 @@ struct RecordDetailView: View {
 #Preview {
     RecordDetailView(
         record: TravelRecord(
-            title: "2024 삼척 여행",
-            startDate: .now.addingTimeInterval(-86400),
-            endDate: .now,
-            items: [
-                RecordItem(
-                    title: "맛집 탐방",
-                    content: "해물 칼국수집 짱맛",
-                    imageURLs: []
-                )
-            ]
+            id: "mock1",
+            date: .now,
+            content: "맛있는 제주도 해물칼국수",
+            imageURLs: []
         )
     )
 }

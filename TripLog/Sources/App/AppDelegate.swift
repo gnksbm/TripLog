@@ -35,5 +35,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             MockRecordRepository(),
             type: RecordRepository.self
         )
+        DIContainer.register(
+            DefaultImageRepository(),
+            type: ImageRepository.self
+        )
     }
 }
