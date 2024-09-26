@@ -13,30 +13,39 @@ struct FestivalCardView: View {
     let festival: SearchFestivalResponse
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 8) {
             KFImage(festival.imageURLs.first)
                 .resizable()
                 .scaledToFill()
-            HStack {
+                .frame(height: 200)
+                .clipped()
+                .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+            
+            VStack(alignment: .leading, spacing: 4) {
                 Text(festival.title)
-                    .font(.title2)
-                    .bold()
-                Spacer()
+                    .font(TLFont.headline)
+                    .foregroundColor(TLColor.primaryText)
+                
                 Text("\(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
-            }
-            .padding()
-            HStack {
+                    .font(TLFont.caption)
+                    .foregroundColor(TLColor.secondaryText)
+                
                 Text(festival.address)
-                    .font(.title3)
-                    .padding(.horizontal)
-                    .padding(.bottom)
-                Spacer()
+                    .font(TLFont.subHeadline)
+                    .foregroundColor(TLColor.primaryText)
             }
+            .padding([.horizontal, .bottom])
         }
-        .background(.background)
-        .clipShape(.rect(cornerRadius: 15))
-        .padding(.vertical)
-        .shadow(radius: 10)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.white)
+                .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
+        )
+        .padding(.vertical, 8)
     }
     
     func errorView(_ error: Error) -> some View {
