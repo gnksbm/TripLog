@@ -42,7 +42,7 @@ final class TouristMapViewModel: ViewModel {
                 }
             case .placeSelected(let place):
                 await MainActor.run {
-                    state.showPlace = place
+                    state.showInfo = place
                 }
             }
         }
@@ -65,7 +65,7 @@ extension TouristMapViewModel {
                 longitudeDelta: 0.01
             )
         )
-        var showPlace: TouristPlaceResponse?
+        var showInfo: TouristPlaceResponse?
 //        @available(iOS 17.0, *)
 //        var cameraPosition = MapCameraPosition.region(
 //            MKCoordinateRegion(
