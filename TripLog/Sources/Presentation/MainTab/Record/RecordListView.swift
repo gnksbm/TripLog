@@ -15,7 +15,7 @@ struct RecordListView: View {
         NavigationStack {
             VStack {
                 if viewModel.state.list.isEmpty {
-                    emptyPlacehoderView
+                    emptyPlaceholderView
                 } else {
                     listView
                         .navigationDestination(
@@ -28,8 +28,7 @@ struct RecordListView: View {
                                 }
                             )
                         ) {
-                            if let record = viewModel.state
-                                .detailRecord {
+                            if let record = viewModel.state.detailRecord {
                                 recordView(record: record)
                             }
                         }
@@ -41,6 +40,8 @@ struct RecordListView: View {
                         viewModel.send(action: .addButtonTapped)
                     } label: {
                         Image(systemName: "plus")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(TLColor.coralOrange)
                     }
                 }
             }
@@ -51,6 +52,7 @@ struct RecordListView: View {
                     }
             }
         }
+        .background(TLColor.backgroundGray.ignoresSafeArea())
         .onAppear {
             viewModel.send(action: .onAppear)
         }
@@ -58,29 +60,77 @@ struct RecordListView: View {
     
     var listView: some View {
         ScrollView {
-            ForEach(viewModel.state.list) { record in
-                recordView(record: record)
-                    .onTapGesture {
-                        viewModel.send(action: .itemTapped(record))
-                    }
+            VStack(spacing: 16) {
+                ForEach(viewModel.state.list) { record in
+                    recordView(record: record)
+                        .onTapGesture {
+                            viewModel.send(action: .itemTapped(record))
+                        }
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(TLColor.lightPeach.opacity(0.2))
+                                .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
+                        )
+                        .padding(.horizontal)
+                }
             }
+            .padding(.top, 16)
         }
     }
     
-    var emptyPlacehoderView: some View {
-        Text("아직 기록한 여행이 없어요")
+    var emptyPlaceholderView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "square.and.pencil")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+                .foregroundColor(TLColor.secondaryText)
+            
+            Text("아직 기록한 여행이 없어요")
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.secondaryText)
+            
+            Text("새로운 여행 기록을 추가해보세요.")
+                .font(TLFont.caption)
+                .foregroundColor(TLColor.secondaryText)
+            
+            Button {
+                viewModel.send(action: .addButtonTapped)
+            } label: {
+                Label("기록 추가하기", systemImage: "plus")
+                    .font(TLFont.body)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Capsule().fill(TLColor.coralOrange))
+            }
+            .padding(.top, 20)
+        }
+        .padding()
     }
     
     @ViewBuilder
     func recordView(record: TravelRecord) -> some View {
-        LocalImageView(path: record.imageURLs.first)
-            .frame(height: UIScreen.main.bounds.width)
-        Text(record.dateStr)
-        Text(record.content)
-            .lineLimit(2)
-        Rectangle()
-            .fill(.quaternary)
-            .padding(.vertical)
+        VStack(alignment: .leading, spacing: 8) {
+            LocalImageView(path: record.imageURLs.first)
+                .frame(height: UIScreen.main.bounds.width * 0.6)
+                .cornerRadius(12)
+                .clipped()
+            
+            Text(record.dateStr)
+                .font(TLFont.subHeadline)
+                .foregroundColor(TLColor.primaryText)
+            
+            Text(record.content)
+                .font(TLFont.body)
+                .foregroundColor(TLColor.primaryText)
+                .lineLimit(2)
+            
+            Divider()
+                .background(TLColor.separatorGray)
+                .padding(.vertical, 8)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 16)
     }
 }
 
