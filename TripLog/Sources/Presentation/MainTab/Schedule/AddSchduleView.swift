@@ -15,7 +15,7 @@ struct AddScheduleView: View {
     var body: some View {
         ScrollView {
             ScrollViewReader { proxy in
-                VStack(spacing: 50) {
+                VStack(spacing: 40) {
                     dateView(proxy: proxy)
                         .id(AddContent.date)
                     
@@ -26,10 +26,11 @@ struct AddScheduleView: View {
                         viewModel.send(action: .doneButtonTapped)
                     } label: {
                         Text("완료")
+                            .font(TLFont.body)
                             .bold()
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
-                            .background(viewModel.state.isDoneButtonDisabled ? Color.gray : Color.accentColor)
+                            .background(viewModel.state.isDoneButtonDisabled ? TLColor.separatorGray : TLColor.coralOrange)
                             .foregroundColor(.white)
                             .cornerRadius(12)
                     }
@@ -37,8 +38,9 @@ struct AddScheduleView: View {
                     .padding(.top, 40)
                     .id(AddContent.done)
                 }
-                .padding(.horizontal)
-                .padding(.top, 20)
+                .padding(.horizontal, 24)
+                .padding(.top, 30)
+                .background(TLColor.backgroundGray.ignoresSafeArea())
                 .onChange(of: calendarViewModel.state.selectedDateInterval) { interval in
                     guard let interval else { return }
                     viewModel.send(action: .intervalSelected(interval))
@@ -49,32 +51,36 @@ struct AddScheduleView: View {
             }
         }
         .navigationTitle("일정 등록")
+        .navigationBarTitleDisplayMode(.inline)
+        .background(TLColor.backgroundGray.ignoresSafeArea())
         .onChange(of: viewModel.state.isCompleted) { _ in
             dismiss()
         }
     }
     
-    // 날짜 선택 뷰
     func dateView(proxy: ScrollViewProxy) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("날짜")
-                .font(.title)
-                .bold()
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
             
             CalendarView(viewModel: calendarViewModel)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.4)))
         }
     }
         
-    // 일정 이름 입력 뷰
     @ViewBuilder
     func titleView(proxy: ScrollViewProxy) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("이름")
-                .font(.title)
-                .bold()
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
             
             TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(PlainTextFieldStyle())
+                .padding(12)
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
                 .onSubmit {
                     proxy.scrollTo(AddContent.done, anchor: .bottom)
                 }
