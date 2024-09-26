@@ -68,6 +68,7 @@ struct EventMapView: View {
 #Preview {
     EventMapView(
         event: TravelEvent(
+            id: "",
             title: "이벤트 이름",
             date: .now.addingTimeInterval(-300),
             locationInfo: LocationInformation(

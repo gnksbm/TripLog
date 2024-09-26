@@ -16,6 +16,7 @@ final class MockScheduleRepository: ScheduleRepository {
             endDate: .now.addingTimeInterval(86400 * 6),
             events: [
                 TravelEvent(
+                    id: "",
                     title: "일정1",
                     date: .now.addingTimeInterval(-86400 * 3),
                     locationInfo: LocationInformation(
@@ -25,10 +26,12 @@ final class MockScheduleRepository: ScheduleRepository {
                     )
                 ),
                 TravelEvent(
+                    id: "",
                     title: "일정2",
                     date: .now.addingTimeInterval(-86400 * 2)
                 ),
                 TravelEvent(
+                    id: "",
                     title: "일정3",
                     date: .now.addingTimeInterval(86400 * 1)
                 ),
@@ -40,6 +43,7 @@ final class MockScheduleRepository: ScheduleRepository {
             endDate: .now.addingTimeInterval(86400 * 6),
             events: [
                 TravelEvent(
+                    id: "",
                     title: "일정1",
                     date: .now.addingTimeInterval(-86400 * 3),
                     locationInfo: LocationInformation(
@@ -49,10 +53,12 @@ final class MockScheduleRepository: ScheduleRepository {
                     )
                 ),
                 TravelEvent(
+                    id: "",
                     title: "일정2",
                     date: .now.addingTimeInterval(-86400 * 2)
                 ),
                 TravelEvent(
+                    id: "",
                     title: "일정3",
                     date: .now.addingTimeInterval(86400 * 1)
                 ),
@@ -60,15 +66,15 @@ final class MockScheduleRepository: ScheduleRepository {
         ),
     ]
     
-    func fetchSchedule() async throws -> [TravelSchedule] {
+    func fetchSchedule() throws -> [TravelSchedule] {
         scheduleList
     }
     
-    func addSchedule(schedule: TravelSchedule) async throws {
+    func addSchedule(schedule: TravelSchedule) throws {
         scheduleList.append(schedule)
     }
     
-    func addEvent(scheduleID: String, event: TravelEvent) async throws {
+    func addEvent(scheduleID: String, event: TravelEvent) throws {
         if let index = scheduleList.firstIndex(
             where: { schedule in
                 schedule.id == scheduleID

@@ -29,21 +29,26 @@ final class AddEventViewModel: ViewModel {
     }
     
     func mutate(action: Action) {
-        Task {
-            switch action {
-            case .doneButtonTapped:
-                try await scheduleRepository.addEvent(
-                    scheduleID: scheduleID,
-                    event: TravelEvent(
-                        title: state.scheduleTitle,
-                        date: state.selectedDate
-                    )
+        switch action {
+        case .doneButtonTapped:
+            addEvent()
+        }
+    }
+    
+    private func addEvent() {
+        do {
+            try scheduleRepository.addEvent(
+                scheduleID: scheduleID,
+                event: TravelEvent(
+                    id: UUID().uuidString,
+                    title: state.scheduleTitle,
+                    date: state.selectedDate
                 )
-                delegate?.onComplete()
-                await MainActor.run {
-                    state.onDismissed = true
-                }
-            }
+            )
+            delegate?.onComplete()
+            state.onDismissed = true
+        } catch {
+            dump(error)
         }
     }
 }

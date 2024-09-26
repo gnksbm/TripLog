@@ -14,19 +14,34 @@ extension Date: SliderItemType {
     var title: String { formatted(dateFormat: .onlyDay) }
 }
 
-extension TravelEvent: Identifiable {
-    var id: Self { self }
-}
-
 struct ScheduleListView: View {
     @StateObject private var viewModel = ScheduleListViewModel()
+    @StateObject private var addScheduleViewModel = AddScheduleViewModel()
     
     var body: some View {
         NavigationStack {
-            if viewModel.state.scheduleList.isEmpty {
-                emptyPlaceholderView
-            } else {
-                listView
+            VStack {
+                if viewModel.state.scheduleList.isEmpty {
+                    emptyPlaceholderView
+                } else {
+                    listView
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.state.showAddView) {
+                AddSchduleView()
+                    .environmentObject(addScheduleViewModel)
+                    .onAppear {
+                        addScheduleViewModel.delegate = viewModel
+                    }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        viewModel.send(action: .addButtonTapped)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
             }
         }
         .sheet(item: $viewModel.state.showMapView) {
@@ -42,8 +57,6 @@ struct ScheduleListView: View {
                 viewModel.send(action: .onDismissed)
             }
         }
-        
-        emptyPlaceholderView
     }
     
     @ViewBuilder
@@ -58,28 +71,24 @@ struct ScheduleListView: View {
                 ),
                 id: \.1.hashValue
             ) { index, schedule in
-                Text(schedule.title)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke()
-                    }
-                    .padding()
-                    .tag(index)
-            }
-        }
-        .frame(height: 200)
-        .tabViewStyle(.page)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    viewModel.send(action: .addButtonTapped)
-                } label: {
-                    Image(systemName: "plus")
+                VStack {
+                    Text(schedule.title)
+                    ProgressView(
+                        timerInterval: schedule.startDate...schedule.endDate
+                    )
+                    .foregroundStyle(.red)
                 }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(TLColor.boxBackground)
+                }
+                .padding()
+                .tag(index)
             }
         }
+        .tabViewStyle(.page)
         .navigationDestination(
             isPresented: $viewModel.state.showAddEventView
         ) {
@@ -91,9 +100,6 @@ struct ScheduleListView: View {
                     vmDelegate: viewModel
                 )
             }
-        }
-        .navigationDestination(isPresented: $viewModel.state.showAddView) {
-            AddSchduleView()
         }
         if let selectedSchdule = viewModel.state.selectedSchedule {
             ScrollView(.horizontal) {
@@ -162,7 +168,7 @@ struct ScheduleListView: View {
     }
     
     var emptyPlaceholderView: some View {
-        EmptyView()
+        Text("등록한 일정이 없어요")
     }
 }
 

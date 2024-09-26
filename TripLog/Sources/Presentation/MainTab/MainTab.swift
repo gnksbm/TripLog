@@ -18,7 +18,7 @@ struct MainTab: View {
     }
     
     enum TabKind: CaseIterable, Identifiable {
-        case eventList, touristMap, scheduleList, recordList
+        case scheduleList, recordList, eventList, touristMap
         
         var id: Self { self }
         

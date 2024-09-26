@@ -24,7 +24,7 @@ struct LocalImageView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                case .failure(let error):
+                case .failure(_):
                     Color.secondary
                 @unknown default:
                     Color.secondary

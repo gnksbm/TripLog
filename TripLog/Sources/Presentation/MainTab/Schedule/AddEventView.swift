@@ -68,13 +68,14 @@ struct AddEventView: View {
         date: Date,
         vmDelegate: CompleteDelegate? = nil
     ) { 
-        self._viewModel = StateObject(
-            wrappedValue: AddEventViewModel(
-                scheduleID: scheduleID,
-                date: date
-            )
+        let viewModel = AddEventViewModel(
+            scheduleID: scheduleID,
+            date: date
         )
         viewModel.delegate = vmDelegate
+        self._viewModel = StateObject(
+            wrappedValue: viewModel
+        )
     }
 }
 

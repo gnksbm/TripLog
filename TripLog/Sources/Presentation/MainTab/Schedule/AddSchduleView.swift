@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddSchduleView: View {
-    @StateObject private var viewModel = AddSchduleViewModel()
+    @EnvironmentObject private var viewModel: AddScheduleViewModel
     @StateObject private var calendarViewModel = CalendarViewModel(
         selectType: .period
     )

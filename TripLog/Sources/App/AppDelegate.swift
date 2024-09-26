@@ -28,7 +28,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             type: LocationService.self
         )
         DIContainer.register(
-            MockScheduleRepository(),
+            DefaultScheduleRepository(),
             type: ScheduleRepository.self
         )
         DIContainer.register(
@@ -38,6 +38,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         DIContainer.register(
             DefaultImageRepository(),
             type: ImageRepository.self
+        )
+        DIContainer.register(
+            DefaultRealmStorage(),
+            type: RealmStorage.self
         )
     }
 }
