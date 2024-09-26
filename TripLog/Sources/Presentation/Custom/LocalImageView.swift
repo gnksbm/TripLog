@@ -14,15 +14,23 @@ struct LocalImageView: View {
     
     var body: some View {
         if let path {
-            KFImage(
-                FileManager.getLocalImageURL(
-                    additionalPath: path
+            KFImage(FileManager.getLocalImageURL(additionalPath: path))
+                .resizable()
+                .scaledToFill()
+                .clipped()
+                .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white, lineWidth: 1)
                 )
-            )
-            .resizable()
-            .scaledToFill()
         } else {
-            Color.secondary
+            Color.secondary.opacity(0.3)
+                .overlay(
+                    Image(systemName: "photo")
+                        .font(.system(size: 40))
+                        .foregroundColor(.white.opacity(0.7))
+                )
+                .cornerRadius(12)
         }
     }
 }
