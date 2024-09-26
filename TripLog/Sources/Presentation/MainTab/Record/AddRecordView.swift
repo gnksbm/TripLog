@@ -17,23 +17,25 @@ struct AddRecordView: View {
     
     var body: some View {
         ScrollView {
-            dateView
-            Spacer(minLength: 100)
-            imageSelectionView
-            Spacer(minLength: 100)
-            contentView
-            Spacer(minLength: 100)
-            Button("완료") {
-                if let date = calendarViewModel.state.selectedDate {
-                    viewModel.send(action: .doneButtonTapped(date))
+            VStack(spacing: 40) {
+                dateView
+                imageSelectionView
+                contentView
+                Button("완료") {
+                    if let date = calendarViewModel.state.selectedDate {
+                        viewModel.send(action: .doneButtonTapped(date))
+                    }
                 }
+                .disabled(
+                    viewModel.state.content.isEmpty ||
+                    calendarViewModel.state.selectedDate == nil
+                )
+                .buttonStyle(LargeButtonStyle())
+                .padding(.top, 30)
             }
-            .disabled(
-                viewModel.state.content.isEmpty &&
-                calendarViewModel.state.selectedDate != nil
-            )
-            .buttonStyle(LargeButtonStyle())
+            .padding(24)
         }
+        .background(TLColor.backgroundGray.ignoresSafeArea())
         .onChange(of: selectedItem) { items in
             handleItem(items: items)
         }
@@ -44,61 +46,68 @@ struct AddRecordView: View {
     
     @ViewBuilder
     var contentView: some View {
-        HStack {
+        VStack(alignment: .leading, spacing: 16) {
             Text("내용")
-                .font(.title)
-                .bold()
-            Spacer()
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
+            
+            TextField("여행의 내용을 입력하세요", text: $viewModel.state.content)
+                .padding(12)
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+                .textFieldStyle(PlainTextFieldStyle())
         }
-        TextField("", text: $viewModel.state.content)
-            .textFieldStyle(.roundedBorder)
     }
     
     @ViewBuilder
     var imageSelectionView: some View {
-        HStack {
+        VStack(alignment: .leading, spacing: 16) {
             Text("사진")
-                .font(.title)
-                .bold()
-            Spacer()
-        }
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(viewModel.state.selectedImage, id: \.self) { data in
-                    if let uiImage = UIImage(data: data) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .scaledToFill()
-                            .clipShape(
-                                RoundedRectangle(cornerRadius: 16)
-                            )
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(viewModel.state.selectedImage, id: \.self) { data in
+                        if let uiImage = UIImage(data: data) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 100, height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.white, lineWidth: 2)
+                                )
+                        }
+                    }
+                    
+                    PhotosPicker(selection: $selectedItem) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(TLColor.lightPeach.opacity(0.4))
+                                .frame(width: 100, height: 100)
+                            
+                            Image(systemName: "plus")
+                                .font(.system(size: 24, weight: .bold))
+                                .foregroundColor(TLColor.primaryText)
+                        }
                     }
                 }
-                PhotosPicker(selection: $selectedItem) {
-                    Image(systemName: "plus")
-                        .foregroundStyle(.white)
-                        .font(.title)
-                        .bold()
-                }
-                .frame(width: 100, height: 100)
-                .background(.quaternary)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 16)
-                )
             }
         }
     }
     
     @ViewBuilder
     var dateView: some View {
-        HStack {
+        VStack(alignment: .leading, spacing: 16) {
             Text("날짜")
-                .font(.title)
-                .bold()
-            Spacer()
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
+            
+            CalendarView(viewModel: calendarViewModel)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
         }
-        CalendarView(viewModel: calendarViewModel)
     }
     
     private func handleItem(items: [PhotosPickerItem]) {
@@ -112,7 +121,7 @@ struct AddRecordView: View {
                     if let data {
                         datas.append(data)
                     } else {
-                        print(#function, "Data is nil")
+                        print("Data is nil")
                     }
                 case .failure(let error):
                     dump(error)
