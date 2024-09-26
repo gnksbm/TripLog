@@ -37,25 +37,33 @@ struct EventMapView: View {
                     MarkerView()
                 }
             }
+            .edgesIgnoringSafeArea(.all)
+            
             HStack {
-                Text(viewModel.state.eventName)
-                    .font(.title)
-                    .bold()
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(viewModel.state.eventName)
+                        .font(TLFont.headline)
+                        .foregroundColor(TLColor.primaryText)
+                    
+                    Label(
+                        viewModel.state.date.formatted(dateFormat: .onlyTime),
+                        systemImage: "clock"
+                    )
+                    .font(TLFont.subHeadline)
+                    .foregroundColor(TLColor.secondaryText)
+                }
                 Spacer()
-                Label(
-                    viewModel.state.date.formatted(dateFormat: .onlyTime),
-                    systemImage: "clock"
-                )
-                .font(.title2)
             }
-            .padding()
-            .frame(maxWidth: .infinity)
+            .padding(16)
             .background {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(.white)
+                    .fill(TLColor.lightPeach.opacity(0.9))
+                    .shadow(color: .gray.opacity(0.4), radius: 4, x: 0, y: 2)
             }
             .padding()
         }
+        .navigationTitle("이벤트 위치")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     init(event: TravelEvent) {
