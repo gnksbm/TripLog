@@ -23,38 +23,21 @@ struct MarkerView: View {
         ZStack {
             Circle()
                 .fill(color)
-            Path { path in
-                path.addArc(
-                    center: CGPoint(x: size / 2, y: size / 2),
-                    radius: (size / 2) - borderWidth,
-                    startAngle: .degrees(0),
-                    endAngle: .degrees(360),
-                    clockwise: false
-                )
-            }
-            .fill(Color.white)
+            Circle()
+                .stroke(Color.white, lineWidth: borderWidth)
+            Circle()
+                .fill(Color.white)
+                .frame(width: size / 2, height: size / 2)
         }
         .frame(width: size, height: size)
     }
     
     private var triangleView: some View {
         Path { path in
-            // 삼각형의 상단시작 꼭짓점
             path.move(to: CGPoint(x: size / 2, y: 0))
-            // 삼각형의 좌상단 꼭짓점
-            path.addLine(
-                to: CGPoint(
-                    x: (size / 2) + (triangleSize / 2),
-                    y: triangleSize
-                )
-            )
-            // 삼각형을 우상단 꼭짓점
-            path.addLine(
-                to: CGPoint(
-                    x: (size / 2) - (triangleSize / 2),
-                    y: triangleSize
-                )
-            )
+            path.addLine(to: CGPoint(x: (size / 2) + (triangleSize / 2), y: triangleSize))
+            path.addLine(to: CGPoint(x: (size / 2) - (triangleSize / 2), y: triangleSize))
+            path.closeSubpath()
         }
         .fill(color)
         .frame(width: size, height: triangleSize)
@@ -66,6 +49,7 @@ struct MarkerView: View {
     private var triangleSize: CGFloat {
         size / 3
     }
+    
     init(
         color: Color = .accentColor,
         size: CGFloat = 42,
