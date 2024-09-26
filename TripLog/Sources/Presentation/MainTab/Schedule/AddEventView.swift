@@ -13,10 +13,8 @@ struct AddEventView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             titleView
-            Spacer()
-                .frame(height: 100)
             timeView
             Spacer()
             Button("완료") {
@@ -25,8 +23,11 @@ struct AddEventView: View {
             .disabled(viewModel.state.isDoneButtonDisabled)
             .buttonStyle(LargeButtonStyle())
         }
-        .padding()
+        .padding(.horizontal, 24)
+        .padding(.vertical, 40)
+        .background(TLColor.backgroundGray.ignoresSafeArea())
         .navigationTitle("일정 등록")
+        .navigationBarTitleDisplayMode(.inline)
         .onChange(of: viewModel.state.onDismissed) { value in
             if value {
                 dismiss()
@@ -35,31 +36,33 @@ struct AddEventView: View {
     }
     
     var titleView: some View {
-        VStack {
-            HStack {
-                Text("일정 이름")
-                    .font(.title)
-                    .bold()
-                Spacer()
-            }
-            TextField("", text: $viewModel.state.scheduleTitle)
-                .textFieldStyle(.roundedBorder)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("일정 이름")
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
+            
+            TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
+                .padding(12)
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+                .textFieldStyle(PlainTextFieldStyle())
         }
     }
     
     var timeView: some View {
-        VStack {
-            HStack {
-                Text("시간")
-                    .font(.title)
-                    .bold()
-                Spacer()
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("시간")
+                .font(TLFont.headline)
+                .foregroundColor(TLColor.primaryText)
+            
             DatePicker(
-                "",
+                "시간 선택",
                 selection: $viewModel.state.selectedDate,
                 displayedComponents: .hourAndMinute
             )
+            .labelsHidden()
+            .datePickerStyle(WheelDatePickerStyle())
+            .padding(12)
+            .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
         }
     }
     
@@ -67,7 +70,7 @@ struct AddEventView: View {
         scheduleID: String,
         date: Date,
         vmDelegate: CompleteDelegate? = nil
-    ) { 
+    ) {
         let viewModel = AddEventViewModel(
             scheduleID: scheduleID,
             date: date
