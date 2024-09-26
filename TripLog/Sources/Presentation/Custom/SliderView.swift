@@ -28,53 +28,40 @@ struct SliderView<Item: SliderItemType>: View {
     @State private var selectedIndex: CGFloat = 0
     
     var body: some View {
-        HStack(spacing: .zero) {
-            ForEach(
-                Array(zip(items.indices, items)),
-                id: \.1.id
-            ) { index, item in
+        HStack(spacing: 0) {
+            ForEach(Array(zip(items.indices, items)), id: \.1.id) { index, item in
                 Text(item.title)
                     .fontWeight(item == selectedItem ? .bold : .regular)
                     .frame(width: itemWidth)
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(titleColor)
+                    .foregroundColor(item == selectedItem ? lineColor : titleColor)
                     .onTapGesture {
-                        selectedItem = item
-                        onSelected(item)
-                        withAnimation {
-                            selectedIndex = CGFloat(index)
-                        }
+                        selectItem(item, at: index)
                     }
             }
         }
-        .overlay {
+        .background(
             GeometryReader { proxy in
                 RoundedRectangle(cornerRadius: 3)
-                    .frame(
-                        width: itemWidth,
-                        height: proxy.size.height
-                    )
-                    .offset(
-                        x: itemWidth * selectedIndex,
-                        y: proxy.frame(in: .local).minY
-                    )
+                    .frame(width: itemWidth, height: proxy.size.height)
+                    .offset(x: itemWidth * selectedIndex)
                     .foregroundStyle(fillColor)
-                let global = proxy.frame(in: .global)
+            }
+        )
+        .overlay(
+            GeometryReader { proxy in
                 Capsule()
                     .frame(width: itemWidth, height: barHeight)
-                    .offset(
-                        x: global.width / itemCount * selectedIndex,
-                        y: proxy.frame(in: .local).maxY
-                    )
+                    .offset(x: itemWidth * selectedIndex, y: proxy.size.height - barHeight)
                     .foregroundStyle(lineColor)
             }
+        )
+        .onChange(of: items) { newValue in
+            selectedItem = newValue.first
         }
-        .onChange(of: items) { value in
-            selectedItem = value.first
-        }
-        .onChange(of: selectedItem) { value in
-            if let value {
-                onSelected(value)
+        .onChange(of: selectedItem) { newValue in
+            if let newValue {
+                onSelected(newValue)
             }
         }
     }
@@ -82,8 +69,15 @@ struct SliderView<Item: SliderItemType>: View {
     private var screenWidth: CGFloat { UIScreen.main.bounds.width }
     private var itemCount: CGFloat { max(1, CGFloat(items.count)) }
     private var itemWidth: CGFloat {
-        itemCount < maxItem ?
-        screenWidth / itemCount : screenWidth / maxItem
+        itemCount < maxItem ? screenWidth / itemCount : screenWidth / maxItem
+    }
+    
+    private func selectItem(_ item: Item, at index: Int) {
+        selectedItem = item
+        onSelected(item)
+        withAnimation {
+            selectedIndex = CGFloat(index)
+        }
     }
     
     init(
