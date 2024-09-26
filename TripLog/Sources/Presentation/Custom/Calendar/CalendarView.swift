@@ -10,63 +10,75 @@ import SwiftUI
 struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
-    private let columns = Array(repeating: GridItem(), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
+            // 상단 월 선택 버튼
             HStack {
-                Button("\(viewModel.state.currentMonth - 1)") {
+                Button(action: {
                     viewModel.send(action: .showPreviousMonth)
+                }) {
+                    Image(systemName: "chevron.left")
+                        .padding(.horizontal)
                 }
                 Spacer()
                 Text("\(viewModel.state.currentMonth)")
                     .font(.title)
+                    .bold()
                 Spacer()
-                Button("\(viewModel.state.currentMonth + 1)") {
+                Button(action: {
                     viewModel.send(action: .showNextMonth)
+                }) {
+                    Image(systemName: "chevron.right")
+                        .padding(.horizontal)
                 }
             }
-            .foregroundStyle(.black)
-            .font(.title3)
-            .bold()
-            .padding()
-            LazyVGrid(columns: columns) {
-                ForEach(viewModel.state.showingDates) { date in
-                    let isContainedMonth =
-                    date.isSameMonth(viewModel.state.currentMonth)
-                    Button {
+            .padding(.horizontal)
+            
+            // 날짜 그리드
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(viewModel.state.showingDates, id: \.self) { date in
+                    let isCurrentMonth = date.isSameMonth(viewModel.state.currentMonth)
+                    
+                    Button(action: {
                         viewModel.send(action: .dateSelected(date))
-                    } label: {
+                    }) {
                         ZStack {
                             circleFill(date: date)
                             Text(date.formatted(dateFormat: .onlyDay))
-                                .padding(.vertical)
-                                .foregroundStyle(
-                                    isContainedMonth ? .black : .gray
-                                )
+                                .foregroundColor(isCurrentMonth ? .black : .gray)
                         }
+                        .frame(width: 40, height: 40)
                     }
                 }
             }
+            .padding(.horizontal)
         }
         .onAppear {
             viewModel.send(action: .onAppear)
         }
     }
     
+    // 원형 배경 그리기
     @ViewBuilder
     func circleFill(date: Date) -> some View {
         if viewModel.state.selectedDate == date {
             Circle()
-                .fill(.blue)
+                .fill(Color.blue)
+                .frame(width: 40, height: 40)
         } else if viewModel.state.selectedDateInterval?.start == date {
             Circle()
-                .fill(.red)
+                .fill(Color.red)
+                .frame(width: 40, height: 40)
         } else if viewModel.state.selectedDateInterval?.end == date {
             Circle()
-                .fill(.yellow)
+                .fill(Color.yellow)
+                .frame(width: 40, height: 40)
         } else {
-            EmptyView()
+            Circle()
+                .fill(Color.clear)
+                .frame(width: 40, height: 40)
         }
     }
 }

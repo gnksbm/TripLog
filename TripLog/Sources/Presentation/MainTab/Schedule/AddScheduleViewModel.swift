@@ -34,7 +34,9 @@ final class AddScheduleViewModel: ViewModel {
                 )
             )
             delegate?.onComplete()
-            state.isCompleted = true            
+            state.selectedDateInterval = nil
+            state.scheduleTitle = ""
+            state.isCompleted = true
         } catch {
             dump(error)
         }

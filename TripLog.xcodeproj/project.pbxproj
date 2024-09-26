@@ -25,6 +25,14 @@
 		8ECFED4D2CA017A800716B71 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED4C2CA017A800716B71 /* CalendarView.swift */; };
 		8ECFED4F2CA017B100716B71 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED4E2CA017B100716B71 /* CalendarViewModel.swift */; };
 		8ECFED512CA0F57300716B71 /* AddScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED502CA0F57300716B71 /* AddScheduleViewModel.swift */; };
+		8ECFED652CA5B98000716B71 /* NanumSquareB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED5C2CA5B98000716B71 /* NanumSquareB.otf */; };
+		8ECFED662CA5B98000716B71 /* NanumSquareEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED5D2CA5B98000716B71 /* NanumSquareEB.otf */; };
+		8ECFED672CA5B98000716B71 /* NanumSquareL.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED5E2CA5B98000716B71 /* NanumSquareL.otf */; };
+		8ECFED682CA5B98000716B71 /* NanumSquareOTF_acB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED5F2CA5B98000716B71 /* NanumSquareOTF_acB.otf */; };
+		8ECFED692CA5B98000716B71 /* NanumSquareOTF_acEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED602CA5B98000716B71 /* NanumSquareOTF_acEB.otf */; };
+		8ECFED6A2CA5B98000716B71 /* NanumSquareOTF_acL.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED612CA5B98000716B71 /* NanumSquareOTF_acL.otf */; };
+		8ECFED6B2CA5B98000716B71 /* NanumSquareOTF_acR.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED622CA5B98000716B71 /* NanumSquareOTF_acR.otf */; };
+		8ECFED6C2CA5B98000716B71 /* NanumSquareR.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED632CA5B98000716B71 /* NanumSquareR.otf */; };
 		BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */; };
 		BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2192C96A83600CCDB99 /* TouristRepository.swift */; };
 		BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21B2C96A8D700CCDB99 /* Injected.swift */; };
@@ -116,6 +124,14 @@
 		8ECFED4C2CA017A800716B71 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		8ECFED4E2CA017B100716B71 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		8ECFED502CA0F57300716B71 /* AddScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewModel.swift; sourceTree = "<group>"; };
+		8ECFED5C2CA5B98000716B71 /* NanumSquareB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareB.otf; sourceTree = "<group>"; };
+		8ECFED5D2CA5B98000716B71 /* NanumSquareEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareEB.otf; sourceTree = "<group>"; };
+		8ECFED5E2CA5B98000716B71 /* NanumSquareL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareL.otf; sourceTree = "<group>"; };
+		8ECFED5F2CA5B98000716B71 /* NanumSquareOTF_acB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareOTF_acB.otf; sourceTree = "<group>"; };
+		8ECFED602CA5B98000716B71 /* NanumSquareOTF_acEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareOTF_acEB.otf; sourceTree = "<group>"; };
+		8ECFED612CA5B98000716B71 /* NanumSquareOTF_acL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareOTF_acL.otf; sourceTree = "<group>"; };
+		8ECFED622CA5B98000716B71 /* NanumSquareOTF_acR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareOTF_acR.otf; sourceTree = "<group>"; };
+		8ECFED632CA5B98000716B71 /* NanumSquareR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareR.otf; sourceTree = "<group>"; };
 		BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeDTO.swift; sourceTree = "<group>"; };
 		BE14D2192C96A83600CCDB99 /* TouristRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRepository.swift; sourceTree = "<group>"; };
 		BE14D21B2C96A8D700CCDB99 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
@@ -231,6 +247,29 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		8ECFED5B2CA5B96400716B71 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFED642CA5B98000716B71 /* NanumFontSetup_OTF_SQUARE */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		8ECFED642CA5B98000716B71 /* NanumFontSetup_OTF_SQUARE */ = {
+			isa = PBXGroup;
+			children = (
+				8ECFED5C2CA5B98000716B71 /* NanumSquareB.otf */,
+				8ECFED5D2CA5B98000716B71 /* NanumSquareEB.otf */,
+				8ECFED5E2CA5B98000716B71 /* NanumSquareL.otf */,
+				8ECFED5F2CA5B98000716B71 /* NanumSquareOTF_acB.otf */,
+				8ECFED602CA5B98000716B71 /* NanumSquareOTF_acEB.otf */,
+				8ECFED612CA5B98000716B71 /* NanumSquareOTF_acL.otf */,
+				8ECFED622CA5B98000716B71 /* NanumSquareOTF_acR.otf */,
+				8ECFED632CA5B98000716B71 /* NanumSquareR.otf */,
+			);
+			path = NanumFontSetup_OTF_SQUARE;
+			sourceTree = "<group>";
+		};
 		BE14D2152C96A7C200CCDB99 /* Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,10 +354,10 @@
 			isa = PBXGroup;
 			children = (
 				BED1DF6D2C907C1D0030BC1A /* MainTab.swift */,
-				BEADF8F02C96BC5700FCDBE9 /* EventList */,
-				8E138FAC2C9C4E90008F9D38 /* TouristMap */,
 				8ECFED402CA00D4700716B71 /* Schedule */,
 				BE81D5152CA3D6D6002574A5 /* Record */,
+				BEADF8F02C96BC5700FCDBE9 /* EventList */,
+				8E138FAC2C9C4E90008F9D38 /* TouristMap */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";
@@ -490,6 +529,7 @@
 		BED1DF7D2C91D0950030BC1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8ECFED5B2CA5B96400716B71 /* Font */,
 				BE473E522C954DD300020435 /* Info.plist */,
 				BE473E512C954D2E00020435 /* Secret.xcconfig */,
 				BED1DF6F2C907C200030BC1A /* Assets.xcassets */,
@@ -578,7 +618,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED1DF732C907C200030BC1A /* Preview Assets.xcassets in Resources */,
+				8ECFED6B2CA5B98000716B71 /* NanumSquareOTF_acR.otf in Resources */,
+				8ECFED692CA5B98000716B71 /* NanumSquareOTF_acEB.otf in Resources */,
+				8ECFED652CA5B98000716B71 /* NanumSquareB.otf in Resources */,
+				8ECFED6A2CA5B98000716B71 /* NanumSquareOTF_acL.otf in Resources */,
 				BED1DF7A2C907CEA0030BC1A /* .gitignore in Resources */,
+				8ECFED6C2CA5B98000716B71 /* NanumSquareR.otf in Resources */,
+				8ECFED672CA5B98000716B71 /* NanumSquareL.otf in Resources */,
+				8ECFED662CA5B98000716B71 /* NanumSquareEB.otf in Resources */,
+				8ECFED682CA5B98000716B71 /* NanumSquareOTF_acB.otf in Resources */,
 				BED1DF702C907C200030BC1A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

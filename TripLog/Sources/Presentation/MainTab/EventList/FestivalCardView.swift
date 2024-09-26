@@ -7,25 +7,16 @@
 
 import SwiftUI
 
+import Kingfisher
+
 struct FestivalCardView: View {
     let festival: SearchFestivalResponse
     
     var body: some View {
         VStack {
-            AsyncImage(url: festival.imageURLs.first) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                case .failure(let error):
-                    errorView(error)
-                @unknown default:
-                    EmptyView()
-                }
-            }
+            KFImage(festival.imageURLs.first)
+                .resizable()
+                .scaledToFill()
             HStack {
                 Text(festival.title)
                     .font(.title2)

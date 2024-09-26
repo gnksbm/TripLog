@@ -7,34 +7,39 @@
 
 import SwiftUI
 
-struct AddSchduleView: View {
+struct AddScheduleView: View {
     @EnvironmentObject private var viewModel: AddScheduleViewModel
-    @StateObject private var calendarViewModel = CalendarViewModel(
-        selectType: .period
-    )
+    @StateObject private var calendarViewModel = CalendarViewModel(selectType: .period)
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
             ScrollViewReader { proxy in
-                VStack {
+                VStack(spacing: 50) {
                     dateView(proxy: proxy)
                         .id(AddContent.date)
-                    Spacer(minLength: 100)
+                    
                     titleView(proxy: proxy)
                         .id(AddContent.title)
-                    Spacer(minLength: 100)
-                    Button("완료") {
+                    
+                    Button {
                         viewModel.send(action: .doneButtonTapped)
+                    } label: {
+                        Text("완료")
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(viewModel.state.isDoneButtonDisabled ? Color.gray : Color.accentColor)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
                     }
                     .disabled(viewModel.state.isDoneButtonDisabled)
-                    .buttonStyle(LargeButtonStyle())
+                    .padding(.top, 40)
                     .id(AddContent.done)
                 }
-                .padding()
-                .onChange(
-                    of: calendarViewModel.state.selectedDateInterval
-                ) { interval in
+                .padding(.horizontal)
+                .padding(.top, 20)
+                .onChange(of: calendarViewModel.state.selectedDateInterval) { interval in
                     guard let interval else { return }
                     viewModel.send(action: .intervalSelected(interval))
                     withAnimation {
@@ -49,29 +54,27 @@ struct AddSchduleView: View {
         }
     }
     
+    // 날짜 선택 뷰
     func dateView(proxy: ScrollViewProxy) -> some View {
-        VStack {
-            HStack {
-                Text("날짜")
-                    .font(.title)
-                    .bold()
-                Spacer()
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("날짜")
+                .font(.title)
+                .bold()
+            
             CalendarView(viewModel: calendarViewModel)
         }
     }
         
+    // 일정 이름 입력 뷰
     @ViewBuilder
     func titleView(proxy: ScrollViewProxy) -> some View {
-        VStack {
-            HStack {
-                Text("이름")
-                    .font(.title)
-                    .bold()
-                Spacer()
-            }
-            TextField("", text: $viewModel.state.scheduleTitle)
-                .textFieldStyle(.roundedBorder)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("이름")
+                .font(.title)
+                .bold()
+            
+            TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onSubmit {
                     proxy.scrollTo(AddContent.done, anchor: .bottom)
                 }
@@ -90,7 +93,7 @@ struct AddSchduleView: View {
         type: ScheduleRepository.self
     )
     return NavigationStack {
-        AddSchduleView()
+        AddScheduleView()
     }
 }
 #endif

@@ -26,5 +26,12 @@
 	</dict>
 	<key>TOURIST_SECRET_KEY</key>
 	<string>$(TOURIST_SECRET_KEY)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NanumSquareB.otf</string>
+		<string>NanumSquareEB.otf</string>
+		<string>NanumSquareR.otf</string>
+		<string>NanumSquareL.otf</string>
+	</array>
 </dict>
 </plist>

@@ -7,31 +7,26 @@
 
 import SwiftUI
 
+import Kingfisher
+
 struct LocalImageView: View {
     let path: String?
     
     var body: some View {
         if let path {
-            AsyncImage(
-                url: FileManager.getLocalImageURL(
+            KFImage(
+                FileManager.getLocalImageURL(
                     additionalPath: path
                 )
-            ) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                case .failure(_):
-                    Color.secondary
-                @unknown default:
-                    Color.secondary
-                }
-            }
+            )
+            .resizable()
+            .scaledToFill()
         } else {
             Color.secondary
         }
     }
+}
+
+#Preview {
+    LocalImageView(path: "")
 }
