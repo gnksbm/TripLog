@@ -40,15 +40,22 @@ struct EventListView: View {
     
     var areaSliderView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            SliderView(items: viewModel.state.areaList) { item in
+            SliderView(
+                items: viewModel.state.areaList,
+                titleColor: TLColor.primaryText,
+                fillColor: TLColor.lightPeach.opacity(0.2),
+                lineColor: TLColor.coralOrange,
+                maxItem: 5,
+                barHeight: 4
+            ) { item in
                 viewModel.mutate(action: .areaSelected(item))
             }
-            .padding(.vertical, 16)
+            .padding(.vertical, 12)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(TLColor.lightPeach.opacity(0.3))
-                    .padding(.horizontal, -16)
+                    .fill(TLColor.lightPeach.opacity(0.1))
             )
+            .padding(.horizontal, -16)
         }
     }
     
@@ -58,11 +65,6 @@ struct EventListView: View {
                 ForEach(viewModel.state.festivalList) { festival in
                     FestivalCardView(festival: festival)
                         .padding(.horizontal)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.white)
-                                .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
-                        )
                         .padding(.vertical, 4)
                 }
             }

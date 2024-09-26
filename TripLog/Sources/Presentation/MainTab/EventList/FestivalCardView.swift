@@ -17,18 +17,15 @@ struct FestivalCardView: View {
             KFImage(festival.imageURLs.first)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 200)
+                .frame(height: 180)
                 .clipped()
                 .cornerRadius(12)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.white, lineWidth: 2)
-                )
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(festival.title)
                     .font(TLFont.headline)
                     .foregroundColor(TLColor.primaryText)
+                    .lineLimit(2)
                 
                 Text("\(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
                     .font(TLFont.caption)
@@ -37,8 +34,10 @@ struct FestivalCardView: View {
                 Text(festival.address)
                     .font(TLFont.subHeadline)
                     .foregroundColor(TLColor.primaryText)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
             }
-            .padding([.horizontal, .bottom])
+            .padding([.horizontal, .bottom], 12)
         }
         .background(
             RoundedRectangle(cornerRadius: 12)
@@ -46,11 +45,6 @@ struct FestivalCardView: View {
                 .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
         )
         .padding(.vertical, 8)
-    }
-    
-    func errorView(_ error: Error) -> some View {
-        print(error)
-        return Image(systemName: "xmark")
     }
 }
 
