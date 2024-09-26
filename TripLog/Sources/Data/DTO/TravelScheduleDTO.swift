@@ -35,7 +35,7 @@ extension TravelScheduleDTO {
             startDate: startDate,
             endDate: endDate,
             events: events.map { $0.toDomain() }
-                .sorted(by: { $0.date > $1.date })
+                .sorted(by: { $0.date < $1.date })
         )
     }
 }

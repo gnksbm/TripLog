@@ -33,6 +33,7 @@
 		8ECFED6A2CA5B98000716B71 /* NanumSquareOTF_acL.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED612CA5B98000716B71 /* NanumSquareOTF_acL.otf */; };
 		8ECFED6B2CA5B98000716B71 /* NanumSquareOTF_acR.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED622CA5B98000716B71 /* NanumSquareOTF_acR.otf */; };
 		8ECFED6C2CA5B98000716B71 /* NanumSquareR.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECFED632CA5B98000716B71 /* NanumSquareR.otf */; };
+		8ECFED6E2CA5C89F00716B71 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED6D2CA5C89F00716B71 /* DatePickerView.swift */; };
 		BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */; };
 		BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D2192C96A83600CCDB99 /* TouristRepository.swift */; };
 		BE14D21C2C96A8D700CCDB99 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE14D21B2C96A8D700CCDB99 /* Injected.swift */; };
@@ -132,6 +133,7 @@
 		8ECFED612CA5B98000716B71 /* NanumSquareOTF_acL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareOTF_acL.otf; sourceTree = "<group>"; };
 		8ECFED622CA5B98000716B71 /* NanumSquareOTF_acR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareOTF_acR.otf; sourceTree = "<group>"; };
 		8ECFED632CA5B98000716B71 /* NanumSquareR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareR.otf; sourceTree = "<group>"; };
+		8ECFED6D2CA5C89F00716B71 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		BE14D2162C96A7CA00CCDB99 /* AreaCodeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeDTO.swift; sourceTree = "<group>"; };
 		BE14D2192C96A83600CCDB99 /* TouristRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristRepository.swift; sourceTree = "<group>"; };
 		BE14D21B2C96A8D700CCDB99 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				BE473E2D2C933DCA00020435 /* SliderView.swift */,
 				8ECFED3A2C9FBC2000716B71 /* MarkerView.swift */,
 				BE81D5222CA3E4B7002574A5 /* LocalImageView.swift */,
+				8ECFED6D2CA5C89F00716B71 /* DatePickerView.swift */,
 				8ECFED4B2CA017A300716B71 /* Calendar */,
 			);
 			path = Custom;
@@ -684,6 +687,7 @@
 				BE14D2172C96A7CA00CCDB99 /* AreaCodeDTO.swift in Sources */,
 				BE14D21A2C96A83600CCDB99 /* TouristRepository.swift in Sources */,
 				BE473E262C93351700020435 /* TouristMapView.swift in Sources */,
+				8ECFED6E2CA5C89F00716B71 /* DatePickerView.swift in Sources */,
 				BED6DA0E2CA55BE600CC72BD /* TLDesign.swift in Sources */,
 				BEF36D5E2C97DC77008A9DBF /* FestivalCardView.swift in Sources */,
 				BED1DF6C2C907C1D0030BC1A /* TripLogApp.swift in Sources */,

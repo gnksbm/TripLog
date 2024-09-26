@@ -10,7 +10,7 @@ import Foundation
 public enum DateFormat: String {
     case festivalInput = "yyyyMMdd"
     case festivalOutput = "yyyy.MM.dd"
-    case onlyDay = "dd"
+    case onlyDay = "dd일"
     case onlyTime = "hh:mm"
 }
 

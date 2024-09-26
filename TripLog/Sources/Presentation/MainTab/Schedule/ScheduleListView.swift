@@ -74,24 +74,23 @@ struct ScheduleListView: View {
     
     @ViewBuilder
     var listView: some View {
-        VStack {
+        VStack(spacing: 16) {
             TabView(selection: $viewModel.state.selectedIndex) {
                 ForEach(
                     Array(zip(viewModel.state.scheduleList.indices, viewModel.state.scheduleList)),
                     id: \.1.hashValue
                 ) { index, schedule in
-                    VStack {
+                    VStack(spacing: 12) {
                         Text(schedule.title)
                             .font(TLFont.headline)
                             .foregroundColor(TLColor.primaryText)
-                            .padding(.bottom, 8)
                         
                         ProgressView(timerInterval: schedule.startDate...schedule.endDate)
                             .progressViewStyle(LinearProgressViewStyle(tint: TLColor.coralOrange))
-                            .padding(.bottom, 16)
+                            .padding(.horizontal, 16)
                     }
                     .frame(maxWidth: .infinity)
-                    .padding()
+                    .padding(20)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(TLColor.lightPeach.opacity(0.4))
@@ -102,30 +101,29 @@ struct ScheduleListView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(height: 300)
+            .frame(height: 250)  // TabView 높이 설정
 
             if let selectedSchedule = viewModel.state.selectedSchedule {
-                ScrollView(.horizontal) {
-                    SliderView(
-                        items: selectedSchedule.dateInterval.datesInPeriod
-                    ) { date in
-                        viewModel.send(action: .dateSelected(date))
-                    }
-                }
-                .scrollIndicators(.never)
+                DatePickerView(
+                    selectedDate: Binding(
+                        get: { viewModel.state.selectedDate },
+                        set: { date in
+                            if let date {
+                                viewModel.send(action: .dateSelected(date))
+                            }
+                        }
+                    ) ,
+                    dates: selectedSchedule.dateInterval.datesInPeriod
+                )
+                    .padding(.vertical)
                 
                 ScrollView {
                     if !viewModel.state.eventList.isEmpty {
                         ForEach(viewModel.state.eventList, id: \.hashValue) { event in
                             HStack {
-                                Group {
-                                    if event.date.isPast {
-                                        Circle().fill(Color.gray)
-                                    } else {
-                                        Circle().stroke(TLColor.coralOrange, lineWidth: 2)
-                                    }
-                                }
-                                .frame(width: 10, height: 10)
+                                Circle()
+                                    .stroke(event.date.isPast ? Color.gray : TLColor.coralOrange, lineWidth: 2)
+                                    .frame(width: 10, height: 10)
 
                                 VStack(alignment: .leading) {
                                     Text(event.date.formatted(dateFormat: .onlyTime))
