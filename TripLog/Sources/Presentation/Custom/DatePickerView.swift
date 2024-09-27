@@ -16,7 +16,7 @@ struct DatePickerView: View {
             HStack(spacing: 12) {
                 ForEach(dates, id: \.self) { date in
                     VStack {
-                        Text(date.formatted(dateFormat: .onlyDay))
+                        Text(date.formatted(dateFormat: .onlyDay) + "일")
                             .font(.headline)
                             .foregroundColor(dateColor(for: date))
                     }

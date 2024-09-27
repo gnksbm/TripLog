@@ -69,6 +69,7 @@ struct EventListView: View {
                 }
             }
         }
+        .scrollIndicators(.never)
     }
 }
 

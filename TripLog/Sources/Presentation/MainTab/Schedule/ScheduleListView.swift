@@ -65,6 +65,11 @@ struct ScheduleListView: View {
         .onAppear {
             viewModel.send(action: .onAppear)
         }
+        .onChange(of: viewModel.state.selectedSchedule) { schedule in
+            if let date = schedule?.startDate {
+                viewModel.send(action: .dateSelected(date))
+            }
+        }
         .onChange(of: viewModel.state.showAddView) { isPresented in
             if !isPresented {
                 viewModel.send(action: .onDismissed)
@@ -72,36 +77,46 @@ struct ScheduleListView: View {
         }
     }
     
-    @ViewBuilder
+    var scheduleCard: some View {
+        TabView(selection: $viewModel.state.selectedIndex) {
+            ForEach(
+                Array(zip(viewModel.state.scheduleList.indices, viewModel.state.scheduleList)),
+                id: \.1.hashValue
+            ) { index, schedule in
+                VStack(spacing: 12) {
+                    Text(schedule.title)
+                        .font(TLFont.headline)
+                        .foregroundColor(TLColor.primaryText)
+                    ProgressView(value: schedule.periodProgress) {
+                        HStack {
+                            Spacer()
+                            Text(
+                                schedule.startDate.formatted(dateFormat: .monthAndDateDot) +
+                                " ~ " +
+                                schedule.endDate.formatted(dateFormat: .monthAndDateDot)
+                            )
+                        }
+                    }
+                    .progressViewStyle(LinearProgressViewStyle(tint: TLColor.coralOrange))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(20)
+                .background {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(TLColor.lightPeach.opacity(0.4))
+                        .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
+                }
+                .padding(.horizontal)
+                .tag(index)
+            }
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .frame(height: 250)
+    }
+    
     var listView: some View {
         VStack(spacing: 16) {
-            TabView(selection: $viewModel.state.selectedIndex) {
-                ForEach(
-                    Array(zip(viewModel.state.scheduleList.indices, viewModel.state.scheduleList)),
-                    id: \.1.hashValue
-                ) { index, schedule in
-                    VStack(spacing: 12) {
-                        Text(schedule.title)
-                            .font(TLFont.headline)
-                            .foregroundColor(TLColor.primaryText)
-                        
-                        ProgressView(timerInterval: schedule.startDate...schedule.endDate)
-                            .progressViewStyle(LinearProgressViewStyle(tint: TLColor.coralOrange))
-                            .padding(.horizontal, 16)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(20)
-                    .background {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(TLColor.lightPeach.opacity(0.4))
-                            .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
-                    }
-                    .padding(.horizontal)
-                    .tag(index)
-                }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(height: 250)  // TabView 높이 설정
+            scheduleCard
 
             if let selectedSchedule = viewModel.state.selectedSchedule {
                 DatePickerView(
@@ -115,16 +130,27 @@ struct ScheduleListView: View {
                     ) ,
                     dates: selectedSchedule.dateInterval.datesInPeriod
                 )
-                    .padding(.vertical)
+                .padding(.vertical)
                 
                 ScrollView {
                     if !viewModel.state.eventList.isEmpty {
                         ForEach(viewModel.state.eventList, id: \.hashValue) { event in
                             HStack {
-                                Circle()
-                                    .stroke(event.date.isPast ? Color.gray : TLColor.coralOrange, lineWidth: 2)
-                                    .frame(width: 10, height: 10)
-
+                                if event.date.isToday {
+                                    if event.date.isPast {
+                                        Circle()
+                                            .fill(TLColor.coralOrange)
+                                            .frame(width: 10, height: 10)
+                                    } else {
+                                        Circle()
+                                            .stroke(TLColor.coralOrange, lineWidth: 2)
+                                            .frame(width: 10, height: 10)
+                                    }
+                                } else {
+                                    Circle()
+                                        .fill(TLColor.separatorGray)
+                                        .frame(width: 10, height: 10)
+                                }
                                 VStack(alignment: .leading) {
                                     Text(event.date.formatted(dateFormat: .onlyTime))
                                         .font(TLFont.caption)
@@ -171,8 +197,6 @@ struct ScheduleListView: View {
                     }
                     .padding()
                 }
-            } else {
-                Spacer()
             }
         }
     }

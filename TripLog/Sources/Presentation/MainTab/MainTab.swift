@@ -17,6 +17,7 @@ struct MainTab: View {
                     .accentColor(TLColor.coralOrange)
             }
         }
+        .accentColor(.orange)
         .background(TLColor.backgroundGray.ignoresSafeArea())
     }
     

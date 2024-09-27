@@ -41,9 +41,9 @@ extension Date {
     
     var month: Int { Self.calendar.component(.month, from: self) }
     
-    var isPast: Bool {
-        Date.now.distance(to: self) < 0
-    }
+    var isToday: Bool { Self.calendar.isDateInToday(self) }
+    var isPast: Bool { Date.now.distance(to: self) < 0 }
+    
     
     func isSameDate(_ from: Date) -> Bool {
         Self.calendar.component(.day, from: self) ==

@@ -31,6 +31,16 @@ struct TravelSchedule: Hashable {
     var dateInterval: DateInterval {
         DateInterval(start: startDate, end: endDate)
     }
+    
+    var periodProgress: CGFloat? {
+        guard let index = dateInterval.datesInPeriod.firstIndex(
+                  where: { date in
+                      date.isToday
+                  }
+              )
+        else { return 0 }
+        return CGFloat(index + 1) / CGFloat(dateInterval.datesInPeriod.count)
+    }
 }
 
 struct TravelEvent: Hashable {
