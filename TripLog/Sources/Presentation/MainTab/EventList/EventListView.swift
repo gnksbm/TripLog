@@ -32,6 +32,18 @@ struct EventListView: View {
             .padding(.horizontal, 16)
             .navigationTitle("지역별 행사")
             .background(TLColor.backgroundGray.ignoresSafeArea())
+            .navigationDestination(
+                isPresented: Binding(
+                    get: { viewModel.state.showDetail },
+                    set: { isPresented in
+                        viewModel.send(action: .onDismissed)
+                    }
+                )
+            ) {
+                if let item = viewModel.state.detailItem {
+                    LocationDetailView(item: item)
+                }
+            }
         }
         .onAppear {
             viewModel.send(action: .onAppear)
@@ -66,6 +78,9 @@ struct EventListView: View {
                     FestivalCardView(festival: festival)
                         .padding(.horizontal)
                         .padding(.vertical, 4)
+                        .onTapGesture {
+                            viewModel.send(action: .itemTapped(festival))
+                        }
                 }
             }
         }

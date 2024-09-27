@@ -14,6 +14,19 @@ struct TravelSchedule: Hashable {
     let endDate: Date
     var events: [TravelEvent]
     
+    var dateInterval: DateInterval {
+        DateInterval(start: startDate, end: endDate)
+    }
+    
+    var eventStr: String {
+        events.isEmpty ?
+        "\(events.count)" : "\(endedEvents.count)/\(events.count)"
+    }
+    
+    var endedEvents: [TravelEvent] {
+        events.filter { event in event.date.isPast }
+    }
+    
     init(
         id: String = UUID().uuidString,
         title: String,
@@ -26,20 +39,6 @@ struct TravelSchedule: Hashable {
         self.startDate = startDate
         self.endDate = endDate
         self.events = events
-    }
-    
-    var dateInterval: DateInterval {
-        DateInterval(start: startDate, end: endDate)
-    }
-    
-    var periodProgress: CGFloat? {
-        guard let index = dateInterval.datesInPeriod.firstIndex(
-                  where: { date in
-                      date.isToday
-                  }
-              )
-        else { return 0 }
-        return CGFloat(index + 1) / CGFloat(dateInterval.datesInPeriod.count)
     }
 }
 

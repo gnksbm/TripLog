@@ -26,16 +26,40 @@ struct TouristMapView: View {
             ZStack {
                 mapView
                     .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.send(action: .outsideTappedForInfo)
+                        }
+                    }
                 
                 if let selectedPlace = viewModel.state.showInfo {
-                    placeInfoView(selectedPlace)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                        .padding(.horizontal)
-                        .padding(.bottom, 30)
+                    VStack {
+                        Spacer()
+                        placeInfoView(selectedPlace)
+                            .transition(
+                                .move(edge: .bottom).combined(with: .opacity)
+                            )
+                            .padding(.horizontal)
+                            .padding(.bottom, 30)
+                    }
                 }
             }
             .navigationTitle("관광지 지도")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(
+                isPresented: Binding(
+                    get: { viewModel.state.showDetail },
+                    set: { isPresented in
+                        if !isPresented {
+                            viewModel.send(action: .onDismissed)
+                        }
+                    }
+                )
+            ) {
+                if let item = viewModel.state.showInfo {
+                    LocationDetailView(item: item)
+                }
+            }
             .onAppear {
                 viewModel.send(action: .onAppear)
             }
@@ -53,7 +77,9 @@ struct TouristMapView: View {
                     ) {
                         MarkerView()
                             .onTapGesture {
-                                viewModel.send(action: .placeSelected(place))
+                                withAnimation {
+                                    viewModel.send(action: .placeSelected(place))
+                                }
                             }
                     }
                 }
@@ -66,7 +92,9 @@ struct TouristMapView: View {
                 MapAnnotation(coordinate: place.coordinate) {
                     MarkerView()
                         .onTapGesture {
-                            viewModel.send(action: .placeSelected(place))
+                            withAnimation {
+                                viewModel.send(action: .placeSelected(place))
+                            }
                         }
                 }
             }

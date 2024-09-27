@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchFestivalResponse {
+struct SearchFestivalResponse: Hashable, VisibleLocationInfoType {
     let contentID: String
     let title: String
     let address: String
@@ -17,3 +17,21 @@ struct SearchFestivalResponse {
     let endDate: Date
     let imageURLs: [URL]
 }
+
+#if DEBUG
+extension SearchFestivalResponse {
+    static let mock = SearchFestivalResponse(
+        contentID: "2648460",
+        title: "경복궁 별빛야행",
+        address: "서울특별시 종로구 사직로 161 (세종로)",
+        latitude: 126.9767375783,
+        longitude: 37.5760836609,
+        startDate: "20240911".formatted(dateFormat: .festivalInput)!,
+        endDate: "20241006".formatted(dateFormat: .festivalInput)!,
+        imageURLs: [
+            URL(string: "http://tong.visitkorea.or.kr/cms/resource/24/3349624_image2_1.png")!,
+            URL(string: "http://tong.visitkorea.or.kr/cms/resource/24/3349624_image3_1.png")!
+        ]
+    )
+}
+#endif

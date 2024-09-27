@@ -22,7 +22,7 @@ struct MainTab: View {
     }
     
     enum TabKind: CaseIterable, Identifiable {
-        case scheduleList, recordList, eventList, touristMap
+        case scheduleList, /*recordList,*/ eventList, touristMap
         
         var id: Self { self }
         
@@ -41,10 +41,10 @@ struct MainTab: View {
                 ScheduleListView()
                     .navigationTitle("일정 관리")
                     .toolbarBackground(TLColor.lightPeach, for: .navigationBar)
-            case .recordList:
-                RecordListView()
-                    .navigationTitle("여행 기록")
-                    .toolbarBackground(TLColor.lightPeach, for: .navigationBar)
+//            case .recordList:
+//                RecordListView()
+//                    .navigationTitle("여행 기록")
+//                    .toolbarBackground(TLColor.lightPeach, for: .navigationBar)
             }
         }
         
@@ -76,14 +76,14 @@ struct MainTab: View {
                     Text("일정")
                         .font(TLFont.caption)
                         .foregroundColor(TLColor.primaryText)
-                case .recordList:
-                    Image(systemName: "note.text")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 24, height: 24)
-                    Text("나의 기록")
-                        .font(TLFont.caption)
-                        .foregroundColor(TLColor.primaryText)
+//                case .recordList:
+//                    Image(systemName: "note.text")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 24, height: 24)
+//                    Text("나의 기록")
+//                        .font(TLFont.caption)
+//                        .foregroundColor(TLColor.primaryText)
                 }
             }
             .padding(.top, 8)

@@ -22,6 +22,12 @@ final class EventListViewModel: ViewModel {
                 state.festivalList = try await touristRepository.fetchFestival(
                     areaCode: area.areaCode
                 )
+            case .itemTapped(let item):
+                state.detailItem = item
+                state.showDetail = true
+            case .onDismissed:
+                state.detailItem = nil
+                state.showDetail = false
             }
         }
     }
@@ -31,10 +37,14 @@ extension EventListViewModel {
     struct State {
         var areaList = [AreaCodeResponse]()
         var festivalList = [SearchFestivalResponse]()
+        var showDetail = false
+        var detailItem: SearchFestivalResponse?
     }
     
     enum Action {
         case onAppear
         case areaSelected(AreaCodeResponse)
+        case itemTapped(SearchFestivalResponse)
+        case onDismissed
     }
 }

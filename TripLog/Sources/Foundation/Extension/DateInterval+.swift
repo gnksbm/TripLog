@@ -8,6 +8,38 @@
 import Foundation
 
 extension DateInterval {
+    var distanceFromToday: String {
+        var result = "날짜 정보 오류"
+        if isContained(date: .now) {
+            if let distance = Calendar.current.dateComponents(
+                [.day],
+                from: start,
+                to: .now
+            ).day {
+                result = "Day \(distance + 1)"
+            }
+        } else {
+            if !start.isPast {
+                if let distance = Calendar.current.dateComponents(
+                    [.day],
+                    from: .now,
+                    to: start
+                ).day {
+                    result = "D-\(distance)"
+                }
+            } else {
+                if let distance = Calendar.current.dateComponents(
+                    [.day],
+                    from: end,
+                    to: .now
+                ).day {
+                    result = "D+\(distance)"
+                }
+            }
+        }
+        return result
+    }
+    
     var datesInPeriod: [Date] {
         let calendar = Calendar.autoupdatingCurrent
         var dates = [Date]()
@@ -28,6 +60,28 @@ extension DateInterval {
             }
         }
         return dates
+    }
+    
+    var periodProgress: CGFloat? {
+        guard let index = datesInPeriod.firstIndex(
+                  where: { date in
+                      date.isToday
+                  }
+              )
+        else {
+            if !start.isPast {
+                return 0
+            } else {
+                return 1
+            }
+        }
+        return CGFloat(index + 1) / CGFloat(datesInPeriod.count)
+    }
+    
+    func isContained(date: Date) -> Bool {
+        datesInPeriod.contains { compare in
+            compare.isSameDate(date)
+        }
     }
     
     init(first: Date, second: Date) {

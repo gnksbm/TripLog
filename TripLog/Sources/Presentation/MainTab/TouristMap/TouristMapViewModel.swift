@@ -15,13 +15,13 @@ final class TouristMapViewModel: ViewModel {
     @Published var state = State()
     
     func mutate(action: Action) {
-        Task {
-            switch action {
-            case .onAppear:
+        switch action {
+        case .onAppear:
+            Task {
                 let status = try await locationService.requestAuthorization()
                 switch status {
                 case .authorized, .authorizedAlways, .authorizedWhenInUse:
-                    let location = 
+                    let location =
                     try await locationService.fetchCurrentLocation()
                     await MainActor.run {
                         state.region.center = location.coordinate
@@ -40,11 +40,15 @@ final class TouristMapViewModel: ViewModel {
                         state.isUnauthorized = true
                     }
                 }
-            case .placeSelected(let place):
-                await MainActor.run {
-                    state.showInfo = place
-                }
             }
+        case .placeSelected(let place):
+            state.showInfo = place
+        case .outsideTappedForInfo:
+            state.showInfo = nil
+        case .detailButtonTapped:
+            state.showDetail = true
+        case .onDismissed:
+            state.showDetail = false
         }
     }
 }
@@ -66,6 +70,7 @@ extension TouristMapViewModel {
             )
         )
         var showInfo: TouristPlaceResponse?
+        var showDetail = false
 //        @available(iOS 17.0, *)
 //        var cameraPosition = MapCameraPosition.region(
 //            MKCoordinateRegion(
@@ -84,5 +89,8 @@ extension TouristMapViewModel {
     enum Action: Hashable {
         case onAppear
         case placeSelected(TouristPlaceResponse)
+        case outsideTappedForInfo
+        case detailButtonTapped
+        case onDismissed
     }
 }

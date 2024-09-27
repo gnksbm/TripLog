@@ -77,47 +77,9 @@ struct ScheduleListView: View {
         }
     }
     
-    var scheduleCard: some View {
-        TabView(selection: $viewModel.state.selectedIndex) {
-            ForEach(
-                Array(zip(viewModel.state.scheduleList.indices, viewModel.state.scheduleList)),
-                id: \.1.hashValue
-            ) { index, schedule in
-                VStack(spacing: 12) {
-                    Text(schedule.title)
-                        .font(TLFont.headline)
-                        .foregroundColor(TLColor.primaryText)
-                    ProgressView(value: schedule.periodProgress) {
-                        HStack {
-                            Spacer()
-                            Text(
-                                schedule.startDate.formatted(dateFormat: .monthAndDateDot) +
-                                " ~ " +
-                                schedule.endDate.formatted(dateFormat: .monthAndDateDot)
-                            )
-                        }
-                    }
-                    .progressViewStyle(LinearProgressViewStyle(tint: TLColor.coralOrange))
-                }
-                .frame(maxWidth: .infinity)
-                .padding(20)
-                .background {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(TLColor.lightPeach.opacity(0.4))
-                        .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
-                }
-                .padding(.horizontal)
-                .tag(index)
-            }
-        }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-        .frame(height: 250)
-    }
-    
     var listView: some View {
         VStack(spacing: 16) {
             scheduleCard
-
             if let selectedSchedule = viewModel.state.selectedSchedule {
                 DatePickerView(
                     selectedDate: Binding(
@@ -180,6 +142,12 @@ struct ScheduleListView: View {
                             .padding(.horizontal)
                         }
                     } else {
+                        Image(systemName: "calendar.badge.plus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(TLColor.secondaryText)
+                            .padding(.top, 16)
                         Text("등록된 일정이 없어요")
                             .font(TLFont.body)
                             .foregroundColor(TLColor.secondaryText)
@@ -199,6 +167,21 @@ struct ScheduleListView: View {
                 }
             }
         }
+    }
+    
+    var scheduleCard: some View {
+        TabView(selection: $viewModel.state.selectedIndex) {
+            ForEach(
+                Array(zip(viewModel.state.scheduleList.indices, viewModel.state.scheduleList)),
+                id: \.1.hashValue
+            ) { index, schedule in
+                eventCard(schedule: schedule)
+                    .tag(index)
+            }
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .frame(height: 200)
+        .background(TLColor.backgroundGray)
     }
     
     var emptyPlaceholderView: some View {
@@ -231,6 +214,40 @@ struct ScheduleListView: View {
             .padding(.top, 24)
         }
         .padding()
+    }
+    
+    func eventCard(schedule: TravelSchedule) -> some View {
+        VStack(spacing: 40) {
+            HStack {
+                Text(schedule.title)
+                    .font(TLFont.headline)
+                    .bold()
+                    .foregroundColor(TLColor.primaryText)
+                Spacer()
+                Label("일정", systemImage: "checklist")
+                Text(schedule.eventStr)
+            }
+            ProgressView(value: schedule.dateInterval.periodProgress) {
+                HStack {
+                    Text(
+                        schedule.startDate.formatted(dateFormat: .monthAndDateDot) +
+                        " ~ " +
+                        schedule.endDate.formatted(dateFormat: .monthAndDateDot)
+                    )
+                    Spacer()
+                    Text(schedule.dateInterval.distanceFromToday)
+                }
+            }
+            .progressViewStyle(LinearProgressViewStyle(tint: TLColor.coralOrange))
+        }
+        .frame(maxWidth: .infinity)
+        .padding(20)
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(TLColor.lightPeach.opacity(0.4))
+                .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
+        }
+        .padding(.horizontal)
     }
 }
 

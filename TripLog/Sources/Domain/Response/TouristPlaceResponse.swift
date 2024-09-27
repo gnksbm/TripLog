@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TouristPlaceResponse: Hashable {
+struct TouristPlaceResponse: Hashable, VisibleLocationInfoType {
     let contentID: String
     let title: String
     let address: String
