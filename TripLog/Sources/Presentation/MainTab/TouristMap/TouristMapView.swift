@@ -112,9 +112,9 @@ struct TouristMapView: View {
                 .font(TLFont.body)
                 .foregroundColor(TLColor.secondaryText)
             
-            Button(action: {
+            Button {
                 viewModel.send(action: .placeSelected(place))
-            }) {
+            } label: {
                 Text("상세 정보 보기")
                     .font(TLFont.body)
                     .foregroundColor(.white)

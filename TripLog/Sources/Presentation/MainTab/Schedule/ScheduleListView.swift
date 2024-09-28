@@ -224,7 +224,7 @@ struct ScheduleListView: View {
                     .bold()
                     .foregroundColor(TLColor.primaryText)
                 Spacer()
-                Label("일정", systemImage: "checklist")
+                Label("남은 일정", systemImage: "checklist")
                 Text(schedule.eventStr)
             }
             ProgressView(value: schedule.dateInterval.periodProgress) {

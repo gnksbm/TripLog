@@ -20,7 +20,8 @@ struct TravelSchedule: Hashable {
     
     var eventStr: String {
         events.isEmpty ?
-        "\(events.count)" : "\(endedEvents.count)/\(events.count)"
+        "\(events.count)" :
+        "\(endedEvents.filter({ $0.date.isPast }).count)/\(endedEvents.count)"
     }
     
     var endedEvents: [TravelEvent] {
