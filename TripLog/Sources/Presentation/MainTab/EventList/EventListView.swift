@@ -61,19 +61,17 @@ struct EventListView: View {
     
     var areaSliderView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            if !viewModel.state.areaList.isEmpty {
-                SliderView(
-                    items: viewModel.state.areaList,
-                    titleColor: TLColor.primaryText,
-                    fillColor: TLColor.skyBlueLight.opacity(0.2),
-                    lineColor: TLColor.oceanBlue,
-                    maxItem: 5,
-                    barHeight: 4
-                ) { item in
-                    viewModel.mutate(action: .areaSelected(item))
-                }
-                .padding(.vertical, 12)
+            SliderView(
+                items: viewModel.state.areaList,
+                titleColor: TLColor.primaryText,
+                fillColor: TLColor.skyBlueLight.opacity(0.2),
+                lineColor: TLColor.oceanBlue,
+                maxItem: 5,
+                barHeight: 4
+            ) { item in
+                viewModel.mutate(action: .areaSelected(item))
             }
+            .padding(.vertical, 12)
         }
     }
     

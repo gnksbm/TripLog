@@ -10,38 +10,29 @@ import MapKit
 
 import Kingfisher
 
-struct LocationDetailView<Item: VisibleLocationInfoType>: View {
+struct LocationDetailView<Item: LocationInfoItemType>: View {
     let item: Item
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                TabView {
-                    ForEach(item.imageURLs, id: \.hashValue) { url in
-                        KFImage(url)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 250)
-                            .clipped()
-                            .cornerRadius(12)
-                    }
+        VStack(alignment: .leading, spacing: 16) {
+            TabView {
+                ForEach(item.imageURLs, id: \.hashValue) { url in
+                    KFImage(url)
+                        .resizable()
+                        .scaledToFill()
+                        .clipped()
                 }
-                .frame(height: 250)
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                .padding(.horizontal, -16)
-                titleView
-                KFImage(nil)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 250)
-                    .clipped()
-                    .cornerRadius(12)
-                dateView
-                addressView
-                navigationButton
             }
-            .padding()
+            .frame(height: 250)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+            .padding(.horizontal, -16)
+            titleView
+            dateView
+            addressView
+            Spacer()
+            navigationButton
         }
+        .padding()
         .navigationTitle("상세 정보")
         .navigationBarTitleDisplayMode(.inline)
         .background(TLColor.backgroundGray.ignoresSafeArea())
@@ -52,12 +43,6 @@ struct LocationDetailView<Item: VisibleLocationInfoType>: View {
             Text(item.title)
                 .font(TLFont.headline)
                 .foregroundColor(TLColor.primaryText)
-            
-            if let startDate = item.startDate, let endDate = item.endDate {
-                Text("\(startDate.formatted(dateFormat: .festivalOutput)) ~ \(endDate.formatted(dateFormat: .festivalOutput))")
-                    .font(TLFont.caption)
-                    .foregroundColor(TLColor.secondaryText)
-            }
         }
     }
 
@@ -67,16 +52,10 @@ struct LocationDetailView<Item: VisibleLocationInfoType>: View {
                 .font(TLFont.subHeadline)
                 .foregroundColor(TLColor.primaryText)
             
-            if let startDate = item.startDate, let endDate = item.endDate {
-                HStack {
-                    Label(startDate.formatted(dateFormat: .festivalOutput), systemImage: "calendar")
-                    Spacer()
-                    Text("부터")
-                    Spacer()
-                    Label(endDate.formatted(dateFormat: .festivalOutput), systemImage: "calendar")
-                }
-                .font(TLFont.body)
-                .foregroundColor(TLColor.secondaryText)
+            if let periodToStr = item.periodToStr {
+                Label(periodToStr, systemImage: "calendar")
+                    .font(TLFont.body)
+                    .foregroundColor(TLColor.secondaryText)
             } else {
                 Text("날짜 정보가 없습니다.")
                     .font(TLFont.body)
@@ -135,21 +114,6 @@ struct LocationDetailView<Item: VisibleLocationInfoType>: View {
     }
 }
 
-// 예제 데이터
-struct SampleLocationInfo: VisibleLocationInfoType {
-    var contentID = UUID().uuidString
-    var title = "예제 장소"
-    var address = "서울특별시 강남구"
-    var latitude = 37.4979
-    var longitude = 127.0276
-    var startDate: Date? = Date()
-    var endDate: Date? = Calendar.current.date(byAdding: .day, value: 7, to: Date())
-    var imageURLs: [URL] = [
-        URL(string: "https://example.com/image1.jpg")!,
-        URL(string: "https://example.com/image2.jpg")!
-    ]
-}
-
 #Preview {
-    LocationDetailView(item: SampleLocationInfo())
+    LocationDetailView(item: SearchFestivalResponse.mock)
 }

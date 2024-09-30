@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchFestivalResponse: Hashable, VisibleLocationInfoType {
+struct SearchFestivalResponse: Hashable, LocationInfoItemType {
     let contentID: String
     let title: String
     let address: String
@@ -16,6 +16,12 @@ struct SearchFestivalResponse: Hashable, VisibleLocationInfoType {
     let startDate: Date
     let endDate: Date
     let imageURLs: [URL]
+}
+
+extension SearchFestivalResponse {
+    var period: DateInterval? {
+        DateInterval(first: startDate, second: endDate)
+    }
 }
 
 #if DEBUG

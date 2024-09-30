@@ -49,7 +49,7 @@
 		BE275C4A2CA4339B00389127 /* DefaultScheduleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE275C492CA4339B00389127 /* DefaultScheduleRepository.swift */; };
 		BE275C4C2CA4375700389127 /* TravelScheduleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE275C4B2CA4375700389127 /* TravelScheduleDTO.swift */; };
 		BE275C4E2CA4375D00389127 /* TravelEventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE275C4D2CA4375D00389127 /* TravelEventDTO.swift */; };
-		BE30F00E2CA68F130086B581 /* VisibleLocationInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE30F00D2CA68F130086B581 /* VisibleLocationInfoType.swift */; };
+		BE30F00E2CA68F130086B581 /* LocationInfoItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE30F00D2CA68F130086B581 /* LocationInfoItemType.swift */; };
 		BE30F0132CA68F470086B581 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE30F0122CA68F470086B581 /* LocationDetailView.swift */; };
 		BE3496A92CA156FC003F31B8 /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */; };
 		BE3496AB2CA15838003F31B8 /* ScheduleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */; };
@@ -150,7 +150,7 @@
 		BE275C492CA4339B00389127 /* DefaultScheduleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultScheduleRepository.swift; sourceTree = "<group>"; };
 		BE275C4B2CA4375700389127 /* TravelScheduleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleDTO.swift; sourceTree = "<group>"; };
 		BE275C4D2CA4375D00389127 /* TravelEventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelEventDTO.swift; sourceTree = "<group>"; };
-		BE30F00D2CA68F130086B581 /* VisibleLocationInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibleLocationInfoType.swift; sourceTree = "<group>"; };
+		BE30F00D2CA68F130086B581 /* LocationInfoItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoItemType.swift; sourceTree = "<group>"; };
 		BE30F0122CA68F470086B581 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
 		BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRepository.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 			children = (
 				BEADF8EE2C96BB0600FCDBE9 /* AreaCodeResponse.swift */,
 				BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */,
-				BE30F00D2CA68F130086B581 /* VisibleLocationInfoType.swift */,
+				BE30F00D2CA68F130086B581 /* LocationInfoItemType.swift */,
 				8ECFED3E2C9FDA5700716B71 /* TouristPlaceResponse.swift */,
 				8ECFED432CA00D7700716B71 /* TravelSchedule.swift */,
 				BE81D5162CA3DC4C002574A5 /* TravelRecord.swift */,
@@ -679,7 +679,7 @@
 				8ECFED392C9F0D5000716B71 /* TouristPlaceDTO.swift in Sources */,
 				BE3496B02CA16E2C003F31B8 /* EventMapView.swift in Sources */,
 				BE275C3F2CA4262E00389127 /* ImageRepository.swift in Sources */,
-				BE30F00E2CA68F130086B581 /* VisibleLocationInfoType.swift in Sources */,
+				BE30F00E2CA68F130086B581 /* LocationInfoItemType.swift in Sources */,
 				8ECFED4A2CA0179600716B71 /* Date+.swift in Sources */,
 				8ECFED3D2C9FBF2100716B71 /* Image+.swift in Sources */,
 				8ECFED462CA00D9A00716B71 /* DateInterval+.swift in Sources */,

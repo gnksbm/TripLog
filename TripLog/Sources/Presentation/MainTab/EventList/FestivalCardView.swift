@@ -21,14 +21,14 @@ struct FestivalCardView: View {
                 .clipped()
                 .cornerRadius(12, corners: [.topLeft, .topRight])
             
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 15) {
                 Text(festival.title)
                     .font(TLFont.headline)
                     .foregroundColor(TLColor.primaryText)
                     .lineLimit(2)
                 Label {
                     Text("기간 \(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
-                        .font(TLFont.caption)
+                        .font(TLFont.body)
                         .foregroundColor(TLColor.secondaryText)
                 } icon: {
                     Image(systemName: "calendar")
