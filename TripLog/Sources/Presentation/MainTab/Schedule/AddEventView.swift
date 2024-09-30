@@ -43,7 +43,7 @@ struct AddEventView: View {
             
             TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
                 .padding(12)
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
                 .textFieldStyle(PlainTextFieldStyle())
         }
     }
@@ -62,7 +62,7 @@ struct AddEventView: View {
             .labelsHidden()
             .datePickerStyle(WheelDatePickerStyle())
             .padding(12)
-            .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+            .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
         }
     }
     

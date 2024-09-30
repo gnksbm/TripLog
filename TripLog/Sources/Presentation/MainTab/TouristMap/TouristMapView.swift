@@ -120,7 +120,7 @@ struct TouristMapView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(TLColor.coralOrange)
+                    .background(TLColor.oceanBlue)
                     .cornerRadius(8)
             }
         }

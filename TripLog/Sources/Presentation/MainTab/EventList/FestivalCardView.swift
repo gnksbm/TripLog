@@ -19,18 +19,20 @@ struct FestivalCardView: View {
                 .scaledToFill()
                 .frame(height: 180)
                 .clipped()
-                .cornerRadius(12)
+                .cornerRadius(12, corners: [.topLeft, .topRight])
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(festival.title)
                     .font(TLFont.headline)
                     .foregroundColor(TLColor.primaryText)
                     .lineLimit(2)
-                
-                Text("\(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
-                    .font(TLFont.caption)
-                    .foregroundColor(TLColor.secondaryText)
-                
+                Label {
+                    Text("기간 \(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
+                        .font(TLFont.caption)
+                        .foregroundColor(TLColor.secondaryText)
+                } icon: {
+                    Image(systemName: "calendar")
+                }
                 Text(festival.address)
                     .font(TLFont.subHeadline)
                     .foregroundColor(TLColor.primaryText)

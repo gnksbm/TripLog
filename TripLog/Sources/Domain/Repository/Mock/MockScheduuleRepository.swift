@@ -83,5 +83,10 @@ final class MockScheduleRepository: ScheduleRepository {
             scheduleList[index].events.append(event)
         }
     }
+    
+    func updateSchedule(schedule: TravelSchedule) throws { }
+    func updateEvent(scheduleID: String, event: TravelEvent) throws { }
+    func removeSchedule(schedule: TravelSchedule) throws { }
+    func removeEvent(scheduleID: String, event: TravelEvent) throws { }
 }
 #endif

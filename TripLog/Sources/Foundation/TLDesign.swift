@@ -16,9 +16,6 @@ enum TLFont {
 }
 
 enum TLColor {
-    static let coralOrange = Color.coralOrange
-    static let lightPeach = Color.lightPeach
-    
     static let skyBlueLight = Color(hex: "CAF0F8")
     static let skyBlueMedium = Color(hex: "ADE8F4")
     static let skyBlue = Color(hex: "90E0EF")
@@ -32,12 +29,12 @@ enum TLColor {
     static let primaryText = Color(hex: "03045E")
     static let secondaryText = Color(hex: "0077B6")
     
-    static let successGreen = Color.green
-    static let warningYellow = Color.yellow
-    static let errorRed = Color.red
+    static let successGreen = Color(hex: "4CAF50")
+    static let warningYellow = Color(hex: "FFC107")
+    static let errorRed = Color(hex: "F44336")
     
-    static let backgroundGray = Color(UIColor.systemGray6)
-    static let separatorGray = Color(UIColor.systemGray4)
+    static let backgroundGray = Color(hex: "F7F7F7")
+    static let separatorGray = Color(hex: "E0E0E0")
 }
 
 extension Color {

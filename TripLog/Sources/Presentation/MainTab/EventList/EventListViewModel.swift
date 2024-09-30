@@ -22,6 +22,7 @@ final class EventListViewModel: ViewModel {
                 state.festivalList = try await touristRepository.fetchFestival(
                     areaCode: area.areaCode
                 )
+                state.isLoading = false
             case .itemTapped(let item):
                 state.detailItem = item
                 state.showDetail = true
@@ -39,6 +40,7 @@ extension EventListViewModel {
         var festivalList = [SearchFestivalResponse]()
         var showDetail = false
         var detailItem: SearchFestivalResponse?
+        var isLoading = true
     }
     
     enum Action {

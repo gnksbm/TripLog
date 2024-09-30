@@ -110,7 +110,7 @@ struct LocationDetailView<Item: VisibleLocationInfoType>: View {
                     .padding()
                 Spacer()
             }
-            .background(Capsule().fill(TLColor.coralOrange))
+            .background(Capsule().fill(TLColor.oceanBlue))
         }
     }
     

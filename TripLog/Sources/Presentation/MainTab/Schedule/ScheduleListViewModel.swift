@@ -30,6 +30,9 @@ final class ScheduleListViewModel: ViewModel {
             state.showMapView = event
         case .addEventButtonTapped:
             state.showAddEventView = true
+        case .showScheduleDetail(let schedule):
+            state.showScheduleDetail = true
+            state.selectedDetailSchedule = schedule
         }
     }
     
@@ -52,6 +55,8 @@ extension ScheduleListViewModel {
         var eventList = [TravelEvent]()
         var showMapView: TravelEvent?
         var showAddEventView = false
+        var showScheduleDetail = false
+        var selectedDetailSchedule: TravelSchedule?
         
         var selectedSchedule: TravelSchedule? {
             scheduleList.count - 1 >= selectedIndex ?
@@ -67,6 +72,7 @@ extension ScheduleListViewModel {
         case dateSelected(Date)
         case mapButtonTapped(TravelEvent)
         case addEventButtonTapped
+        case showScheduleDetail(TravelSchedule)
     }
 }
 

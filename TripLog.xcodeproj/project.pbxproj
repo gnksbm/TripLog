@@ -487,8 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				BE473E232C9334F400020435 /* EventListView.swift */,
-				BEF36D5D2C97DC77008A9DBF /* FestivalCardView.swift */,
 				BEADF8F12C96BC5E00FCDBE9 /* EventListViewModel.swift */,
+				BEF36D5D2C97DC77008A9DBF /* FestivalCardView.swift */,
 			);
 			path = EventList;
 			sourceTree = "<group>";

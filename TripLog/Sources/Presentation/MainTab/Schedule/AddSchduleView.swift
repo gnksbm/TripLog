@@ -11,6 +11,7 @@ struct AddScheduleView: View {
     @EnvironmentObject private var viewModel: AddScheduleViewModel
     @StateObject private var calendarViewModel = CalendarViewModel(selectType: .period)
     @Environment(\.dismiss) private var dismiss
+    var selectedSchedule: TravelSchedule?
     
     var body: some View {
         ScrollView {
@@ -18,19 +19,17 @@ struct AddScheduleView: View {
                 VStack(spacing: 40) {
                     dateView(proxy: proxy)
                         .id(AddContent.date)
-                    
                     titleView(proxy: proxy)
                         .id(AddContent.title)
-                    
                     Button {
-                        viewModel.send(action: .doneButtonTapped)
+                        viewModel.send(action: .doneButtonTapped(selectedSchedule))
                     } label: {
                         Text("완료")
                             .font(TLFont.body)
                             .bold()
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
-                            .background(viewModel.state.isDoneButtonDisabled ? TLColor.separatorGray : TLColor.coralOrange)
+                            .background(viewModel.state.isDoneButtonDisabled ? TLColor.separatorGray : TLColor.oceanBlue)
                             .foregroundColor(.white)
                             .cornerRadius(12)
                     }
@@ -50,11 +49,38 @@ struct AddScheduleView: View {
                 }
             }
         }
-        .navigationTitle("일정 등록")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                if let selectedSchedule {
+                    Button {
+                        viewModel.send(action: .trashButtonTapped)
+                    } label: {
+                        Image(systemName: "trash.circle.fill")
+                            .foregroundStyle(TLColor.errorRed)
+                            .alert("일정 삭제", isPresented: $viewModel.state.showAlert) {
+                                Button("삭제", role: .destructive) {
+                                    viewModel.send(action: .removeButtonTapped(selectedSchedule))
+                                }
+                                Button("취소", role: .cancel) {
+                                    viewModel.send(action: .cancelButtonTapped)
+                                }          
+                            }
+                    }
+                }
+            }
+        }
+        .navigationTitle(selectedSchedule == nil ? "일정 등록" : "일정 수정")
         .navigationBarTitleDisplayMode(.inline)
         .background(TLColor.backgroundGray.ignoresSafeArea())
         .onChange(of: viewModel.state.isCompleted) { _ in
             dismiss()
+        }
+        .onAppear {
+            if let selectedSchedule {
+                viewModel.state.scheduleTitle = selectedSchedule.title
+                viewModel.state.selectedDateInterval = selectedSchedule.dateInterval
+                calendarViewModel.state.selectedDateInterval = selectedSchedule.dateInterval
+            }
         }
     }
     
@@ -66,7 +92,7 @@ struct AddScheduleView: View {
             
             CalendarView(viewModel: calendarViewModel)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.4)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.4)))
         }
     }
         
@@ -80,11 +106,15 @@ struct AddScheduleView: View {
             TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(12)
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
                 .onSubmit {
                     proxy.scrollTo(AddContent.done, anchor: .bottom)
                 }
         }
+    }
+    
+    init(schedule: TravelSchedule? = nil) {
+        selectedSchedule = schedule
     }
     
     enum AddContent {

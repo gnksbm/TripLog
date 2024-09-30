@@ -53,7 +53,7 @@ struct AddRecordView: View {
             
             TextField("여행의 내용을 입력하세요", text: $viewModel.state.content)
                 .padding(12)
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
                 .textFieldStyle(PlainTextFieldStyle())
         }
     }
@@ -84,7 +84,7 @@ struct AddRecordView: View {
                     PhotosPicker(selection: $selectedItem) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(TLColor.lightPeach.opacity(0.4))
+                                .fill(TLColor.skyBlueLight.opacity(0.4))
                                 .frame(width: 100, height: 100)
                             
                             Image(systemName: "plus")
@@ -106,7 +106,7 @@ struct AddRecordView: View {
             
             CalendarView(viewModel: calendarViewModel)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.lightPeach.opacity(0.2)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
         }
     }
     

@@ -29,7 +29,6 @@ struct EventListView: View {
                 areaSliderView
                 festivalListView
             }
-            .padding(.horizontal, 16)
             .navigationTitle("지역별 행사")
             .background(TLColor.backgroundGray.ignoresSafeArea())
             .navigationDestination(
@@ -45,6 +44,16 @@ struct EventListView: View {
                 }
             }
         }
+        .overlay {
+            if viewModel.state.isLoading {
+                ProgressView()
+                    .frame(
+                        width: UIScreen.main.bounds.width,
+                        height: UIScreen.main.bounds.height
+                    )
+                    .tint(TLColor.deepBlue)
+            }
+        }
         .onAppear {
             viewModel.send(action: .onAppear)
         }
@@ -52,22 +61,19 @@ struct EventListView: View {
     
     var areaSliderView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            SliderView(
-                items: viewModel.state.areaList,
-                titleColor: TLColor.primaryText,
-                fillColor: TLColor.lightPeach.opacity(0.2),
-                lineColor: TLColor.coralOrange,
-                maxItem: 5,
-                barHeight: 4
-            ) { item in
-                viewModel.mutate(action: .areaSelected(item))
+            if !viewModel.state.areaList.isEmpty {
+                SliderView(
+                    items: viewModel.state.areaList,
+                    titleColor: TLColor.primaryText,
+                    fillColor: TLColor.skyBlueLight.opacity(0.2),
+                    lineColor: TLColor.oceanBlue,
+                    maxItem: 5,
+                    barHeight: 4
+                ) { item in
+                    viewModel.mutate(action: .areaSelected(item))
+                }
+                .padding(.vertical, 12)
             }
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(TLColor.lightPeach.opacity(0.1))
-            )
-            .padding(.horizontal, -16)
         }
     }
     

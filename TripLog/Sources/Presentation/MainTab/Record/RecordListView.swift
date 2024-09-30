@@ -41,7 +41,7 @@ struct RecordListView: View {
                     } label: {
                         Image(systemName: "plus")
                             .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(TLColor.coralOrange)
+                            .foregroundColor(TLColor.oceanBlue)
                     }
                 }
             }
@@ -68,7 +68,7 @@ struct RecordListView: View {
                         }
                         .background(
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(TLColor.lightPeach.opacity(0.2))
+                                .fill(TLColor.skyBlueLight.opacity(0.2))
                                 .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
                         )
                         .padding(.horizontal)
@@ -101,7 +101,7 @@ struct RecordListView: View {
                     .font(TLFont.body)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Capsule().fill(TLColor.coralOrange))
+                    .background(Capsule().fill(TLColor.oceanBlue))
             }
             .padding(.top, 20)
         }

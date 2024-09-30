@@ -57,7 +57,7 @@ struct EventMapView: View {
             .padding(16)
             .background {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(TLColor.lightPeach.opacity(0.9))
+                    .fill(TLColor.skyBlueLight.opacity(0.9))
                     .shadow(color: .gray.opacity(0.4), radius: 4, x: 0, y: 2)
             }
             .padding()

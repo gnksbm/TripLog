@@ -14,11 +14,10 @@ struct CalendarView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            // 상단 월 선택 버튼
             HStack {
-                Button(action: {
+                Button {
                     viewModel.send(action: .showPreviousMonth)
-                }) {
+                } label: {
                     Image(systemName: "chevron.left")
                         .padding(.horizontal)
                 }
@@ -27,27 +26,32 @@ struct CalendarView: View {
                     .font(.title)
                     .bold()
                 Spacer()
-                Button(action: {
+                Button {
                     viewModel.send(action: .showNextMonth)
-                }) {
+                } label: {
                     Image(systemName: "chevron.right")
                         .padding(.horizontal)
                 }
             }
             .padding(.horizontal)
             
-            // 날짜 그리드
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(viewModel.state.showingDates, id: \.self) { date in
                     let isCurrentMonth = date.isSameMonth(viewModel.state.currentMonth)
-                    
-                    Button(action: {
-                        viewModel.send(action: .dateSelected(date))
-                    }) {
+                    let isSelectedDay = 
+                    viewModel.state.selectedDateInterval?.isContained(date: date) == true
+                    Button {
+                        withAnimation {
+                            viewModel.send(action: .dateSelected(date))
+                        }
+                    } label: {
                         ZStack {
                             circleFill(date: date)
                             Text(date.formatted(dateFormat: .onlyDay))
-                                .foregroundColor(isCurrentMonth ? .black : .gray)
+                                .foregroundColor(
+                                    isCurrentMonth ? 
+                                    isSelectedDay ? TLColor.deepBlue : .black : .gray
+                                )
                         }
                         .frame(width: 40, height: 40)
                     }
@@ -60,20 +64,19 @@ struct CalendarView: View {
         }
     }
     
-    // 원형 배경 그리기
     @ViewBuilder
     func circleFill(date: Date) -> some View {
         if viewModel.state.selectedDate == date {
             Circle()
-                .fill(Color.blue)
+                .fill(TLColor.separatorGray)
                 .frame(width: 40, height: 40)
         } else if viewModel.state.selectedDateInterval?.start == date {
             Circle()
-                .fill(Color.red)
+                .fill(TLColor.oceanBlueLight.opacity(0.4))
                 .frame(width: 40, height: 40)
         } else if viewModel.state.selectedDateInterval?.end == date {
             Circle()
-                .fill(Color.yellow)
+                .fill(TLColor.oceanBlueLight.opacity(0.4))
                 .frame(width: 40, height: 40)
         } else {
             Circle()

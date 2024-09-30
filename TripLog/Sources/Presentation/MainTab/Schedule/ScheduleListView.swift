@@ -27,6 +27,13 @@ struct ScheduleListView: View {
                     listView
                 }
             }
+            .navigationDestination(isPresented: $viewModel.state.showScheduleDetail) {
+                AddScheduleView(schedule: viewModel.state.selectedDetailSchedule)
+                    .environmentObject(addScheduleViewModel)
+                    .onAppear {
+                        addScheduleViewModel.delegate = viewModel
+                    }
+            }
             .navigationDestination(isPresented: $viewModel.state.showAddView) {
                 AddScheduleView()
                     .environmentObject(addScheduleViewModel)
@@ -52,7 +59,7 @@ struct ScheduleListView: View {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
                             .frame(width: 24, height: 24)
-                            .foregroundColor(TLColor.coralOrange)
+                            .foregroundColor(TLColor.oceanBlue)
                     }
                 }
             }
@@ -101,11 +108,11 @@ struct ScheduleListView: View {
                                 if event.date.isToday {
                                     if event.date.isPast {
                                         Circle()
-                                            .fill(TLColor.coralOrange)
+                                            .fill(TLColor.oceanBlue)
                                             .frame(width: 10, height: 10)
                                     } else {
                                         Circle()
-                                            .stroke(TLColor.coralOrange, lineWidth: 2)
+                                            .stroke(TLColor.oceanBlue, lineWidth: 2)
                                             .frame(width: 10, height: 10)
                                     }
                                 } else {
@@ -161,7 +168,7 @@ struct ScheduleListView: View {
                             .font(TLFont.body)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Capsule().fill(TLColor.coralOrange))
+                            .background(Capsule().fill(TLColor.oceanBlue))
                     }
                     .padding()
                 }
@@ -177,6 +184,9 @@ struct ScheduleListView: View {
             ) { index, schedule in
                 eventCard(schedule: schedule)
                     .tag(index)
+                    .onTapGesture {
+                        viewModel.send(action: .showScheduleDetail(schedule))
+                    }
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -209,7 +219,7 @@ struct ScheduleListView: View {
                     .font(TLFont.body)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Capsule().fill(TLColor.coralOrange))
+                    .background(Capsule().fill(TLColor.oceanBlue))
             }
             .padding(.top, 24)
         }
@@ -238,13 +248,13 @@ struct ScheduleListView: View {
                     Text(schedule.dateInterval.distanceFromToday)
                 }
             }
-            .progressViewStyle(LinearProgressViewStyle(tint: TLColor.coralOrange))
+            .progressViewStyle(LinearProgressViewStyle(tint: TLColor.oceanBlue))
         }
         .frame(maxWidth: .infinity)
         .padding(20)
         .background {
             RoundedRectangle(cornerRadius: 12)
-                .fill(TLColor.lightPeach.opacity(0.4))
+                .fill(TLColor.skyBlueLight.opacity(0.4))
                 .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
         }
         .padding(.horizontal)

@@ -21,7 +21,10 @@ struct DatePickerView: View {
                             .foregroundColor(dateColor(for: date))
                     }
                     .padding()
-                    .background(selectedDate == date ? TLColor.coralOrange : TLColor.lightPeach.opacity(0.4))
+                    .background(
+                        selectedDate == date ?
+                        TLColor.oceanBlue : TLColor.skyBlueLight.opacity(0.4)
+                    )
                     .cornerRadius(8)
                     .onTapGesture {
                         selectedDate = date
