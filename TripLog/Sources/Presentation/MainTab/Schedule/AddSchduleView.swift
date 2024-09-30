@@ -57,13 +57,15 @@ struct AddScheduleView: View {
                     } label: {
                         Image(systemName: "trash.circle.fill")
                             .foregroundStyle(TLColor.errorRed)
-                            .alert("일정 삭제", isPresented: $viewModel.state.showAlert) {
+                            .alert("일정을 삭제하시겠습니까?", isPresented: $viewModel.state.showAlert) {
                                 Button("삭제", role: .destructive) {
                                     viewModel.send(action: .removeButtonTapped(selectedSchedule))
                                 }
                                 Button("취소", role: .cancel) {
                                     viewModel.send(action: .cancelButtonTapped)
                                 }          
+                            } message: {
+                                Text("일정에 등록된 세부일정들이 모두 삭제됩니다")
                             }
                     }
                 }

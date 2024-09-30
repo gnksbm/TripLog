@@ -34,6 +34,17 @@ struct ScheduleListView: View {
                         addScheduleViewModel.delegate = viewModel
                     }
             }
+            .navigationDestination(isPresented: $viewModel.state.showEventDetail) {
+                if let scheduleID = viewModel.state.selectedSchedule?.id,
+                   let date = viewModel.state.selectedDate {
+                    AddEventView(
+                        scheduleID: scheduleID,
+                        date: date,
+                        selectedEvent: viewModel.state.selectedDetailEvent,
+                        vmDelegate: viewModel
+                    )
+                }
+            }
             .navigationDestination(isPresented: $viewModel.state.showAddView) {
                 AddScheduleView()
                     .environmentObject(addScheduleViewModel)
@@ -104,49 +115,10 @@ struct ScheduleListView: View {
                 ScrollView {
                     if !viewModel.state.eventList.isEmpty {
                         ForEach(viewModel.state.eventList, id: \.hashValue) { event in
-                            HStack {
-                                if event.date.isToday {
-                                    if event.date.isPast {
-                                        Circle()
-                                            .fill(TLColor.oceanBlue)
-                                            .frame(width: 10, height: 10)
-                                    } else {
-                                        Circle()
-                                            .stroke(TLColor.oceanBlue, lineWidth: 2)
-                                            .frame(width: 10, height: 10)
-                                    }
-                                } else {
-                                    Circle()
-                                        .fill(TLColor.separatorGray)
-                                        .frame(width: 10, height: 10)
+                            eventCard(event: event)
+                                .onTapGesture {
+                                    viewModel.send(action: .showEventDetail(event))
                                 }
-                                VStack(alignment: .leading) {
-                                    Text(event.date.formatted(dateFormat: .onlyTime))
-                                        .font(TLFont.caption)
-                                        .foregroundColor(TLColor.secondaryText)
-                                    Text(event.title)
-                                        .font(TLFont.body)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(TLColor.primaryText)
-                                }
-                                
-                                Spacer()
-
-                                if event.locationInfo != nil {
-                                    Button {
-                                        viewModel.send(action: .mapButtonTapped(event))
-                                    } label: {
-                                        Image(systemName: "map.fill")
-                                            .foregroundColor(TLColor.royalBlue)
-                                    }
-                                }
-                            }
-                            .padding()
-                            .background {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.3))
-                            }
-                            .padding(.horizontal)
                         }
                     } else {
                         Image(systemName: "calendar.badge.plus")
@@ -182,7 +154,7 @@ struct ScheduleListView: View {
                 Array(zip(viewModel.state.scheduleList.indices, viewModel.state.scheduleList)),
                 id: \.1.hashValue
             ) { index, schedule in
-                eventCard(schedule: schedule)
+                scheduleCard(schedule: schedule)
                     .tag(index)
                     .onTapGesture {
                         viewModel.send(action: .showScheduleDetail(schedule))
@@ -226,7 +198,7 @@ struct ScheduleListView: View {
         .padding()
     }
     
-    func eventCard(schedule: TravelSchedule) -> some View {
+    func scheduleCard(schedule: TravelSchedule) -> some View {
         VStack(spacing: 40) {
             HStack {
                 Text(schedule.title)
@@ -256,6 +228,52 @@ struct ScheduleListView: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(TLColor.skyBlueLight.opacity(0.4))
                 .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
+        }
+        .padding(.horizontal)
+    }
+    
+    func eventCard(event: TravelEvent) -> some View {
+        HStack {
+            if event.date.isToday {
+                if event.date.isPast {
+                    Circle()
+                        .fill(TLColor.oceanBlue)
+                        .frame(width: 10, height: 10)
+                } else {
+                    Circle()
+                        .stroke(TLColor.oceanBlue, lineWidth: 2)
+                        .frame(width: 10, height: 10)
+                }
+            } else {
+                Circle()
+                    .fill(TLColor.separatorGray)
+                    .frame(width: 10, height: 10)
+            }
+            VStack(alignment: .leading) {
+                Text(event.date.formatted(dateFormat: .onlyTime))
+                    .font(TLFont.caption)
+                    .foregroundColor(TLColor.secondaryText)
+                Text(event.title)
+                    .font(TLFont.body)
+                    .fontWeight(.semibold)
+                    .foregroundColor(TLColor.primaryText)
+            }
+            
+            Spacer()
+
+            if event.locationInfo != nil {
+                Button {
+                    viewModel.send(action: .mapButtonTapped(event))
+                } label: {
+                    Image(systemName: "map.fill")
+                        .foregroundColor(TLColor.royalBlue)
+                }
+            }
+        }
+        .padding()
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.gray.opacity(0.3))
         }
         .padding(.horizontal)
     }

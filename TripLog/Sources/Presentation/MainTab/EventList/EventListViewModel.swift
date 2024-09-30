@@ -14,22 +14,33 @@ final class EventListViewModel: ViewModel {
     
     @MainActor
     func mutate(action: Action) {
-        Task {
-            switch action {
-            case .onAppear:
-                state.areaList = try await touristRepository.fetchAreaCode()
-            case .areaSelected(let area):
-                state.festivalList = try await touristRepository.fetchFestival(
-                    areaCode: area.areaCode
-                )
-                state.isLoading = false
-            case .itemTapped(let item):
-                state.detailItem = item
-                state.showDetail = true
-            case .onDismissed:
-                state.detailItem = nil
-                state.showDetail = false
+        switch action {
+        case .onAppear:
+            Task {
+                do {
+                    state.areaList = try await touristRepository.fetchAreaCode()
+                } catch {
+                    dump(error)
+                }
             }
+        case .areaSelected(let area):
+            Task {
+                do {
+                    state.festivalList =
+                    try await touristRepository.fetchFestival(
+                        areaCode: area.areaCode
+                    )
+                    state.isLoading = false
+                } catch {
+                    dump(error)
+                }
+            }
+        case .itemTapped(let item):
+            state.detailItem = item
+            state.showDetail = true
+        case .onDismissed:
+            state.detailItem = nil
+            state.showDetail = false
         }
     }
 }

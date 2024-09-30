@@ -12,13 +12,15 @@ struct AddEventView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    private var selectedEvnet: TravelEvent?
+    
     var body: some View {
         VStack(spacing: 30) {
             titleView
             timeView
             Spacer()
             Button("완료") {
-                viewModel.send(action: .doneButtonTapped)
+                viewModel.send(action: .doneButtonTapped(selectedEvnet))
             }
             .disabled(viewModel.state.isDoneButtonDisabled)
             .buttonStyle(LargeButtonStyle())
@@ -26,11 +28,42 @@ struct AddEventView: View {
         .padding(.horizontal, 24)
         .padding(.vertical, 40)
         .background(TLColor.backgroundGray.ignoresSafeArea())
-        .navigationTitle("일정 등록")
+        .navigationTitle(
+            selectedEvnet == nil ? "일정 등록" : "일정 수정"
+        )
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                if let selectedEvnet {
+                    Button {
+                        viewModel.send(action: .trashButtonTapped)
+                    } label: {
+                        Image(systemName: "trash.circle.fill")
+                            .foregroundStyle(TLColor.errorRed)
+                            .alert("일정을 삭제하시겠습니까?", isPresented: $viewModel.state.showAlert) {
+                                Button("삭제", role: .destructive) {
+                                    viewModel.send(action: .removeButtonTapped(selectedEvnet))
+                                }
+                                Button("취소", role: .cancel) {
+                                    viewModel.send(action: .cancelButtonTapped)
+                                }
+                            } message: {
+                                Text("삭제된 일정은 복구할 수 없습니다")
+                            }
+                    }
+                }
+            }
+        }
+
         .onChange(of: viewModel.state.onDismissed) { value in
             if value {
                 dismiss()
+            }
+        }
+        .onAppear {
+            if let selectedEvnet {
+                viewModel.state.scheduleTitle = selectedEvnet.title
+                viewModel.state.selectedDate = selectedEvnet.date
             }
         }
     }
@@ -69,6 +102,7 @@ struct AddEventView: View {
     init(
         scheduleID: String,
         date: Date,
+        selectedEvent: TravelEvent? = nil,
         vmDelegate: CompleteDelegate? = nil
     ) {
         let viewModel = AddEventViewModel(
@@ -79,6 +113,7 @@ struct AddEventView: View {
         self._viewModel = StateObject(
             wrappedValue: viewModel
         )
+        self.selectedEvnet = selectedEvent
     }
 }
 

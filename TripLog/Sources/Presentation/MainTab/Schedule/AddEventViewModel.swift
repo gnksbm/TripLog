@@ -30,8 +30,20 @@ final class AddEventViewModel: ViewModel {
     
     func mutate(action: Action) {
         switch action {
-        case .doneButtonTapped:
-            addEvent()
+        case .doneButtonTapped(let event):
+            if let event {
+                updateEvent(event: event)
+            } else {
+                addEvent()
+            }
+            taskCompleted()
+        case .trashButtonTapped:
+            state.showAlert = true
+        case .cancelButtonTapped:
+            state.showAlert = false
+        case .removeButtonTapped(let event):
+            removeEvent(event: event)
+            taskCompleted()
         }
     }
     
@@ -45,11 +57,40 @@ final class AddEventViewModel: ViewModel {
                     date: state.selectedDate
                 )
             )
-            delegate?.onComplete()
-            state.onDismissed = true
         } catch {
             dump(error)
         }
+    }
+    
+    private func updateEvent(event: TravelEvent) {
+        do {
+            try scheduleRepository.updateEvent(
+                scheduleID: scheduleID,
+                event: TravelEvent(
+                    id: event.id,
+                    title: state.scheduleTitle,
+                    date: state.selectedDate
+                )
+            )
+        } catch {
+            dump(error)
+        }
+    }
+    
+    private func removeEvent(event: TravelEvent) {
+        do {
+            try scheduleRepository.removeEvent(
+                scheduleID: scheduleID,
+                event: event
+            )
+        } catch {
+            dump(error)
+        }
+    }
+    
+    private func taskCompleted() {
+        delegate?.onComplete()
+        state.onDismissed = true
     }
 }
 
@@ -58,11 +99,15 @@ extension AddEventViewModel {
         var scheduleTitle = ""
         var selectedDate = Date.now
         var onDismissed = false
+        var showAlert = false
         
         var isDoneButtonDisabled: Bool { scheduleTitle.isEmpty }
     }
     
     enum Action {
-        case doneButtonTapped
+        case doneButtonTapped(TravelEvent?)
+        case trashButtonTapped
+        case cancelButtonTapped
+        case removeButtonTapped(TravelEvent)
     }
 }
