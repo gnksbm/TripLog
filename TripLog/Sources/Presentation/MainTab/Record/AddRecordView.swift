@@ -49,6 +49,7 @@ struct AddRecordView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("내용")
                 .font(TLFont.headline)
+                .fontWeight(.black)
                 .foregroundColor(TLColor.primaryText)
             
             TextField("여행의 내용을 입력하세요", text: $viewModel.state.content)
@@ -63,6 +64,7 @@ struct AddRecordView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("사진")
                 .font(TLFont.headline)
+                .fontWeight(.black)
                 .foregroundColor(TLColor.primaryText)
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -102,6 +104,7 @@ struct AddRecordView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("날짜")
                 .font(TLFont.headline)
+                .fontWeight(.black)
                 .foregroundColor(TLColor.primaryText)
             
             CalendarView(viewModel: calendarViewModel)

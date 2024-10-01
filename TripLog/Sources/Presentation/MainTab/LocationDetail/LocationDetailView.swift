@@ -42,6 +42,7 @@ struct LocationDetailView<Item: LocationInfoItemType>: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(item.title)
                 .font(TLFont.headline)
+                .fontWeight(.black)
                 .foregroundColor(TLColor.primaryText)
         }
     }
@@ -85,6 +86,7 @@ struct LocationDetailView<Item: LocationInfoItemType>: View {
                 Spacer()
                 Label("위치 안내 시작", systemImage: "location.fill")
                     .font(TLFont.body)
+                    .fontWeight(.black)
                     .foregroundColor(.white)
                     .padding()
                 Spacer()

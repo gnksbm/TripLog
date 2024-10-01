@@ -69,6 +69,7 @@ struct ScheduleListView: View {
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
+                            .bold()
                             .frame(width: 24, height: 24)
                             .foregroundColor(TLColor.oceanBlue)
                     }
@@ -129,6 +130,7 @@ struct ScheduleListView: View {
                             .padding(.top, 16)
                         Text("등록된 일정이 없어요")
                             .font(TLFont.body)
+                            .bold()
                             .foregroundColor(TLColor.secondaryText)
                             .padding()
                     }
@@ -138,9 +140,16 @@ struct ScheduleListView: View {
                     } label: {
                         Label("일정 추가하기", systemImage: "plus")
                             .font(TLFont.body)
+                            .fontWeight(.black)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Capsule().fill(TLColor.oceanBlue))
+                            .background(
+                                Capsule()
+                                    .fill(
+                                        TLColor.oceanBlue
+                                            .opacity(0.7)
+                                    )
+                            )
                     }
                     .padding()
                 }
@@ -163,7 +172,17 @@ struct ScheduleListView: View {
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .frame(height: 230)
-        .background(TLColor.deepBlue)
+        .background(
+            LinearGradient(
+                colors: [
+                    TLColor.skyBlue,
+                    TLColor.oceanBlue.opacity(0.8),
+                    TLColor.deepBlue.opacity(0.5)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
     }
     
     var emptyPlaceholderView: some View {
@@ -177,6 +196,7 @@ struct ScheduleListView: View {
             
             Text("등록된 일정이 없어요")
                 .font(TLFont.headline)
+                .bold()
                 .foregroundColor(TLColor.secondaryText)
             
             Text("새로운 일정을 추가해보세요")
@@ -189,9 +209,16 @@ struct ScheduleListView: View {
             } label: {
                 Label("일정 추가하기", systemImage: "plus")
                     .font(TLFont.body)
+                    .fontWeight(.black)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Capsule().fill(TLColor.oceanBlue))
+                    .background(
+                        Capsule()
+                            .fill(
+                                TLColor.oceanBlue
+                                    .opacity(0.7)
+                            )
+                    )
             }
             .padding(.top, 24)
         }
@@ -203,12 +230,14 @@ struct ScheduleListView: View {
             HStack {
                 Text(schedule.title)
                     .font(TLFont.headline)
-                    .bold()
+                    .fontWeight(.black)
                     .foregroundColor(TLColor.primaryText)
                 Spacer()
                 Label("남은 일정", systemImage: "checklist")
                 Text(schedule.eventStr)
             }
+            .font(TLFont.subHeadline)
+            .fontWeight(.medium)
             ProgressView(value: schedule.dateInterval.periodProgress) {
                 HStack {
                     Text(
@@ -218,7 +247,9 @@ struct ScheduleListView: View {
                     )
                     Spacer()
                     Text(schedule.dateInterval.distanceFromToday)
+                        .font(TLFont.subHeadline)
                 }
+                .font(TLFont.body)
             }
             .progressViewStyle(LinearProgressViewStyle(tint: TLColor.oceanBlue))
         }

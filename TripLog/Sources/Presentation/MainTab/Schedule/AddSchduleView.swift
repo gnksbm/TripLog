@@ -90,6 +90,7 @@ struct AddScheduleView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("날짜")
                 .font(TLFont.headline)
+                .fontWeight(.black)
                 .foregroundColor(TLColor.primaryText)
             
             CalendarView(viewModel: calendarViewModel)
@@ -103,6 +104,7 @@ struct AddScheduleView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("이름")
                 .font(TLFont.headline)
+                .fontWeight(.black)
                 .foregroundColor(TLColor.primaryText)
             
             TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)

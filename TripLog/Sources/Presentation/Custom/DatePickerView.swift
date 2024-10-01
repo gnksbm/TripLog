@@ -23,7 +23,7 @@ struct DatePickerView: View {
                     .padding()
                     .background(
                         selectedDate == date ?
-                        TLColor.oceanBlue : TLColor.skyBlueLight.opacity(0.4)
+                        TLColor.oceanBlue.opacity(0.8) : TLColor.skyBlueLight.opacity(0.4)
                     )
                     .cornerRadius(8)
                     .onTapGesture {

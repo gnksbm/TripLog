@@ -8,11 +8,11 @@
 import SwiftUI
 
 enum TLFont {
-    static let headline = Font.custom("NanumSquareOTF_acEB", size: 22)
-    static let subHeadline = Font.custom("NanumSquareOTF_acEB", size: 20)
+    static let headline = Font.custom("NanumSquareOTFB", size: 22)
+    static let subHeadline = Font.custom("NanumSquareOTFEB", size: 20)
     static let body = Font.custom("NanumSquareOTFR", size: 16)
     static let caption = Font.custom("NanumSquareOTFL", size: 12)
-    static let accent = Font.custom("NanumSquareOTF_acR", size: 18)
+    static let accent = Font.custom("NanumSquareOTFR", size: 18)
 }
 
 enum TLColor {
