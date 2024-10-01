@@ -49,8 +49,9 @@ struct CalendarView: View {
                             circleFill(date: date)
                             Text(date.formatted(dateFormat: .onlyDay))
                                 .foregroundColor(
-                                    isCurrentMonth ? 
-                                    isSelectedDay ? TLColor.deepBlue : .black : .gray
+                                    isSelectedDay ?
+                                    TLColor.deepBlue :
+                                        isCurrentMonth ? .black : .gray
                                 )
                         }
                         .frame(width: 40, height: 40)

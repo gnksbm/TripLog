@@ -162,8 +162,8 @@ struct ScheduleListView: View {
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-        .frame(height: 200)
-        .background(TLColor.backgroundGray)
+        .frame(height: 230)
+        .background(TLColor.deepBlue)
     }
     
     var emptyPlaceholderView: some View {
@@ -226,7 +226,7 @@ struct ScheduleListView: View {
         .padding(20)
         .background {
             RoundedRectangle(cornerRadius: 12)
-                .fill(TLColor.skyBlueLight.opacity(0.4))
+                .fill(TLColor.skyBlueLight)
                 .shadow(color: .gray.opacity(0.2), radius: 6, x: 0, y: 4)
         }
         .padding(.horizontal)

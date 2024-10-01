@@ -114,6 +114,8 @@ struct LocationDetailView<Item: LocationInfoItemType>: View {
     }
 }
 
+#if DEBUG
 #Preview {
     LocationDetailView(item: SearchFestivalResponse.mock)
 }
+#endif

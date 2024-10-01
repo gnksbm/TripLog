@@ -24,17 +24,20 @@ struct FestivalCardView: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text(festival.title)
                     .font(TLFont.headline)
+                    .bold()
                     .foregroundColor(TLColor.primaryText)
                     .lineLimit(2)
                 Label {
-                    Text("기간 \(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
-                        .font(TLFont.body)
+                    Text("\(festival.startDate.formatted(dateFormat: .festivalOutput)) ~ \(festival.endDate.formatted(dateFormat: .festivalOutput))")
+                        .font(TLFont.caption)
+                        .bold()
                         .foregroundColor(TLColor.secondaryText)
                 } icon: {
                     Image(systemName: "calendar")
                 }
                 Text(festival.address)
-                    .font(TLFont.subHeadline)
+                    .font(TLFont.caption)
+                    .bold()
                     .foregroundColor(TLColor.primaryText)
                     .lineLimit(1)
                     .truncationMode(.tail)
@@ -50,8 +53,10 @@ struct FestivalCardView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     FestivalCardView(
         festival: .mock
     )
 }
+#endif

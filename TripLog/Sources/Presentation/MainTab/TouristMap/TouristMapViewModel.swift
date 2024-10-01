@@ -5,7 +5,7 @@
 //  Created by gnksbm on 9/19/24.
 //
 
-import Foundation
+import SwiftUI
 import MapKit
 
 final class TouristMapViewModel: ViewModel {
@@ -24,17 +24,11 @@ final class TouristMapViewModel: ViewModel {
                     let location =
                     try await locationService.fetchCurrentLocation()
                     await MainActor.run {
-                        state.region.center = location.coordinate
+                        withAnimation {
+                            state.region.center = location.coordinate
+                        }
                     }
-                    let touristPlaces =
-                    try await touristRepository.fetchTouristInformations(
-                        page: state.page,
-                        numOfPage: state.numOfPage,
-                        location: location
-                    )
-                    await MainActor.run {
-                        state.placeList = touristPlaces
-                    }
+                    fetchItems(location: location)
                 default:
                     await MainActor.run {
                         state.isUnauthorized = true
@@ -49,6 +43,39 @@ final class TouristMapViewModel: ViewModel {
             state.showDetail = true
         case .onDismissed:
             state.showDetail = false
+        case .cameraDidMove(let location):
+            state.showRefreshButton =
+            state.latestLocation.distance(from: location) > 5000
+        case .refreshButtonTapped:
+            let location = CLLocation(
+                latitude: state.region.center.latitude,
+                longitude: state.region.center.longitude
+            )
+            state.showRefreshButton = false
+            state.latestLocation = location
+            fetchItems(location: location)
+        }
+    }
+    
+    private func fetchItems(location: CLLocation) {
+        Task {
+            await MainActor.run {
+                state.isLoading = true
+            }
+            let touristPlaces =
+            try await touristRepository.fetchTouristInformations(
+                page: state.page,
+                numOfPage: state.numOfPage,
+                location: location
+            )
+            await MainActor.run {
+                state.placeList = touristPlaces
+                state.latestLocation = CLLocation(
+                    latitude: location.coordinate.latitude,
+                    longitude: location.coordinate.longitude
+                )
+                state.isLoading = false
+            }
         }
     }
 }
@@ -69,21 +96,14 @@ extension TouristMapViewModel {
                 longitudeDelta: 0.01
             )
         )
+        var latestLocation = CLLocation(
+            latitude: 37.56471,
+            longitude: 126.97512
+        )
         var showInfo: TouristPlaceResponse?
         var showDetail = false
-//        @available(iOS 17.0, *)
-//        var cameraPosition = MapCameraPosition.region(
-//            MKCoordinateRegion(
-//                center: CLLocationCoordinate2D(
-//                    latitude: 34.011_286,
-//                    longitude: -116.166_868
-//                ),
-//                span: MKCoordinateSpan(
-//                    latitudeDelta: 0.2,
-//                    longitudeDelta: 0.2
-//                )
-//            )
-//        )
+        var showRefreshButton = false
+        var isLoading = true
     }
     
     enum Action: Hashable {
@@ -92,5 +112,7 @@ extension TouristMapViewModel {
         case outsideTappedForInfo
         case detailButtonTapped
         case onDismissed
+        case cameraDidMove(CLLocation)
+        case refreshButtonTapped
     }
 }

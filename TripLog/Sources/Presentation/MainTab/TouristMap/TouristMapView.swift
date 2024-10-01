@@ -8,6 +8,16 @@
 import SwiftUI
 import MapKit
 
+extension MKCoordinateSpan: Equatable {
+    public static func == (
+        lhs: MKCoordinateSpan,
+        rhs: MKCoordinateSpan
+    ) -> Bool {
+        lhs.latitudeDelta == rhs.latitudeDelta &&
+        lhs.longitudeDelta == rhs.longitudeDelta
+    }
+}
+
 extension TouristPlaceResponse: Identifiable {
     var id: String { contentID }
     var coordinate: CLLocationCoordinate2D {
@@ -20,7 +30,21 @@ extension TouristPlaceResponse: Identifiable {
 
 struct TouristMapView: View {
     @StateObject private var viewModel = TouristMapViewModel()
-      
+    
+    private let minSpan = MKCoordinateSpan(
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005
+    )
+    private let maxSpan = MKCoordinateSpan(
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1
+    )
+    
+    private let debouncer = Debouncer(
+        delay: 0.5,
+        queue: DispatchQueue(label: "TouristMapView")
+    )
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -31,20 +55,44 @@ struct TouristMapView: View {
                             viewModel.send(action: .outsideTappedForInfo)
                         }
                     }
-                
                 if let selectedPlace = viewModel.state.showInfo {
                     VStack {
                         Spacer()
                         placeInfoView(selectedPlace)
-                            .transition(
-                                .move(edge: .bottom).combined(with: .opacity)
-                            )
+//                            .transition(
+//                                .move(edge: .bottom).combined(with: .opacity)
+//                            )
                             .padding(.horizontal)
                             .padding(.bottom, 30)
                     }
                 }
+                if viewModel.state.showRefreshButton {
+                    VStack {
+                        Button {
+                            viewModel.send(action: .refreshButtonTapped)
+                        } label: {
+                            Text("현 위치에서 재검색")
+                                .font(TLFont.caption)
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(TLColor.oceanBlue)
+                                .cornerRadius(8)
+                        }
+                        .padding(.top)
+                        Spacer()
+                    }
+                }
+                if viewModel.state.isLoading {
+                    ProgressView()
+                        .frame(
+                            width: UIScreen.main.bounds.width,
+                            height: UIScreen.main.bounds.height
+                        )
+                        .tint(TLColor.deepBlue)
+                }
             }
-            .navigationTitle("관광지 지도")
+            .navigationTitle("주변 정보")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(
                 isPresented: Binding(
@@ -63,13 +111,39 @@ struct TouristMapView: View {
             .onAppear {
                 viewModel.send(action: .onAppear)
             }
+            .onChange(of: viewModel.state.region.span) { currentSpan in
+                debouncer.runOnMain {
+                    if currentSpan.latitudeDelta < minSpan.latitudeDelta {
+                        viewModel.state.region.span = minSpan // 최소 줌 레벨 유지
+                    } else if currentSpan.latitudeDelta > maxSpan.latitudeDelta {
+                        viewModel.state.region.span = maxSpan // 최대 줌 레벨 유지
+                    }
+                }
+            }
+            .onChange(of: viewModel.state.region.center) { value in
+                debouncer.runOnMain {
+                    viewModel.send(
+                        action: .cameraDidMove(
+                            CLLocation(
+                                latitude: value.latitude,
+                                longitude: value.longitude
+                            )
+                        )
+                    )
+                }
+            }
         }
     }
     
     @ViewBuilder
     var mapView: some View {
         if #available(iOS 17.0, *) {
-            Map() {
+            Map(
+                bounds: MapCameraBounds(
+                    minimumDistance: 100,
+                    maximumDistance: 30000
+                )
+            ) {
                 ForEach(viewModel.state.placeList) { place in
                     Annotation(
                         place.title,
@@ -87,6 +161,7 @@ struct TouristMapView: View {
         } else {
             Map(
                 coordinateRegion: $viewModel.state.region,
+                showsUserLocation: true,
                 annotationItems: viewModel.state.placeList
             ) { place in
                 MapAnnotation(coordinate: place.coordinate) {
@@ -107,13 +182,11 @@ struct TouristMapView: View {
             Text(place.title)
                 .font(TLFont.headline)
                 .foregroundColor(TLColor.primaryText)
-            
             Text(place.address)
                 .font(TLFont.body)
                 .foregroundColor(TLColor.secondaryText)
-            
             Button {
-                viewModel.send(action: .placeSelected(place))
+                viewModel.send(action: .detailButtonTapped)
             } label: {
                 Text("상세 정보 보기")
                     .font(TLFont.body)

@@ -24,8 +24,6 @@ struct MarkerView: View {
             Circle()
                 .fill(color)
             Circle()
-                .stroke(Color.white, lineWidth: borderWidth)
-            Circle()
                 .fill(Color.white)
                 .frame(width: size / 2, height: size / 2)
         }

@@ -10,6 +10,7 @@
 		8E138FA92C9C4E4F008F9D38 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FA82C9C4E4F008F9D38 /* LocationService.swift */; };
 		8E138FAB2C9C4E55008F9D38 /* DefaultLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FAA2C9C4E55008F9D38 /* DefaultLocationService.swift */; };
 		8E138FAE2C9C4E95008F9D38 /* TouristMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FAD2C9C4E95008F9D38 /* TouristMapViewModel.swift */; };
+		8EB079EC2CAABB8300C0F080 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079EB2CAABB8300C0F080 /* Debouncer.swift */; };
 		8ECFED332C9DB8D100716B71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECFED322C9DB8D100716B71 /* Kingfisher */; };
 		8ECFED352C9EBB5300716B71 /* TouristPlaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */; };
 		8ECFED372C9EBB6800716B71 /* TouristPlaceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */; };
@@ -114,6 +115,7 @@
 		8E138FA82C9C4E4F008F9D38 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		8E138FAA2C9C4E55008F9D38 /* DefaultLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationService.swift; sourceTree = "<group>"; };
 		8E138FAD2C9C4E95008F9D38 /* TouristMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapViewModel.swift; sourceTree = "<group>"; };
+		8EB079EB2CAABB8300C0F080 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceRequest.swift; sourceTree = "<group>"; };
 		8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceEndpoint.swift; sourceTree = "<group>"; };
 		8ECFED382C9F0D5000716B71 /* TouristPlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceDTO.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				BE14D21B2C96A8D700CCDB99 /* Injected.swift */,
 				BEADF8F72C96BF6E00FCDBE9 /* DateFormat.swift */,
 				BED6DA0D2CA55BE600CC72BD /* TLDesign.swift */,
+				8EB079EB2CAABB8300C0F080 /* Debouncer.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				BE473E552C954E3100020435 /* Secret.swift in Sources */,
 				BE81D51B2CA3DC74002574A5 /* RecordListViewModel.swift in Sources */,
 				8ECFED3F2C9FDA5700716B71 /* TouristPlaceResponse.swift in Sources */,
+				8EB079EC2CAABB8300C0F080 /* Debouncer.swift in Sources */,
 				BE14D2212C96A97300CCDB99 /* Data+.swift in Sources */,
 				8ECFED422CA00D5000716B71 /* ScheduleListViewModel.swift in Sources */,
 				BE275C462CA42C7300389127 /* RealmStorage.swift in Sources */,
