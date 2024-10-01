@@ -62,7 +62,6 @@ struct EventMapView: View {
             }
             .padding()
         }
-        .navigationTitle("이벤트 위치")
         .navigationBarTitleDisplayMode(.inline)
     }
     

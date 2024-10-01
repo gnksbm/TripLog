@@ -31,15 +31,12 @@ struct MainTab: View {
             switch self {
             case .eventList:
                 EventListView()
-                    .navigationTitle("행사 목록")
                     .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             case .touristMap:
                 TouristMapView()
-                    .navigationTitle("주변 정보")
                     .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             case .scheduleList:
                 ScheduleListView()
-                    .navigationTitle("주변 정보")
                     .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             }
         }

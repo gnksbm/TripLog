@@ -89,8 +89,6 @@ struct TouristMapView: View {
                         .tint(TLColor.deepBlue)
                 }
             }
-            .navigationTitle("주변 정보")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(
                 isPresented: Binding(
                     get: { viewModel.state.showDetail },

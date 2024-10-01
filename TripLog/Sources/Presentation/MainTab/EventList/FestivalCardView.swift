@@ -24,7 +24,7 @@ struct FestivalCardView: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text(festival.title)
                     .font(TLFont.headline)
-                    .bold()
+                    .fontWeight(.black)
                     .foregroundColor(TLColor.primaryText)
                     .lineLimit(2)
                 Label {

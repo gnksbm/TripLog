@@ -29,8 +29,6 @@ struct EventListView: View {
                 areaSliderView
                 festivalListView
             }
-            .navigationTitle("행사 목록")
-            .navigationBarTitleDisplayMode(.inline)
             .background(TLColor.backgroundGray.ignoresSafeArea())
             .navigationDestination(
                 isPresented: Binding(

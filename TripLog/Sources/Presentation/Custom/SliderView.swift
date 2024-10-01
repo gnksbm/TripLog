@@ -31,7 +31,8 @@ struct SliderView<Item: SliderItemType>: View {
         HStack(spacing: 0) {
             ForEach(Array(zip(items.indices, items)), id: \.1.id) { index, item in
                 Text(item.title)
-                    .fontWeight(item == selectedItem ? .bold : .regular)
+                    .font(TLFont.body)
+                    .fontWeight(item == selectedItem ? .black : .regular)
                     .frame(width: itemWidth)
                     .multilineTextAlignment(.center)
                     .foregroundColor(item == selectedItem ? lineColor : titleColor)
