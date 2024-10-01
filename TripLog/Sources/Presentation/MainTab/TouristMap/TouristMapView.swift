@@ -49,19 +49,19 @@ struct TouristMapView: View {
         NavigationStack {
             ZStack {
                 mapView
-                    .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
                         withAnimation {
                             viewModel.send(action: .outsideTappedForInfo)
                         }
                     }
+                locationButton
                 if let selectedPlace = viewModel.state.showInfo {
                     VStack {
                         Spacer()
                         placeInfoView(selectedPlace)
-//                            .transition(
-//                                .move(edge: .bottom).combined(with: .opacity)
-//                            )
+                        //                            .transition(
+                        //                                .move(edge: .bottom).combined(with: .opacity)
+                        //                            )
                             .padding(.horizontal)
                             .padding(.bottom, 30)
                     }
@@ -85,10 +85,7 @@ struct TouristMapView: View {
                 }
                 if viewModel.state.isLoading {
                     ProgressView()
-                        .frame(
-                            width: UIScreen.main.bounds.width,
-                            height: UIScreen.main.bounds.height
-                        )
+                        .controlSize(.large)
                         .tint(TLColor.deepBlue)
                 }
             }
@@ -173,6 +170,32 @@ struct TouristMapView: View {
                         }
                 }
             }
+        }
+    }
+    
+    var locationButton: some View {
+        VStack {
+            HStack {
+                Button {
+                    viewModel.send(action: .locationButtonTapped)
+                } label: {
+                    HStack {
+                        Image(systemName: "smallcircle.filled.circle")
+                            .font(TLFont.subHeadline)
+                        Text("현재위치")
+                            .font(TLFont.caption)
+                    }
+                    .bold()
+                    .padding(3)
+                    .padding(.horizontal, 3)
+                    .background(.white)
+                    .foregroundStyle(TLColor.oceanBlue)
+                }
+                .clipShape(.capsule)
+                .padding()
+                Spacer()
+            }
+            Spacer()
         }
     }
     

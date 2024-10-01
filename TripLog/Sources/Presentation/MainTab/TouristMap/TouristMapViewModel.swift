@@ -21,13 +21,7 @@ final class TouristMapViewModel: ViewModel {
                 let status = try await locationService.requestAuthorization()
                 switch status {
                 case .authorized, .authorizedAlways, .authorizedWhenInUse:
-                    let location =
-                    try await locationService.fetchCurrentLocation()
-                    await MainActor.run {
-                        withAnimation {
-                            state.region.center = location.coordinate
-                        }
-                    }
+                    let location = try await fetchLocation()
                     fetchItems(location: location)
                 default:
                     await MainActor.run {
@@ -44,8 +38,10 @@ final class TouristMapViewModel: ViewModel {
         case .onDismissed:
             state.showDetail = false
         case .cameraDidMove(let location):
-            state.showRefreshButton =
-            state.latestLocation.distance(from: location) > 5000
+            if !state.isLoading {
+                state.showRefreshButton =
+                state.latestLocation.distance(from: location) > 1000
+            }
         case .refreshButtonTapped:
             let location = CLLocation(
                 latitude: state.region.center.latitude,
@@ -54,6 +50,10 @@ final class TouristMapViewModel: ViewModel {
             state.showRefreshButton = false
             state.latestLocation = location
             fetchItems(location: location)
+        case .locationButtonTapped:
+            Task {
+                try await fetchLocation()
+            }
         }
     }
     
@@ -77,6 +77,17 @@ final class TouristMapViewModel: ViewModel {
                 state.isLoading = false
             }
         }
+    }
+    
+    @discardableResult
+    private func fetchLocation() async throws -> CLLocation {
+        let location = try await locationService.fetchCurrentLocation()
+        await MainActor.run {
+            withAnimation {
+                state.region.center = location.coordinate
+            }
+        }
+        return location
     }
 }
 
@@ -114,5 +125,6 @@ extension TouristMapViewModel {
         case onDismissed
         case cameraDidMove(CLLocation)
         case refreshButtonTapped
+        case locationButtonTapped
     }
 }

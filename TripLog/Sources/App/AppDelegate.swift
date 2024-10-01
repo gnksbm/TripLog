@@ -50,8 +50,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let image = UIImage(systemName: "chevron.backward.circle.fill")
         UINavigationBar.appearance().backIndicatorImage = image
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = image
-        UINavigationBar.appearance().backItem?.backButtonTitle = ""
-//        UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
@@ -59,6 +57,5 @@ extension UINavigationController {
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         navigationBar.topItem?.backButtonDisplayMode = .minimal
-//        navigationBar.topItem?.backButtonTitle = ""
     }
 }

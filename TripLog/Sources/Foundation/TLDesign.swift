@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TLFont {
-    static let headline = Font.custom("NanumSquareOTF_acB", size: 22)
+    static let headline = Font.custom("NanumSquareOTF_acEB", size: 22)
     static let subHeadline = Font.custom("NanumSquareOTF_acEB", size: 20)
     static let body = Font.custom("NanumSquareOTFR", size: 16)
     static let caption = Font.custom("NanumSquareOTFL", size: 12)

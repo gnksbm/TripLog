@@ -29,7 +29,8 @@ struct EventListView: View {
                 areaSliderView
                 festivalListView
             }
-            .navigationTitle("지역별 행사")
+            .navigationTitle("행사 목록")
+            .navigationBarTitleDisplayMode(.inline)
             .background(TLColor.backgroundGray.ignoresSafeArea())
             .navigationDestination(
                 isPresented: Binding(
@@ -47,10 +48,7 @@ struct EventListView: View {
         .overlay {
             if viewModel.state.isLoading {
                 ProgressView()
-                    .frame(
-                        width: UIScreen.main.bounds.width,
-                        height: UIScreen.main.bounds.height
-                    )
+                    .controlSize(.large)
                     .tint(TLColor.deepBlue)
             }
         }
