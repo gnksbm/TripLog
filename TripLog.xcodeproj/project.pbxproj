@@ -877,7 +877,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripLog/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Travelog;
+				INFOPLIST_KEY_CFBundleDisplayName = "플랜잇";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "관광지 정보를 가져오기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -918,7 +918,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripLog/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Travelog;
+				INFOPLIST_KEY_CFBundleDisplayName = "플랜잇";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "관광지 정보를 가져오기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
