@@ -100,9 +100,6 @@ struct TouristMapView: View {
                     LocationDetailView(item: item)
                 }
             }
-            .onAppear {
-                viewModel.send(action: .onAppear)
-            }
             .onChange(of: viewModel.state.region.span) { currentSpan in
                 debouncer.runOnMain {
                     if currentSpan.latitudeDelta < minSpan.latitudeDelta {
@@ -184,14 +181,17 @@ struct TouristMapView: View {
             annotationItems: viewModel.state.placeList
         ) { place in
             MapAnnotation(coordinate: place.coordinate) {
-                MarkerView()
-                    .padding()
-                    .onTapGesture {
-                        withAnimation {
-                            viewModel.send(action: .placeSelected(place))
-                        }
-                    }
+                Button {
+                    viewModel.send(action: .placeSelected(place))
+                } label: {
+                    MarkerView()
+                        .padding()
+                }
+                .buttonStyle(PlainButtonStyle())
             }
+        }
+        .onAppear {
+            viewModel.send(action: .onAppear)
         }
     }
     

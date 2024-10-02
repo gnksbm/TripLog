@@ -34,7 +34,7 @@ final class TouristMapViewModel: ViewModel {
                 }
             }
         case .placeSelected(let place):
-            throttle.runWithCancelOnMain { [weak self] in
+            throttle.runOnMain(priority: 1) { [weak self] in
                 withAnimation(.smooth) {
                     self?.state.showInfo = place
                 }
