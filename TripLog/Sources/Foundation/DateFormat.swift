@@ -12,7 +12,7 @@ public enum DateFormat: String {
     case festivalOutput = "yyyy.MM.dd"
     case monthAndDateDot = "MM.dd"
     case onlyDay = "dd"
-    case onlyTime = "hh:mm"
+    case onlyTime = "HH:mm"
 }
 
 extension DateFormat {

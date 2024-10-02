@@ -37,7 +37,6 @@ struct EventMapView: View {
                     MarkerView()
                 }
             }
-            .edgesIgnoringSafeArea(.all)
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
