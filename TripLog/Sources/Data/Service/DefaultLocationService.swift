@@ -19,6 +19,7 @@ final class DefaultLocationService: NSObject, LocationService {
     override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
     
     func requestAuthorization() async throws -> CLAuthorizationStatus {
@@ -79,7 +80,6 @@ final class DefaultLocationService: NSObject, LocationService {
     
     func fetchCurrentLocation() async throws -> CLLocation {
         try await withCheckedThrowingContinuation { continuation in
-            print(Date.now)
             location
                 .prefix(1)
                 .sink { completion in
@@ -98,7 +98,6 @@ final class DefaultLocationService: NSObject, LocationService {
     }
     
     func fetchCurrentLocation(completion: @escaping (CLLocation) -> Void) {
-        print(Date.now)
         location
             .prefix(1)
             .sink { completion in
@@ -125,7 +124,6 @@ extension DefaultLocationService: CLLocationManagerDelegate {
         _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]
     ) {
-        print(Date.now)
         guard let currentLocation = locations.first else {
             location.send(completion: .failure(LocationError.missingLocation))
             return

@@ -21,16 +21,14 @@ final class TouristMapViewModel: ViewModel {
     
     @MainActor
     func mutate(action: Action) {
-        print(action)
         switch action {
         case .onAppear:
-            locationService.requestAuthorization { [weak self] status in
-                guard let self else { return }
+            Task {
+                let status = try await locationService.requestAuthorization()
                 switch status {
                 case .authorized, .authorizedAlways, .authorizedWhenInUse:
-                    fetchLocation { location in
-                        self.fetchItems(location: location)
-                    }
+                    let location = try await fetchLocation()
+                    fetchItems(location: location)
                 default:
                     state.isUnauthorized = true
                 }
@@ -40,23 +38,24 @@ final class TouristMapViewModel: ViewModel {
                 withAnimation(.smooth) {
                     self?.state.showInfo = place
                 }
-                print(action)
             }
         case .outsideTappedForInfo:
             throttle.runOnMain { [weak self] in
                 withAnimation {
                     self?.state.showInfo = nil
                 }
-                print(action)
             }
         case .detailButtonTapped:
             state.showDetail = true
         case .onDismissed:
             state.showDetail = false
         case .cameraDidMove(let location):
-            if !state.isLoading {
-                state.showRefreshButton =
-                state.latestLocation.distance(from: location) > 1000
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                if !state.isLoading {
+                    state.showRefreshButton =
+                    state.latestLocation.distance(from: location) > 1000
+                }
             }
         case .refreshButtonTapped:
             let location = CLLocation(
@@ -67,26 +66,30 @@ final class TouristMapViewModel: ViewModel {
             state.latestLocation = location
             fetchItems(location: location)
         case .locationButtonTapped:
-            fetchLocation(completion: { _ in })
+            Task { try await fetchLocation() }
         }
     }
     
     @MainActor
     private func fetchItems(location: CLLocation) {
         Task {
-            state.isLoading = true
+            await MainActor.run {
+                state.isLoading = true
+            }
             let touristPlaces =
             try await touristRepository.fetchTouristInformations(
                 page: state.page,
                 numOfPage: state.numOfPage,
                 location: location
             )
-            state.placeList = touristPlaces
-            state.latestLocation = CLLocation(
-                latitude: location.coordinate.latitude,
-                longitude: location.coordinate.longitude
-            )
-            state.isLoading = false
+            await MainActor.run {
+                state.placeList = touristPlaces
+                state.latestLocation = CLLocation(
+                    latitude: location.coordinate.latitude,
+                    longitude: location.coordinate.longitude
+                )
+                state.isLoading = false
+            }
         }
     }
     
