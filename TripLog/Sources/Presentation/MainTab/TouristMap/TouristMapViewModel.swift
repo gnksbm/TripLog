@@ -14,25 +14,41 @@ final class TouristMapViewModel: ViewModel {
     
     @Published var state = State()
     
+    private let throttle = Throttle(
+        delay: 0.1,
+        queue: DispatchQueue(label: "TouristMapViewModel")
+    )
+    
+    @MainActor
     func mutate(action: Action) {
+        print(action)
         switch action {
         case .onAppear:
-            Task {
-                let status = try await locationService.requestAuthorization()
+            locationService.requestAuthorization { [weak self] status in
+                guard let self else { return }
                 switch status {
                 case .authorized, .authorizedAlways, .authorizedWhenInUse:
-                    let location = try await fetchLocation()
-                    fetchItems(location: location)
-                default:
-                    await MainActor.run {
-                        state.isUnauthorized = true
+                    fetchLocation { location in
+                        self.fetchItems(location: location)
                     }
+                default:
+                    state.isUnauthorized = true
                 }
             }
         case .placeSelected(let place):
-            state.showInfo = place
+            throttle.runWithCancelOnMain { [weak self] in
+                withAnimation(.smooth) {
+                    self?.state.showInfo = place
+                }
+                print(action)
+            }
         case .outsideTappedForInfo:
-            state.showInfo = nil
+            throttle.runOnMain { [weak self] in
+                withAnimation {
+                    self?.state.showInfo = nil
+                }
+                print(action)
+            }
         case .detailButtonTapped:
             state.showDetail = true
         case .onDismissed:
@@ -51,43 +67,45 @@ final class TouristMapViewModel: ViewModel {
             state.latestLocation = location
             fetchItems(location: location)
         case .locationButtonTapped:
-            Task {
-                try await fetchLocation()
-            }
+            fetchLocation(completion: { _ in })
         }
     }
     
+    @MainActor
     private func fetchItems(location: CLLocation) {
         Task {
-            await MainActor.run {
-                state.isLoading = true
-            }
+            state.isLoading = true
             let touristPlaces =
             try await touristRepository.fetchTouristInformations(
                 page: state.page,
                 numOfPage: state.numOfPage,
                 location: location
             )
-            await MainActor.run {
-                state.placeList = touristPlaces
-                state.latestLocation = CLLocation(
-                    latitude: location.coordinate.latitude,
-                    longitude: location.coordinate.longitude
-                )
-                state.isLoading = false
-            }
+            state.placeList = touristPlaces
+            state.latestLocation = CLLocation(
+                latitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude
+            )
+            state.isLoading = false
         }
     }
     
-    @discardableResult
+    @MainActor @discardableResult
     private func fetchLocation() async throws -> CLLocation {
         let location = try await locationService.fetchCurrentLocation()
-        await MainActor.run {
-            withAnimation {
-                state.region.center = location.coordinate
-            }
+        withAnimation {
+            state.region.center = location.coordinate
         }
         return location
+    }
+    
+    private func fetchLocation(completion: @escaping (CLLocation) -> Void) {
+        locationService.fetchCurrentLocation { [weak self] location in
+            DispatchQueue.main.async {
+                self?.state.region.center = location.coordinate
+            }
+            completion(location)
+        }
     }
 }
 

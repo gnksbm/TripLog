@@ -41,7 +41,7 @@ struct TouristMapView: View {
     )
     
     private let debouncer = Debouncer(
-        delay: 0.5,
+        delay: 0.3,
         queue: DispatchQueue(label: "TouristMapView")
     )
     
@@ -59,9 +59,6 @@ struct TouristMapView: View {
                     VStack {
                         Spacer()
                         placeInfoView(selectedPlace)
-                        //                            .transition(
-                        //                                .move(edge: .bottom).combined(with: .opacity)
-                        //                            )
                             .padding(.horizontal)
                             .padding(.bottom, 30)
                     }
@@ -132,41 +129,68 @@ struct TouristMapView: View {
     
     @ViewBuilder
     var mapView: some View {
-        if #available(iOS 17.0, *) {
-            Map(
-                bounds: MapCameraBounds(
-                    minimumDistance: 100,
-                    maximumDistance: 30000
-                )
-            ) {
-                ForEach(viewModel.state.placeList) { place in
-                    Annotation(
-                        place.title,
-                        coordinate: place.coordinate
-                    ) {
-                        MarkerView()
-                            .onTapGesture {
-                                withAnimation {
-                                    viewModel.send(action: .placeSelected(place))
-                                }
-                            }
-                    }
-                }
-            }
-        } else {
-            Map(
-                coordinateRegion: $viewModel.state.region,
-                showsUserLocation: true,
-                annotationItems: viewModel.state.placeList
-            ) { place in
-                MapAnnotation(coordinate: place.coordinate) {
-                    MarkerView()
-                        .onTapGesture {
-                            withAnimation {
-                                viewModel.send(action: .placeSelected(place))
-                            }
+//        if #available(iOS 17.0, *) {
+//            Map(
+//                bounds: MapCameraBounds(
+//                    minimumDistance: 100,
+//                    maximumDistance: 30000
+//                )
+//            ) {
+//                ForEach(viewModel.state.placeList) { place in
+//                    Annotation(
+//                        place.title,
+//                        coordinate: place.coordinate
+//                    ) {
+//                        MarkerView()
+//                            .onTapGesture {
+//                                withAnimation {
+//                                    viewModel.send(action: .placeSelected(place))
+//                                }
+//                            }
+//                    }
+//                }
+//            }
+//            .onMapCameraChange { context in
+//                debouncer.run {
+//                    viewModel.send(
+//                        action: .cameraDidMove(
+//                            CLLocation(
+//                                latitude: context.camera.centerCoordinate.latitude,
+//                                longitude: context.camera.centerCoordinate.longitude
+//                            )
+//                        )
+//                    )
+//                }
+//            }
+//        } else {
+//            Map(
+//                coordinateRegion: $viewModel.state.region,
+//                showsUserLocation: true,
+//                annotationItems: viewModel.state.placeList
+//            ) { place in
+//                MapAnnotation(coordinate: place.coordinate) {
+//                    MarkerView()
+//                        .onTapGesture {
+//                            withAnimation {
+//                                viewModel.send(action: .placeSelected(place))
+//                            }
+//                        }
+//                }
+//            }
+//        }
+        Map(
+            coordinateRegion: $viewModel.state.region,
+            showsUserLocation: true,
+            annotationItems: viewModel.state.placeList
+        ) { place in
+            MapAnnotation(coordinate: place.coordinate) {
+                MarkerView()
+                    .padding()
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.send(action: .placeSelected(place))
                         }
-                }
+                    }
             }
         }
     }

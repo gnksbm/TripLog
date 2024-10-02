@@ -93,6 +93,7 @@
 		BED1DF732C907C200030BC1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF722C907C200030BC1A /* Preview Assets.xcassets */; };
 		BED1DF7A2C907CEA0030BC1A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BED1DF792C907CEA0030BC1A /* .gitignore */; };
 		BED6DA0E2CA55BE600CC72BD /* TLDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED6DA0D2CA55BE600CC72BD /* TLDesign.swift */; };
+		BEE521222CAD3AC300363E9E /* Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE521212CAD3AC300363E9E /* Throttle.swift */; };
 		BEF36D5C2C97D872008A9DBF /* SearchFestivalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */; };
 		BEF36D5E2C97DC77008A9DBF /* FestivalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF36D5D2C97DC77008A9DBF /* FestivalCardView.swift */; };
 /* End PBXBuildFile section */
@@ -198,6 +199,7 @@
 		BED1DF722C907C200030BC1A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BED1DF792C907CEA0030BC1A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BED6DA0D2CA55BE600CC72BD /* TLDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDesign.swift; sourceTree = "<group>"; };
+		BEE521212CAD3AC300363E9E /* Throttle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttle.swift; sourceTree = "<group>"; };
 		BEF36D5B2C97D872008A9DBF /* SearchFestivalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFestivalResponse.swift; sourceTree = "<group>"; };
 		BEF36D5D2C97DC77008A9DBF /* FestivalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -417,6 +419,7 @@
 				BEADF8F72C96BF6E00FCDBE9 /* DateFormat.swift */,
 				BED6DA0D2CA55BE600CC72BD /* TLDesign.swift */,
 				8EB079EB2CAABB8300C0F080 /* Debouncer.swift */,
+				BEE521212CAD3AC300363E9E /* Throttle.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				BE3496A92CA156FC003F31B8 /* LargeButtonStyle.swift in Sources */,
 				BE473E242C9334F400020435 /* EventListView.swift in Sources */,
 				8ECFED482CA00E0A00716B71 /* AddSchduleView.swift in Sources */,
+				BEE521222CAD3AC300363E9E /* Throttle.swift in Sources */,
 				BE14D21E2C96A8F000CCDB99 /* DIContainer.swift in Sources */,
 				8ECFED4F2CA017B100716B71 /* CalendarViewModel.swift in Sources */,
 				BE275C4E2CA4375D00389127 /* TravelEventDTO.swift in Sources */,
@@ -879,7 +883,7 @@
 				INFOPLIST_FILE = TripLog/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "플랜잇";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "관광지 정보를 가져오기 위해 위치 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변의 시설정보를 가져오기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -920,7 +924,7 @@
 				INFOPLIST_FILE = TripLog/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "플랜잇";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "관광지 정보를 가져오기 위해 위치 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변의 시설정보를 가져오기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

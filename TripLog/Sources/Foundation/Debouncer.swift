@@ -27,10 +27,7 @@ final class Debouncer {
     func runOnMain(action: @escaping () -> Void) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            workItem?.cancel()
-            let workItem = DispatchWorkItem(block: action)
-            queue.asyncAfter(deadline: .now() + delay, execute: workItem)
-            self.workItem = workItem
+            run(action: action)
         }
     }
     
