@@ -53,4 +53,18 @@ extension Date {
     func isSameMonth(_ month: Int) -> Bool {
         Self.calendar.component(.month, from: self) == month
     }
+    
+    static func now(with components: [Int: Calendar.Component]) -> Date {
+        var date = Date.now
+        components.forEach { interval, component in
+            if let newDate = Self.calendar.date(
+                bySetting: component, 
+                value: interval,
+                of: date
+            ) {
+                date = newDate
+            }
+        }
+        return date
+    }
 }
