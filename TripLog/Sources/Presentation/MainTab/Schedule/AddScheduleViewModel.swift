@@ -56,6 +56,7 @@ final class AddScheduleViewModel: ViewModel {
             else { throw AddScheduleError.dateNotSelected }
             try scheduleRespository.updateSchedule(
                 schedule: TravelSchedule(
+                    id: schedule.id,
                     title: state.scheduleTitle,
                     startDate: dateInterval.start,
                     endDate: dateInterval.end

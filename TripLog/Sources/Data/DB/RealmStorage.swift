@@ -46,6 +46,10 @@ final class DefaultRealmStorage: RealmStorage {
         ).first {
             return object
         } else {
+            print(
+                "\(value) 찾을 수 없음",
+                realm.objects(T.self).map { $0[keyPath: keyPath] }
+            )
             throw RealmError.canNotFindObject
         }
     }
