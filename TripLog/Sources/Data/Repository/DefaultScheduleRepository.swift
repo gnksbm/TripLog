@@ -52,7 +52,7 @@ final class DefaultScheduleRepository: ScheduleRepository {
         )
         try realmStorage.update(schedule) { schedule in
             if let index = schedule.events.firstIndex(where: { $0.id == event.id }) {
-                var oldEvent = schedule.events[index]
+                let oldEvent = schedule.events[index]
                 oldEvent.title = event.title
                 oldEvent.date = event.date
                 oldEvent.locationInfo = LocationInformationDTO(event.locationInfo)

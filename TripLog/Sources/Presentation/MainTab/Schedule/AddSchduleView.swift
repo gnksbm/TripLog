@@ -21,30 +21,21 @@ struct AddScheduleView: View {
                         .id(AddContent.date)
                     titleView(proxy: proxy)
                         .id(AddContent.title)
-                    Button {
-                        viewModel.send(action: .doneButtonTapped(selectedSchedule))
-                    } label: {
-                        Text("완료")
-                            .font(TLFont.body)
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(viewModel.state.isDoneButtonDisabled ? TLColor.separatorGray : TLColor.oceanBlue)
-                            .foregroundColor(.white)
-                            .cornerRadius(12)
-                    }
-                    .disabled(viewModel.state.isDoneButtonDisabled)
-                    .padding(.top, 40)
-                    .id(AddContent.done)
+                    doneButton(proxy: proxy)
+                        .id(AddContent.done)
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 30)
                 .background(TLColor.backgroundGray.ignoresSafeArea())
+                .onChange(of: calendarViewModel.state.selectedDate) { date in
+                    viewModel.send(action: .dateSelected(date))
+                }
                 .onChange(of: calendarViewModel.state.selectedDateInterval) { interval in
-                    guard let interval else { return }
                     viewModel.send(action: .intervalSelected(interval))
-                    withAnimation {
-                        proxy.scrollTo(AddContent.title, anchor: .top)
+                    if interval != nil {
+                        withAnimation {
+                            proxy.scrollTo(AddContent.title, anchor: .top)
+                        }
                     }
                 }
             }
@@ -78,43 +69,57 @@ struct AddScheduleView: View {
             dismiss()
         }
         .onAppear {
-            if let selectedSchedule {
-                viewModel.state.scheduleTitle = selectedSchedule.title
-                viewModel.state.selectedDateInterval = selectedSchedule.dateInterval
-                calendarViewModel.state.selectedDateInterval = selectedSchedule.dateInterval
-            }
+            viewModel.send(action: .onAppear(selectedSchedule))
+            calendarViewModel.state.selectedDateInterval =
+            selectedSchedule?.dateInterval
+        }
+        .onDisappear {
+            viewModel.send(action: .onDisappear)
+            calendarViewModel.state.selectedDateInterval = nil
         }
     }
     
     func dateView(proxy: ScrollViewProxy) -> some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("날짜")
-                .font(TLFont.headline)
-                .fontWeight(.black)
-                .foregroundColor(TLColor.primaryText)
-            
+        InputSectionView(title: "날짜") {
             CalendarView(viewModel: calendarViewModel)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.4)))
         }
     }
         
-    @ViewBuilder
     func titleView(proxy: ScrollViewProxy) -> some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("이름")
-                .font(TLFont.headline)
-                .fontWeight(.black)
-                .foregroundColor(TLColor.primaryText)
-            
+        InputSectionView(title: "이름") {
             TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
                 .textFieldStyle(PlainTextFieldStyle())
-                .padding(12)
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
                 .onSubmit {
                     proxy.scrollTo(AddContent.done, anchor: .bottom)
                 }
         }
+    }
+       
+    func doneButton(proxy: ScrollViewProxy) -> some View {
+        VStack {
+            Text(viewModel.state.statusDescription)
+                .font(TLFont.caption)
+                .fontWeight(.black)
+                .foregroundStyle(
+                    viewModel.state.statusDescription.isEmpty ?
+                    TLColor.successGreen : TLColor.errorRed
+                )
+                .padding(.bottom)
+            Button {
+                viewModel.send(action: .doneButtonTapped(selectedSchedule))
+            } label: {
+                Text("완료")
+                    .font(TLFont.body)
+                    .bold()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(viewModel.state.isDoneButtonDisabled ? TLColor.separatorGray : TLColor.oceanBlue)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
+            .disabled(viewModel.state.isDoneButtonDisabled)
+        }
+        .padding(.top, 40)
     }
     
     init(schedule: TravelSchedule? = nil) {
@@ -128,12 +133,9 @@ struct AddScheduleView: View {
 
 #if DEBUG
 #Preview {
-    DIContainer.register(
-        MockScheduleRepository(),
-        type: ScheduleRepository.self
-    )
-    return NavigationStack {
+    NavigationStack {
         AddScheduleView()
+            .environmentObject(AddScheduleViewModel())
     }
 }
 #endif

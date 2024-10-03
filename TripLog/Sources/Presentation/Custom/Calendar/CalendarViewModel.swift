@@ -30,16 +30,18 @@ final class CalendarViewModel: ViewModel {
                     state.selectedDate = selectedDate
                 }
             case .period:
-                if state.selectedDateInterval != nil {
+                if let selectedDateInterval = state.selectedDateInterval {
                     state.selectedDateInterval = nil
+                    if selectedDateInterval.start.isSameDate(selectedDate),
+                       selectedDateInterval.end.isSameDate(selectedDate) {
+                        return
+                    }
                 }
                 if let previousSelectedDate = state.selectedDate {
-                    if state.selectedDate != selectedDate {
-                        state.selectedDateInterval = DateInterval(
-                            first: previousSelectedDate,
-                            second: selectedDate
-                        )
-                    }
+                    state.selectedDateInterval = DateInterval(
+                        first: previousSelectedDate,
+                        second: selectedDate
+                    )
                     state.selectedDate = nil
                 } else {
                     state.selectedDate = selectedDate
@@ -129,8 +131,15 @@ extension CalendarViewModel {
 }
 
 #if DEBUG
+
 import SwiftUI
+
+#Preview {
+    CalendarView(viewModel: CalendarViewModel(selectType: .period))
+}
+
 #Preview {
     CalendarView(viewModel: CalendarViewModel())
 }
+
 #endif

@@ -52,7 +52,9 @@ struct ScheduleListView: View {
                         addScheduleViewModel.delegate = viewModel
                     }
             }
-            .navigationDestination(isPresented: $viewModel.state.showAddEventView) {
+            .navigationDestination(
+                isPresented: $viewModel.state.showAddEventView
+            ) {
                 if let scheduleID = viewModel.state.selectedSchedule?.id,
                    let date = viewModel.state.selectedDate {
                     AddEventView(

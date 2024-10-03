@@ -21,6 +21,7 @@ struct CalendarView: View {
                     Image(systemName: "chevron.left")
                         .padding(.horizontal)
                 }
+                .tint(TLColor.oceanBlue)
                 Spacer()
                 Text("\(viewModel.state.currentMonth)")
                     .font(.title)
@@ -32,6 +33,7 @@ struct CalendarView: View {
                     Image(systemName: "chevron.right")
                         .padding(.horizontal)
                 }
+                .tint(TLColor.oceanBlue)
             }
             .padding(.horizontal)
             
@@ -85,6 +87,10 @@ struct CalendarView: View {
                 .frame(width: 40, height: 40)
         }
     }
+}
+
+#Preview {
+    CalendarView(viewModel: CalendarViewModel(selectType: .period))
 }
 
 #Preview {

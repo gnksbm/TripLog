@@ -69,24 +69,17 @@ struct AddEventView: View {
     }
     
     var titleView: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("일정 이름")
-                .font(TLFont.headline)
-                .foregroundColor(TLColor.primaryText)
-            
-            TextField("일정 이름을 입력하세요", text: $viewModel.state.scheduleTitle)
-                .padding(12)
-                .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
-                .textFieldStyle(PlainTextFieldStyle())
+        InputSectionView(title: "일정 이름") {
+            TextField(
+                "일정 이름을 입력하세요",
+                text: $viewModel.state.scheduleTitle
+            )
+            .textFieldStyle(PlainTextFieldStyle())
         }
     }
     
     var timeView: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("시간")
-                .font(TLFont.headline)
-                .foregroundColor(TLColor.primaryText)
-            
+        InputSectionView(title: "시간") {
             DatePicker(
                 "시간 선택",
                 selection: $viewModel.state.selectedDate,
@@ -94,8 +87,6 @@ struct AddEventView: View {
             )
             .labelsHidden()
             .datePickerStyle(WheelDatePickerStyle())
-            .padding(12)
-            .background(RoundedRectangle(cornerRadius: 12).fill(TLColor.skyBlueLight.opacity(0.2)))
         }
     }
     

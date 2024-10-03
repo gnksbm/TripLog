@@ -15,6 +15,14 @@ final class AddScheduleViewModel: ViewModel {
     
     func mutate(action: Action) {
         switch action {
+        case .onAppear(let schedule):
+            if let schedule {
+                replaceSchedule(schedule: schedule)
+            }
+        case .onDisappear:
+            resetSchedule()
+        case .dateSelected(let date):
+            state.selectedDate = date
         case .intervalSelected(let interval):
             state.selectedDateInterval = interval
         case .doneButtonTapped(let schedule):
@@ -32,6 +40,16 @@ final class AddScheduleViewModel: ViewModel {
             removeSchedule(schedule: schedule)
             taskCompleted()
         }
+    }
+    
+    private func replaceSchedule(schedule: TravelSchedule) {
+        state.scheduleTitle = schedule.title
+        state.selectedDateInterval = schedule.dateInterval
+    }
+    
+    private func resetSchedule() {
+        state.scheduleTitle = ""
+        state.selectedDateInterval = nil
     }
     
     private func addSchedule() {
@@ -89,18 +107,27 @@ final class AddScheduleViewModel: ViewModel {
 
 extension AddScheduleViewModel {
     struct State {
+        var selectedDate: Date?
         var selectedDateInterval: DateInterval?
         var scheduleTitle = ""
         var isCompleted = false
         var showAlert = false
         
+        var statusDescription: String {
+            selectedDateInterval == nil ?
+            selectedDate == nil ? "일정을 선택해주세요" : "종료일을 선택해주세요" :
+            scheduleTitle.isEmpty ? "일정 이름을 입력해주세요" : ""
+        }
         var isDoneButtonDisabled: Bool {
             selectedDateInterval == nil || scheduleTitle.isEmpty
         }
     }
     
     enum Action {
-        case intervalSelected(DateInterval)
+        case onAppear(TravelSchedule?)
+        case onDisappear
+        case dateSelected(Date?)
+        case intervalSelected(DateInterval?)
         case doneButtonTapped(TravelSchedule?)
         case trashButtonTapped
         case cancelButtonTapped

@@ -46,8 +46,8 @@ extension Date {
     
     
     func isSameDate(_ from: Date) -> Bool {
-        Self.calendar.component(.day, from: self) ==
-        Self.calendar.component(.day, from: from)
+        Self.calendar.dateComponents([.year, .month, .day], from: self) ==
+        Self.calendar.dateComponents([.year, .month, .day], from: from)
     }
     
     func isSameMonth(_ month: Int) -> Bool {
