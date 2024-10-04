@@ -9,6 +9,7 @@ import Foundation
 
 struct TouristPlaceResponse: Hashable, LocationInfoItemType {
     let contentID: String
+    let contentTypeID: String
     let title: String
     let address: String
     let latitude: Double

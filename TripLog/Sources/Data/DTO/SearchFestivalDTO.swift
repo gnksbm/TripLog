@@ -32,6 +32,7 @@ extension SearchFestivalDTO {
             }
             return SearchFestivalResponse(
                 contentID: item.contentid,
+                contentTypeID: item.contenttypeid,
                 title: item.title,
                 address: item.addr1,
                 latitude: latitude,
@@ -63,6 +64,7 @@ extension SearchFestivalDTO {
             }
             return SearchFestivalResponse(
                 contentID: item.contentid,
+                contentTypeID: item.contenttypeid,
                 title: item.title,
                 address: item.addr1,
                 latitude: latitude,

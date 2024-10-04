@@ -78,4 +78,18 @@ final class DefaultTouristRepository: TouristRepository {
             .decode(type: TouristPlaceDTO.self)
             .toResponse()
     }
+    
+    func fetchDetail(
+        contentID: String,
+        contentTypeID: String
+    ) async throws {
+        let endpoint = DetailCommonEndpoint(
+            request: DetailCommonRequest(
+                contentID: contentID,
+                contentTypeID: contentTypeID
+            )
+        )
+        let data = try await networkService.request(endpoint: endpoint)
+        print(String(data: data, encoding: .utf8) ?? "nil")
+    }
 }

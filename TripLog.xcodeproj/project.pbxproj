@@ -13,6 +13,8 @@
 		8EB079EC2CAABB8300C0F080 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079EB2CAABB8300C0F080 /* Debouncer.swift */; };
 		8EB079F22CAE672800C0F080 /* InputSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079F12CAE672800C0F080 /* InputSectionView.swift */; };
 		8EB079F42CAEA89200C0F080 /* DefaultTouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079F32CAEA89200C0F080 /* DefaultTouristRepository.swift */; };
+		8EB079F82CAFCE5300C0F080 /* DetailCommonEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079F72CAFCE5300C0F080 /* DetailCommonEndpoint.swift */; };
+		8EB079FA2CAFCEB900C0F080 /* DetailCommonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079F92CAFCEB900C0F080 /* DetailCommonRequest.swift */; };
 		8ECFED332C9DB8D100716B71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECFED322C9DB8D100716B71 /* Kingfisher */; };
 		8ECFED352C9EBB5300716B71 /* TouristPlaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */; };
 		8ECFED372C9EBB6800716B71 /* TouristPlaceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */; };
@@ -121,6 +123,8 @@
 		8EB079EB2CAABB8300C0F080 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		8EB079F12CAE672800C0F080 /* InputSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSectionView.swift; sourceTree = "<group>"; };
 		8EB079F32CAEA89200C0F080 /* DefaultTouristRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTouristRepository.swift; sourceTree = "<group>"; };
+		8EB079F72CAFCE5300C0F080 /* DetailCommonEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommonEndpoint.swift; sourceTree = "<group>"; };
+		8EB079F92CAFCEB900C0F080 /* DetailCommonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommonRequest.swift; sourceTree = "<group>"; };
 		8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceRequest.swift; sourceTree = "<group>"; };
 		8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceEndpoint.swift; sourceTree = "<group>"; };
 		8ECFED382C9F0D5000716B71 /* TouristPlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceDTO.swift; sourceTree = "<group>"; };
@@ -407,8 +411,8 @@
 		BE473E302C9485D500020435 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BE473E312C9485DC00020435 /* NetworkService.swift */,
 				BE473E562C95862800020435 /* Endpoint */,
+				BE473E312C9485DC00020435 /* NetworkService.swift */,
 				BE473E352C9488E100020435 /* DefaultNetworkService.swift */,
 			);
 			path = Network;
@@ -446,6 +450,7 @@
 				BE473E5A2C95864C00020435 /* AreaCodeEndpoint.swift */,
 				BEADF8F32C96BDA300FCDBE9 /* SearchFestivalEndpoint.swift */,
 				8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */,
+				8EB079F72CAFCE5300C0F080 /* DetailCommonEndpoint.swift */,
 			);
 			path = TouristEndpoint;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				BE473E602C958E1D00020435 /* AreaCodeRequest.swift */,
 				BEADF8F52C96BE7300FCDBE9 /* SearchFestivalRequest.swift */,
 				8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */,
+				8EB079F92CAFCEB900C0F080 /* DetailCommonRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -693,9 +699,11 @@
 				BE3496B02CA16E2C003F31B8 /* EventMapView.swift in Sources */,
 				BE275C3F2CA4262E00389127 /* ImageRepository.swift in Sources */,
 				8EB079F22CAE672800C0F080 /* InputSectionView.swift in Sources */,
+				8EB079F82CAFCE5300C0F080 /* DetailCommonEndpoint.swift in Sources */,
 				BE30F00E2CA68F130086B581 /* LocationInfoItemType.swift in Sources */,
 				8ECFED4A2CA0179600716B71 /* Date+.swift in Sources */,
 				8ECFED3D2C9FBF2100716B71 /* Image+.swift in Sources */,
+				8EB079FA2CAFCEB900C0F080 /* DetailCommonRequest.swift in Sources */,
 				8ECFED462CA00D9A00716B71 /* DateInterval+.swift in Sources */,
 				BE473E322C9485DC00020435 /* NetworkService.swift in Sources */,
 				BE473E632C969A2800020435 /* ViewModel.swift in Sources */,

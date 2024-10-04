@@ -9,6 +9,7 @@ import Foundation
 
 struct SearchFestivalResponse: Hashable, LocationInfoItemType {
     let contentID: String
+    let contentTypeID: String
     let title: String
     let address: String
     let latitude: Double
@@ -28,6 +29,7 @@ extension SearchFestivalResponse {
 extension SearchFestivalResponse {
     static let mock = SearchFestivalResponse(
         contentID: "2648460",
+        contentTypeID: "",
         title: "경복궁 별빛야행",
         address: "서울특별시 종로구 사직로 161 (세종로)",
         latitude: 126.9767375783,

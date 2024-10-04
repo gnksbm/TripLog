@@ -9,6 +9,7 @@ import Foundation
 
 protocol LocationInfoItemType {
     var contentID: String { get }
+    var contentTypeID: String { get }
     var title: String { get }
     var address: String { get }
     var latitude: Double { get }

@@ -11,6 +11,7 @@ import MapKit
 import Kingfisher
 
 struct LocationDetailView<Item: LocationInfoItemType>: View {
+    @Injected private var touristRepository: TouristRepository
     let item: Item
     
     var body: some View {
