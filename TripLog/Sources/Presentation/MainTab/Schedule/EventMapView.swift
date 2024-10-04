@@ -34,7 +34,9 @@ struct EventMapView: View {
                 annotationItems: [viewModel.state.markerCoordinate]
             ) { coordinate in
                 MapAnnotation(coordinate: coordinate) {
-                    MarkerView()
+                    MarkerView() {
+                        
+                    }
                 }
             }
             

@@ -8,6 +8,8 @@
 import SwiftUI
 import MapKit
 
+import Kingfisher
+
 extension MKCoordinateSpan: Equatable {
     public static func == (
         lhs: MKCoordinateSpan,
@@ -184,8 +186,12 @@ struct TouristMapView: View {
                 Button {
                     viewModel.send(action: .placeSelected(place))
                 } label: {
-                    MarkerView()
-                        .padding()
+                    MarkerView {
+                        KFImage(place.imageURLs.first)
+                            .resizable()
+                            .scaledToFill()
+                    }
+                    .padding()
                 }
                 .buttonStyle(PlainButtonStyle())
             }

@@ -306,10 +306,10 @@
 		BE14D2182C96A82B00CCDB99 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				BE3496AC2CA15849003F31B8 /* Mock */,
 				BE275C3E2CA4262E00389127 /* ImageRepository.swift */,
 				BE14D2192C96A83600CCDB99 /* TouristRepository.swift */,
 				BE3496AA2CA15838003F31B8 /* ScheduleRepository.swift */,
-				BE3496AC2CA15849003F31B8 /* Mock */,
 				BE81D51E2CA3E17F002574A5 /* RecordRepository.swift */,
 			);
 			path = Repository;

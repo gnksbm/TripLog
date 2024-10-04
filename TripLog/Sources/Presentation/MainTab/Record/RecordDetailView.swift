@@ -42,6 +42,7 @@ struct RecordDetailView: View {
                     .overlay(
                         Text("이미지가 없습니다")
                             .font(TLFont.caption)
+                            .bold()
                             .foregroundColor(TLColor.secondaryText)
                     )
             } else {
@@ -52,7 +53,7 @@ struct RecordDetailView: View {
                 }
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+        .tabViewStyle(.page)
     }
 }
 

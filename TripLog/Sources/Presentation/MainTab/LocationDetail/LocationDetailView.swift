@@ -37,6 +37,16 @@ struct LocationDetailView<Item: LocationInfoItemType>: View {
         .navigationTitle("상세 정보")
         .navigationBarTitleDisplayMode(.inline)
         .background(TLColor.backgroundGray.ignoresSafeArea())
+        .task {
+            do {
+                try await touristRepository.fetchDetail(
+                    contentID: item.contentID,
+                    contentTypeID: item.contentTypeID
+                )
+            } catch {
+                dump(error)
+            }
+        }
     }
 
     private var titleView: some View {

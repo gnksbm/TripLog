@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct MarkerView: View {
+struct MarkerView<Content: View>: View {
     let color: Color
     let size: CGFloat
     let borderWidth: CGFloat
+    let content: Content
     
     var body: some View {
         VStack(spacing: 0) {
@@ -23,8 +24,8 @@ struct MarkerView: View {
         ZStack {
             Circle()
                 .fill(color)
-            Circle()
-                .fill(Color.white)
+            content
+                .clipShape(.circle)
                 .frame(width: size / 2, height: size / 2)
         }
         .frame(width: size, height: size)
@@ -51,18 +52,20 @@ struct MarkerView: View {
     init(
         color: Color = .accentColor,
         size: CGFloat = 42,
-        borderWidth: CGFloat? = nil
+        borderWidth: CGFloat? = nil,
+        @ViewBuilder content: () -> Content
     ) {
         self.color = color
         self.size = size
         self.borderWidth = borderWidth ?? size / 8
+        self.content = content()
     }
 }
 
 #Preview {
     VStack {
         Spacer()
-        MarkerView(size: 300)
+        MarkerView(size: 300) { Image.festival }
         Spacer()
     }
 }
