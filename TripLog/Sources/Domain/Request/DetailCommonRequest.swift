@@ -23,10 +23,19 @@ extension DetailCommonRequest: QueryProvider {
     struct Query: Encodable {
         let contentID: String
         let contentTypeID: String
+        let defaultYN = "Y"
+        let firstImageYN = "Y"
+        let areacodeYN = "Y"
+        let catcodeYN = "Y"
+        let addrinfoYN = "Y"
+        let mapinfoYN = "Y"
+        let overviewYN = "Y"
         
         enum CodingKeys: String, CodingKey {
             case contentID = "contentId"
             case contentTypeID = "contentTypeId"
+            case defaultYN, firstImageYN, areacodeYN, catcodeYN, addrinfoYN, 
+                 mapinfoYN, overviewYN
         }
     }
 }

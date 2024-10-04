@@ -14,7 +14,7 @@ protocol QueryProvider {
 }
 
 extension QueryProvider {
-    func toDic() -> [String: String] {
+    func queryToDic() -> [String: String] {
         do {
             let data = try JSONEncoder().encode(query)
             let jsonObject = try JSONSerialization.jsonObject(with: data)

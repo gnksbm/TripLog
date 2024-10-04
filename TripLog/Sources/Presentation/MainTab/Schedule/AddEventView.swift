@@ -54,7 +54,6 @@ struct AddEventView: View {
                 }
             }
         }
-
         .onChange(of: viewModel.state.onDismissed) { value in
             if value {
                 dismiss()

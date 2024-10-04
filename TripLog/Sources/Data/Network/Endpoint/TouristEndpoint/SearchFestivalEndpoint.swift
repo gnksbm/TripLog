@@ -11,5 +11,5 @@ struct SearchFestivalEndpoint: TouristEndpoint {
     let request: SearchFestivalRequest
     
     var additionalPath: String { "/searchFestival1" }
-    var queryParameters: [String : String] { request.toDic() }
+    var queryParameters: [String : String] { request.queryToDic() }
 }

@@ -355,6 +355,7 @@
 		BE3496A72CA156EE003F31B8 /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
+				8ECFED6F2CA5DA8300716B71 /* RoundedCorner.swift */,
 				BE3496A82CA156FC003F31B8 /* LargeButtonStyle.swift */,
 			);
 			path = Modifier;
@@ -377,7 +378,6 @@
 				BE81D5222CA3E4B7002574A5 /* LocalImageView.swift */,
 				8ECFED6D2CA5C89F00716B71 /* DatePickerView.swift */,
 				8ECFED4B2CA017A300716B71 /* Calendar */,
-				8ECFED6F2CA5DA8300716B71 /* RoundedCorner.swift */,
 				8EB079F12CAE672800C0F080 /* InputSectionView.swift */,
 			);
 			path = Custom;

@@ -11,5 +11,5 @@ struct AreaCodeEndpoint: TouristEndpoint {
     let request: AreaCodeRequest
     
     var additionalPath: String { "/areaCode1" }
-    var queryParameters: [String : String] { request.toDic() }
+    var queryParameters: [String : String] { request.queryToDic() }
 }

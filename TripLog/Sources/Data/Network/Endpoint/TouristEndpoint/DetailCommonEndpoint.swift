@@ -11,5 +11,5 @@ struct DetailCommonEndpoint: TouristEndpoint {
     let request: DetailCommonRequest
     
     var additionalPath: String { "/detailCommon1" }
-    var queryParameters: [String : String] { request.toDic() }
+    var queryParameters: [String : String] { request.queryToDic() }
 }
