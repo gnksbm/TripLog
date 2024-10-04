@@ -8,6 +8,8 @@
 import Foundation
 
 struct SearchFestivalRequest {
+    let pageNo: Int?
+    let numOfRows: Int?
     let areaCode: Int?
     let eventStartDate: Date
     let eventEndDate: Date?
@@ -16,6 +18,8 @@ struct SearchFestivalRequest {
 extension SearchFestivalRequest: QueryProvider {
     var query: Query {
         Query(
+            pageNo: pageNo,
+            numOfRows: numOfRows,
             areaCode: areaCode,
             eventStartDate: eventStartDate.formatted(
                 dateFormat: .festivalInput
@@ -27,6 +31,8 @@ extension SearchFestivalRequest: QueryProvider {
     }
     
     struct Query: Encodable {
+        let pageNo: Int?
+        let numOfRows: Int?
         let areaCode: Int?
         let eventStartDate: String
         let eventEndDate: String?

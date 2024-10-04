@@ -12,6 +12,7 @@
 		8E138FAE2C9C4E95008F9D38 /* TouristMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138FAD2C9C4E95008F9D38 /* TouristMapViewModel.swift */; };
 		8EB079EC2CAABB8300C0F080 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079EB2CAABB8300C0F080 /* Debouncer.swift */; };
 		8EB079F22CAE672800C0F080 /* InputSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079F12CAE672800C0F080 /* InputSectionView.swift */; };
+		8EB079F42CAEA89200C0F080 /* DefaultTouristRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB079F32CAEA89200C0F080 /* DefaultTouristRepository.swift */; };
 		8ECFED332C9DB8D100716B71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECFED322C9DB8D100716B71 /* Kingfisher */; };
 		8ECFED352C9EBB5300716B71 /* TouristPlaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */; };
 		8ECFED372C9EBB6800716B71 /* TouristPlaceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */; };
@@ -119,6 +120,7 @@
 		8E138FAD2C9C4E95008F9D38 /* TouristMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristMapViewModel.swift; sourceTree = "<group>"; };
 		8EB079EB2CAABB8300C0F080 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		8EB079F12CAE672800C0F080 /* InputSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSectionView.swift; sourceTree = "<group>"; };
+		8EB079F32CAEA89200C0F080 /* DefaultTouristRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTouristRepository.swift; sourceTree = "<group>"; };
 		8ECFED342C9EBB5300716B71 /* TouristPlaceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceRequest.swift; sourceTree = "<group>"; };
 		8ECFED362C9EBB6800716B71 /* TouristPlaceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceEndpoint.swift; sourceTree = "<group>"; };
 		8ECFED382C9F0D5000716B71 /* TouristPlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceDTO.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				BE275C492CA4339B00389127 /* DefaultScheduleRepository.swift */,
+				8EB079F32CAEA89200C0F080 /* DefaultTouristRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 			files = (
 				BE14D2232C96B39900CCDB99 /* AppDelegate.swift in Sources */,
 				BE473E282C93353700020435 /* ScheduleListView.swift in Sources */,
+				8EB079F42CAEA89200C0F080 /* DefaultTouristRepository.swift in Sources */,
 				BE81D51D2CA3DD94002574A5 /* RecordDetailView.swift in Sources */,
 				BE473E612C958E1D00020435 /* AreaCodeRequest.swift in Sources */,
 				BE81D5192CA3DC69002574A5 /* FileManager+.swift in Sources */,
@@ -887,7 +891,7 @@
 				INFOPLIST_FILE = TripLog/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "플랜잇";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변의 시설정보를 가져오기 위해 위치 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변의 관광 정보를 확인하려면 위치 권한을 허용해 주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -899,7 +903,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.geonseobkim.Travelog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -928,7 +932,7 @@
 				INFOPLIST_FILE = TripLog/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "플랜잇";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변의 시설정보를 가져오기 위해 위치 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변의 관광 정보를 확인하려면 위치 권한을 허용해 주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -940,7 +944,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.geonseobkim.Travelog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

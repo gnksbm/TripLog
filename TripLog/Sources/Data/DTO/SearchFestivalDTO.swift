@@ -12,6 +12,38 @@ struct SearchFestivalDTO: Codable {
 }
 
 extension SearchFestivalDTO {
+    func toResponseWithPageInfo(
+    ) -> (page: Int, total: Int, [SearchFestivalResponse]) {
+        let list: [SearchFestivalResponse] = response.body.items.item.compactMap { item in
+            var imageURLs = [URL]()
+            guard let latitude = Double(item.mapy),
+                  let longitude = Double(item.mapx),
+                  let startDate = item.eventstartdate?.formatted(
+                    dateFormat: .festivalInput
+                  ),
+                  let endDate = item.eventenddate.formatted(
+                    dateFormat: .festivalInput
+                  )
+            else { return nil }
+            [item.firstimage, item.firstimage2].forEach { str in
+                if let url = URL(string: str) {
+                    imageURLs.append(url)
+                }
+            }
+            return SearchFestivalResponse(
+                contentID: item.contentid,
+                title: item.title,
+                address: item.addr1,
+                latitude: latitude,
+                longitude: longitude,
+                startDate: startDate,
+                endDate: endDate,
+                imageURLs: imageURLs
+            )
+        }
+        return (response.body.pageNo, response.body.totalCount, list)
+    }
+    
     func toResponse() -> [SearchFestivalResponse] {
         response.body.items.item.compactMap { item in
             var imageURLs = [URL]()

@@ -12,9 +12,14 @@ struct MainTab: View {
         TabView {
             ForEach(TabKind.allCases) { tabKind in
                 tabKind.view
-                    .tabItem { tabKind.tabItem }
+                    .tabItem { 
+                        tabKind.tabItem
+                            .font(TLFont.caption)
+                            .foregroundColor(TLColor.primaryText)
+                    }
                     .background(TLColor.backgroundGray)
                     .accentColor(TLColor.oceanBlue)
+                    .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             }
         }
         .accentColor(TLColor.skyBlue)
@@ -31,13 +36,10 @@ struct MainTab: View {
             switch self {
             case .eventList:
                 EventListView()
-                    .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             case .touristMap:
                 TouristMapView()
-                    .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             case .scheduleList:
                 ScheduleListView()
-                    .toolbarBackground(TLColor.skyBlueMedium, for: .navigationBar)
             }
         }
         
@@ -51,24 +53,17 @@ struct MainTab: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 24, height: 24)
                     Text("행사")
-                        .font(TLFont.caption)
-                        .foregroundColor(TLColor.primaryText)
                 case .touristMap:
                     Image(systemName: "mappin.and.ellipse")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 24, height: 24)
-                    Text("주변")
-                        .font(TLFont.caption)
-                        .foregroundColor(TLColor.primaryText)
-                case .scheduleList:
+                    Text("주변")                case .scheduleList:
                     Image(systemName: "calendar")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 24, height: 24)
                     Text("일정")
-                        .font(TLFont.caption)
-                        .foregroundColor(TLColor.primaryText)
                 }
             }
             .padding(.top, 8)

@@ -73,13 +73,18 @@ struct EventListView: View {
     
     var festivalListView: some View {
         ScrollView {
-            VStack(spacing: 16) {
-                ForEach(viewModel.state.festivalList) { festival in
+            LazyVStack(spacing: 16) {
+                ForEach(viewModel.state.festivalList.withIndex, id: \.1) { index, festival in
                     FestivalCardView(festival: festival)
                         .padding(.horizontal)
                         .padding(.vertical, 4)
                         .onTapGesture {
                             viewModel.send(action: .itemTapped(festival))
+                        }
+                        .onAppear {
+                            if index == viewModel.state.festivalList.count - 1 {
+                                viewModel.send(action: .lastItemAppear)
+                            }
                         }
                 }
             }
@@ -90,4 +95,10 @@ struct EventListView: View {
 
 #Preview {
     EventListView()
+}
+
+extension Collection {
+    var withIndex: Array<(Index, Element)> {
+        Array(zip(indices, self))
+    }
 }
