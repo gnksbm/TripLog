@@ -50,6 +50,7 @@ final class AddScheduleViewModel: ViewModel {
     private func resetSchedule() {
         state.scheduleTitle = ""
         state.selectedDateInterval = nil
+        state.isCompleted = false
     }
     
     private func addSchedule() {
